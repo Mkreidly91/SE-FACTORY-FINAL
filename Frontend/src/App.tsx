@@ -1,9 +1,10 @@
 import './App.css';
+import Landing from './pages/landing/Landing';
 
 function App() {
   return (
-    <div className="app sora">
-      <h1 className="text-2xl font-extrabold ">Hellooo</h1>
+    <div className="app sora h-full">
+      <Landing />
     </div>
   );
 }
