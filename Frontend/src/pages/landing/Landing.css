@@ -1,0 +1,15 @@
+/* .landing {
+  background-image: url('../../assets/images/landing-page/landing-page.png');
+
+  background-position: 100% 20%;
+
+  background-size: 100%;
+
+  aspect-ratio: 16/9;
+} */
+
+.landing-background {
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  object-position: center;
+}
