@@ -141,6 +141,22 @@ const addMarkerService = async (
   return marker;
 };
 
+const deleteProjectService = async (projectId: mongoose.Types.ObjectId) => {
+  const project = await Project.findById(projectId);
+
+  if (!project) {
+    throw new HttpException(400, 'Project not found');
+  }
+
+  const owner = await Company.findById(project.owner);
+  if (!owner) {
+    throw new HttpException(400, 'Owner not found');
+  }
+
+  owner.projects = owner.projects.filter((id) => !id.equals(project._id));
+  const deleted = await project.deleteOne();
+};
+
 export {
   createProjectService,
   addApartmentService,

@@ -1,9 +1,9 @@
-import { Schema, model, Document } from 'mongoose';
+import mongoose, { Schema, model, Document } from 'mongoose';
 import { IUser } from './customer';
 import { IProjectDocument } from './project';
 interface ICompany extends IUser {
   logo: string;
-  projects?: Schema.Types.ObjectId[];
+  projects?: mongoose.Types.ObjectId[];
 }
 
 interface ICompanyDocument extends ICompany, Document {}

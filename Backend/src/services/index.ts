@@ -4,6 +4,7 @@ import {
   addPanoramaService,
   addHotspotService,
   addMarkerService,
+  deleteProjectService,
 } from './company.service';
 
 export {
@@ -12,4 +13,5 @@ export {
   addPanoramaService,
   addMarkerService,
   addHotspotService,
+  deleteProjectService,
 };
