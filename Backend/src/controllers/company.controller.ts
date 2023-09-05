@@ -6,6 +6,8 @@ import {
   addApartmentService,
   createProjectService,
   addPanoramaService,
+  addMarkerService,
+  addHotspotService,
 } from '../services/company.service';
 import mongoose, { Types } from 'mongoose';
 import { HttpException } from '../exceptions/HttpException';
@@ -71,9 +73,58 @@ const addPanorama = async (
       apartmentId,
       files[0]
     );
+    return res.status(200).json({
+      message: 'Successfully added panorama',
+      data: panoramas,
+    });
   } catch (error) {
     next(error);
   }
 };
 
-export { createProject, addApartment };
+const addMarker = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { projectId, apartmentId, panoramaId, x, y, z } = req.body;
+    const marker = await addMarkerService(projectId, apartmentId, panoramaId, {
+      x,
+      y,
+      z,
+    });
+    return res.status(200).json({
+      message: 'Successfully added marker',
+      data: marker,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const addHotspot = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // projectId: Types.ObjectId, apartmentId: Types.ObjectId, panoramaId: Types.ObjectId, { link, info, yaw, pitch }: IHotspot)
+    const { projectId, apartmentId, panoramaId, link, info, yaw, pitch } =
+      req.body;
+    const hotspot = await addHotspotService(
+      projectId,
+      apartmentId,
+      panoramaId,
+      { link, info, yaw, pitch }
+    );
+    return res.status(200).json({
+      message: 'Successfully added hotspot',
+      data: hotspot,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { createProject, addApartment, addPanorama, addMarker, addHotspot };
