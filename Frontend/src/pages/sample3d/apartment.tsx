@@ -3,9 +3,10 @@ import Marker from '../../components/Marker/Marker';
 import owl from '../../assets/icons/logo/logo-owl.svg';
 
 const Model = ({ placeMarker, children }) => {
-  const m = useGLTF(
-    'https://vizi-bucket.s3.eu-west-1.amazonaws.com/IsometricRoom.glb'
-  );
+  // const m = useGLTF(
+  //   'https://vizi-bucket.s3.eu-west-1.amazonaws.com/IsometricRoom.glb'
+  // );
+  const m = useGLTF('3dModels/IsometricRoom.glb');
   return (
     m && (
       <primitive
@@ -21,5 +22,5 @@ const Model = ({ placeMarker, children }) => {
   );
 };
 
-// useGLTF.preload('3dModels/IsometricRoom.glb');
+useGLTF.preload('3dModels/IsometricRoom.glb');
 export default Model;

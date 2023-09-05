@@ -2,9 +2,8 @@ import { Html, OrbitControls, useGLTF } from '@react-three/drei';
 import { Canvas, ThreeEvent } from '@react-three/fiber';
 import React, { useState, useEffect, FC, Suspense, useRef } from 'react';
 import * as THREE from 'three';
-import Pano from './pano.jsx';
 import { AnyObject } from 'three/examples/jsm/nodes/Nodes.js';
-import V360 from './View360.jsx';
+import V360 from './V360.jsx';
 import img from './panorama.jpg';
 import bedroom from './bedroom.jpeg';
 import owl from '../../assets/icons/logo/logo-owl.svg';
@@ -52,7 +51,6 @@ const Test = () => {
   return (
     <div className=" h-fit w-full bg-black flex flex-col py-20">
       <div className="w-[70%] m-auto ">
-        {/* <Pano /> */}
         <V360 image={activeImage} />
       </div>
 
@@ -78,22 +76,31 @@ const Test = () => {
           images.map((element) => (
             <img className="h-full rounded-md" src={element} />
           ))}
-        <img
+        {/* <img
           src="https://vizi-bucket.s3.eu-west-1.amazonaws.com/bedroom.jpeg"
           alt=""
           className="h-full rounded-md"
-        />
+        /> */}
       </div>
       <div className="w-[80%] h-[800px] mx-auto">
         <Canvas
-          className=" bg-transparent border h-full bg-white"
+          className=" border h-full bg-transparent"
           frameloop="demand"
           camera={camera}
           dpr={window.devicePixelRatio}
         >
           <ambientLight intensity={0.1} />
-          <directionalLight color="white" position={[0, 0, 5]} />
-          <directionalLight color="white" position={[5, 0, 5]} />
+          <directionalLight color="white" position={[0, 0, 5]} intensity={1} />
+          {/* <directionalLight color="white" position={[5, 0, 5]} /> */}
+          <pointLight intensity={2} position={[-10, 30, 20]} castShadow />
+          <pointLight
+            intensity={1}
+            position={[20, 30, -10]}
+            castShadow
+            visible={true}
+          />
+          {/* <spotLight color="yellow" position={[0, 0, 0]} /> */}
+
           <OrbitControls makeDefault target={[0, 2, 0]} />
           <Suspense>
             <Model placeMarker={placeMarker}>

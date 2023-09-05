@@ -23,7 +23,7 @@ const V360 = ({ image }) => {
   const projection = useMemo(
     () =>
       new EquirectProjection({
-        src: imgUrl,
+        src: image,
       }),
     [image]
   );
@@ -39,7 +39,7 @@ const V360 = ({ image }) => {
     <View360
       plugins={[plugin]}
       ref={viewRef}
-      className="is-16by9 relative"
+      className="is-16by9 "
       projection={projection}
       hotspot={{
         zoom: true,
@@ -51,6 +51,7 @@ const V360 = ({ image }) => {
 
       <Button
         text="set Marker"
+        s
         className="absolute top-1 left-1 bg-white"
         onClick={() => {
           setHotspot((prev) => [
