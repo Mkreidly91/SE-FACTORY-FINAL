@@ -14,7 +14,10 @@ const Marker = ({ marker, setActiveImage }) => {
       <ThreeSixtyIcon
         fontSize="inherit"
         htmlColor="blue"
-        className=" fill-red-200 bg-transparent"
+        className=" fill-red-200 bg-transparent cursor-pointer"
+        onClick={() => {
+          setActiveImage(image);
+        }}
       />
       {/* <img
         onClick={() => {

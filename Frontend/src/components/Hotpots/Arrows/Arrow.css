@@ -6,7 +6,6 @@
   width: 40px;
   height: 40px;
   /* transform: translate(-50%, -50%); */
-  transform: perspective(400px) rotateX(45deg);
 }
 
 .arrows:before {
