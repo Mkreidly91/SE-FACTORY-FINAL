@@ -3,7 +3,7 @@ import { string, number, object, array, any } from 'zod';
 const projectForm = object({
   body: object({
     name: string().trim().min(1).max(18),
-    description: string().trim(),
+    description: string().trim().nonempty(),
   }),
 });
 
@@ -14,10 +14,10 @@ const maxFileSize = 50 * 1024 * 1024;
 const apartmentForm = object({
   files: array(
     object({
-      fieldname: string().trim(),
-      originalname: string().trim(),
-      encoding: string().trim(),
-      mimetype: string().trim(),
+      fieldname: string().trim().nonempty(),
+      originalname: string().trim().nonempty(),
+      encoding: string().trim().nonempty(),
+      mimetype: string().trim().nonempty(),
       buffer: any(),
       size: number(),
     })
@@ -52,18 +52,18 @@ const apartmentForm = object({
     ),
   body: object({
     name: string().trim().min(1).max(18),
-    description: string().trim(),
-    projectId: string().trim(),
+    description: string().trim().nonempty(),
+    projectId: string().trim().nonempty(),
   }),
 });
 
 const panoramaForm = object({
   files: array(
     object({
-      fieldname: string().trim(),
-      originalname: string().trim(),
-      encoding: string().trim(),
-      mimetype: string().trim(),
+      fieldname: string().trim().nonempty(),
+      originalname: string().trim().nonempty(),
+      encoding: string().trim().nonempty(),
+      mimetype: string().trim().nonempty(),
       buffer: any(),
       size: number(),
     })
@@ -93,10 +93,32 @@ const panoramaForm = object({
       }
     ),
   body: object({
-    name: string().trim().min(1).max(18),
-    description: string().trim(),
-    projectId: string().trim(),
+    projectId: string().trim().nonempty(),
+    apartmentId: string().trim().nonempty(),
   }),
 });
 
-export { projectForm, apartmentForm, panoramaForm };
+const markerForm = object({
+  body: object({
+    projectId: string().trim().nonempty(),
+    apartmentId: string().trim().nonempty(),
+    panoramaId: string().trim().nonempty(),
+    x: number(),
+    y: number(),
+    z: number(),
+  }),
+});
+
+const hotspotForm = object({
+  body: object({
+    projectId: string().trim().nonempty(),
+    apartmentId: string().trim().nonempty(),
+    panoramaId: string().trim().nonempty(),
+    link: string().trim().url().nonempty().optional(),
+    info: string().trim().nonempty().optional(),
+    yaw: number(),
+    pitch: number(),
+  }),
+});
+
+export { projectForm, apartmentForm, panoramaForm, markerForm, hotspotForm };
