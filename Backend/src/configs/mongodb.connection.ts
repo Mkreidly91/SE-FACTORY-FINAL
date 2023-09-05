@@ -1,9 +1,7 @@
 import mongoose from 'mongoose';
-import { config } from 'dotenv';
-config();
+import envConfig from './env.config';
 
-const { MONGO_URL } = process.env;
-
+const { MONGO_URL } = envConfig;
 export default async () => {
   mongoose.Promise = Promise;
   await mongoose.connect(MONGO_URL);
