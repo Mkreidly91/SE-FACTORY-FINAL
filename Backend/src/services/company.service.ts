@@ -136,7 +136,7 @@ const addMarkerService = async (
     z,
   });
 
-  panorama.markers.push(marker);
+  panorama.marker = marker;
   await project.save();
   return marker;
 };

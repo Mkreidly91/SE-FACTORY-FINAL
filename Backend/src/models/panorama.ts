@@ -4,7 +4,7 @@ import { HotspotSchema, IHotspotDocument } from './hotspot';
 
 interface IPanorama {
   url: string;
-  markers?: IMarkerDocument[];
+  marker?: IMarkerDocument;
   hotspots?: IHotspotDocument[];
 }
 
@@ -12,7 +12,7 @@ interface IPanoramaDocument extends IPanorama, Document {}
 
 const PanoramaSchema = new Schema<IPanorama>({
   url: { type: String, required: true },
-  markers: [MarkerSchema],
+  marker: MarkerSchema,
   hotspots: [HotspotSchema],
 });
 
