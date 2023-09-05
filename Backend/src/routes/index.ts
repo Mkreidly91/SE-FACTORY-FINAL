@@ -1,9 +1,11 @@
-import express from 'express';
+import { Router } from 'express';
 import authRoute from './auth.route';
+import companyRoute from './company.route';
 
-const router = express.Router();
+const router = Router();
 
-export default (): express.Router => {
+export default (): Router => {
   authRoute(router);
+  companyRoute(router);
   return router;
 };
