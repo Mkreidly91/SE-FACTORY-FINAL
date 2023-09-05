@@ -1,20 +1,19 @@
 import { Schema, model, Document } from 'mongoose';
-
-type Marker = { imageUrl: string; x: number; y: number; z: number };
-type Hotspot = { text?: string; link?: string; yaw: number; pitch: number };
+import { MarkerSchema, IMarkerDocument } from './marker';
+import { HotspotSchema, IHotspotDocument } from './hotspot';
 
 interface IPanorama {
   url: string;
-  markers?: Marker[];
-  hotspots?: Hotspot[];
+  markers?: IMarkerDocument[];
+  hotspots?: IHotspotDocument[];
 }
 
 interface IPanoramaDocument extends IPanorama, Document {}
 
 const PanoramaSchema = new Schema<IPanorama>({
   url: { type: String, required: true },
-  markers: [{ imageUrl: String, x: Number, y: Number, z: Number }],
-  hotspots: [{ text: String, link: String, yaw: Number, pitch: Number }],
+  markers: [MarkerSchema],
+  hotspots: [HotspotSchema],
 });
 
 const Panorama = model<IPanoramaDocument>('Panorama', PanoramaSchema);

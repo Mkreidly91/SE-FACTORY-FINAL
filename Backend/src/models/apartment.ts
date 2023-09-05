@@ -1,11 +1,11 @@
 import { Schema, model, Document } from 'mongoose';
-import { PanoramaSchema, IPanorama } from './panorama';
+import { PanoramaSchema, IPanoramaDocument } from './panorama';
 
 interface IApartment {
   name: string;
   description: string;
   url?: string;
-  panoramas?: IPanorama[];
+  panoramas?: IPanoramaDocument[];
 }
 interface IApartmentDocument extends IApartment, Document {}
 

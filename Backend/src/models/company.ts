@@ -3,13 +3,13 @@ import { IUser } from './customer';
 import { IProjectDocument } from './project';
 interface ICompany extends IUser {
   logo: string;
-  projects?: IProjectDocument[];
+  projects?: Schema.Types.ObjectId[];
 }
 
 interface ICompanyDocument extends ICompany, Document {}
 
 const CompanySchema = new Schema<ICompany>({
-  name: { type: String, required: true },
+  name: { type: String, required: true, unique: true },
   email: {
     type: String,
     index: true,
