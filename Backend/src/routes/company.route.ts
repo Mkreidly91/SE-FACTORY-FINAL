@@ -1,14 +1,23 @@
+import { Router } from 'express';
+import multer from 'multer';
+import authMiddleware, { Roles } from '../middlewares/auth.middleware';
+import {
+  projectForm,
+  apartmentForm,
+  panoramaForm,
+  markerForm,
+  hotspotForm,
+} from '../validation/company.validation';
+import formValidationMiddleware from '../middlewares/formValidation.middleware';
 import {
   uploadToS3,
   deleteFromS3,
   createProject,
   addApartment,
+  addPanorama,
+  addHotspot,
+  addMarker,
 } from '../controllers';
-import { Router } from 'express';
-import multer from 'multer';
-import authMiddleware, { Roles } from '../middlewares/auth.middleware';
-import { projectForm, apartmentForm } from '../validation/company.validation';
-import formValidationMiddleware from '../middlewares/formValidation.middleware';
 
 export default (router: Router) => {
   router.post('/company/upload', multer().any(), uploadToS3);
@@ -25,5 +34,24 @@ export default (router: Router) => {
     multer().any(),
     formValidationMiddleware(apartmentForm),
     addApartment
+  );
+  router.post(
+    '/company/addPanorama',
+    authMiddleware(Roles.Company),
+    multer().any(),
+    formValidationMiddleware(panoramaForm),
+    addPanorama
+  );
+  router.post(
+    '/company/addMarker',
+    authMiddleware(Roles.Company),
+    formValidationMiddleware(markerForm),
+    addMarker
+  );
+  router.post(
+    '/company/addHotspot',
+    authMiddleware(Roles.Company),
+    formValidationMiddleware(hotspotForm),
+    addHotspot
   );
 };
