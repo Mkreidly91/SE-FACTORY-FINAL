@@ -6,7 +6,7 @@ import { S3Client } from '@aws-sdk/client-s3';
 import mongoose from 'mongoose';
 import envConfig from '../configs/env.config';
 import { HttpException } from '../exceptions/HttpException';
-import { upload } from '../helpers/s3.helpers';
+import { deleteBulk, deleteFile, upload } from '../helpers/s3.helpers';
 import { IMarker, Marker } from '../models/marker';
 import { Hotspot, IHotspot } from '../models/hotspot';
 
@@ -64,6 +64,7 @@ const addPanoramaService = async (
   }
   console.log(project.apartments);
   const apartment = project.apartments.find((e) => e._id.equals(apartmentId));
+
   if (!apartment) {
     throw new HttpException(400, 'Apartment not found');
   }
@@ -153,8 +154,143 @@ const deleteProjectService = async (projectId: mongoose.Types.ObjectId) => {
     throw new HttpException(400, 'Owner not found');
   }
 
+  if (project.apartments.length > 0) {
+    let filesToDelete: string[] = [];
+    const panormasToDelete = project.apartments.forEach((apartment) => {
+      const apartmentUrl = apartment.url;
+      if (apartment.panoramas.length > 0) {
+        const panoramaUrls = apartment.panoramas.map((e) => e.url);
+        filesToDelete = [...filesToDelete, ...panoramaUrls, apartmentUrl];
+      } else {
+        filesToDelete = [...filesToDelete, apartmentUrl];
+      }
+    });
+
+    await deleteBulk(filesToDelete);
+  }
+
   owner.projects = owner.projects.filter((id) => !id.equals(project._id));
+  await owner.save();
   const deleted = await project.deleteOne();
+  return deleted;
+};
+
+const deleteApartmentService = async (
+  projectId: mongoose.Types.ObjectId,
+  apartmentId: mongoose.Types.ObjectId
+) => {
+  const project = await Project.findById(projectId);
+  if (!project) {
+    throw new HttpException(400, 'Project not found');
+  }
+
+  const apartment = project.apartments.find((e) => e._id.equals(apartmentId));
+  if (!apartment) {
+    throw new HttpException(400, 'Apartment not found');
+  }
+
+  await deleteFile(apartment.url);
+
+  if (apartment.panoramas.length > 0) {
+    const panoramasToDelete = apartment.panoramas.map((e) => e.url);
+    await deleteBulk(panoramasToDelete);
+  }
+
+  project.apartments = project.apartments.filter(
+    (e) => !e._id.equals(apartmentId)
+  );
+
+  const newProject = await project.save();
+
+  return newProject.apartments;
+};
+
+const deletePanoramaService = async (
+  projectId: mongoose.Types.ObjectId,
+  apartmentId: mongoose.Types.ObjectId,
+  panoramaId: mongoose.Types.ObjectId
+) => {
+  const project = await Project.findById(projectId);
+  if (!project) {
+    throw new HttpException(400, 'Project not found');
+  }
+
+  const apartment = project.apartments.find((e) => e._id.equals(apartmentId));
+  if (!apartment) {
+    throw new HttpException(400, 'Apartment not found');
+  }
+
+  const panorama = apartment.panoramas.find((e) => e._id.equals(panoramaId));
+  if (!panorama) {
+    throw new HttpException(400, 'Panorama not found');
+  }
+
+  await deleteFile(panorama.url);
+
+  apartment.panoramas = apartment.panoramas.filter(
+    (e) => !e._id.equals(panoramaId)
+  );
+  await project.save();
+  return apartment.panoramas;
+};
+
+const deleteMarkerService = async (
+  projectId: mongoose.Types.ObjectId,
+  apartmentId: mongoose.Types.ObjectId,
+  panoramaId: mongoose.Types.ObjectId
+) => {
+  const project = await Project.findById(projectId);
+  if (!project) {
+    throw new HttpException(400, 'Project not found');
+  }
+
+  const apartment = project.apartments.find((e) => e._id.equals(apartmentId));
+  if (!apartment) {
+    throw new HttpException(400, 'Apartment not found');
+  }
+
+  const panorama = apartment.panoramas.find((e) => e._id.equals(panoramaId));
+  if (!panorama) {
+    throw new HttpException(400, 'Panorama not found');
+  }
+
+  await panorama.marker.deleteOne();
+
+  await deleteFile(panorama.url);
+
+  await project.save();
+  return true;
+};
+
+const deleteHotspotService = async (
+  projectId: mongoose.Types.ObjectId,
+  apartmentId: mongoose.Types.ObjectId,
+  panoramaId: mongoose.Types.ObjectId,
+  hotspotId: mongoose.Types.ObjectId
+) => {
+  const project = await Project.findById(projectId);
+  if (!project) {
+    throw new HttpException(400, 'Project not found');
+  }
+
+  const apartment = project.apartments.find((e) => e._id.equals(apartmentId));
+  if (!apartment) {
+    throw new HttpException(400, 'Apartment not found');
+  }
+
+  const panorama = apartment.panoramas.find((e) => e._id.equals(panoramaId));
+  if (!panorama) {
+    throw new HttpException(400, 'Panorama not found');
+  }
+
+  const hotspot = panorama.hotspots.find((e) => e._id.equals(hotspotId));
+  if (!hotspot) {
+    throw new HttpException(400, 'Hotspot not found');
+  }
+
+  panorama.hotspots = panorama.hotspots.filter((e) => !e._id.equals(hotspotId));
+  await project.save();
+  return panorama.hotspots;
 };
 
 export {
@@ -163,4 +299,9 @@ export {
   addPanoramaService,
   addMarkerService,
   addHotspotService,
+  deleteProjectService,
+  deleteApartmentService,
+  deletePanoramaService,
+  deleteMarkerService,
+  deleteHotspotService,
 };

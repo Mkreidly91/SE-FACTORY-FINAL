@@ -5,6 +5,10 @@ import {
   addHotspotService,
   addMarkerService,
   deleteProjectService,
+  deleteApartmentService,
+  deletePanoramaService,
+  deleteMarkerService,
+  deleteHotspotService,
 } from './company.service';
 
 export {
@@ -14,4 +18,8 @@ export {
   addMarkerService,
   addHotspotService,
   deleteProjectService,
+  deleteApartmentService,
+  deletePanoramaService,
+  deleteMarkerService,
+  deleteHotspotService,
 };
