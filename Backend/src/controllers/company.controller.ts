@@ -8,7 +8,12 @@ import {
   addPanoramaService,
   addMarkerService,
   addHotspotService,
-} from '../services/company.service';
+  deleteProjectService,
+  deleteApartmentService,
+  deletePanoramaService,
+  deleteMarkerService,
+  deleteHotspotService,
+} from '../services';
 import mongoose, { Types } from 'mongoose';
 import { HttpException } from '../exceptions/HttpException';
 
@@ -127,4 +132,112 @@ const addHotspot = async (
   }
 };
 
-export { createProject, addApartment, addPanorama, addMarker, addHotspot };
+const deleteProject = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { projectId } = req.body;
+    const deleted = await deleteProjectService(projectId);
+    return res.status(200).json({
+      message: 'Successfully deleted project',
+      data: deleted,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteApartment = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { projectId, apartmentId } = req.body;
+    const newApartments = await deleteApartmentService(projectId, apartmentId);
+    return res.status(200).json({
+      message: 'Successfully deleted apartment',
+      data: newApartments,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deletePanorama = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { projectId, apartmentId, panoramaId } = req.body;
+    const newPanoramas = await deletePanoramaService(
+      projectId,
+      apartmentId,
+      panoramaId
+    );
+    return res.status(200).json({
+      message: 'Successfully deleted Panorama',
+      data: newPanoramas,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteMarker = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { projectId, apartmentId, panoramaId } = req.body;
+    const newPanoramas = await deleteMarkerService(
+      projectId,
+      apartmentId,
+      panoramaId
+    );
+    return res.status(200).json({
+      message: 'Successfully deleted Marker',
+      data: newPanoramas,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+const deleteHotspot = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { projectId, apartmentId, panoramaId, hotspotId } = req.body;
+    const newHotpots = await deleteHotspotService(
+      projectId,
+      apartmentId,
+      panoramaId,
+      hotspotId
+    );
+    return res.status(200).json({
+      message: 'Successfully deleted Hotspot',
+      data: newHotpots,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export {
+  createProject,
+  addApartment,
+  addPanorama,
+  addMarker,
+  addHotspot,
+  deleteProject,
+  deleteApartment,
+  deletePanorama,
+  deleteMarker,
+  deleteHotspot,
+};
