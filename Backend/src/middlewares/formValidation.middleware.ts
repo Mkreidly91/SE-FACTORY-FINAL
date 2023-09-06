@@ -6,7 +6,6 @@ const formValidationMiddleware =
   (schema: AnyZodObject) =>
   (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log(req.files, req.body, 'old Request');
       const schemaResponse = schema.parse({
         files: req.files,
         body: req.body,
@@ -18,7 +17,7 @@ const formValidationMiddleware =
       req.body = schemaResponse.body;
       req.query = schemaResponse.query;
       req.params = schemaResponse.params;
-      console.log(req.files, req.body, 'new Request');
+
       next();
     } catch (e: any) {
       next(

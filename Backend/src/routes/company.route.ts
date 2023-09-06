@@ -7,6 +7,10 @@ import {
   panoramaForm,
   markerForm,
   hotspotForm,
+  deleteProjectForm,
+  deleteApartmentForm,
+  deletePanoramaOrMarkerForm,
+  deleteHotspotForm,
 } from '../validation/company.validation';
 import formValidationMiddleware from '../middlewares/formValidation.middleware';
 import {
@@ -17,6 +21,11 @@ import {
   addPanorama,
   addHotspot,
   addMarker,
+  deleteProject,
+  deleteApartment,
+  deletePanorama,
+  deleteMarker,
+  deleteHotspot,
 } from '../controllers';
 
 export default (router: Router) => {
@@ -53,5 +62,38 @@ export default (router: Router) => {
     authMiddleware(Roles.Company),
     formValidationMiddleware(hotspotForm),
     addHotspot
+  );
+
+  router.delete(
+    '/company/deleteProject',
+    authMiddleware(Roles.Company),
+    formValidationMiddleware(deleteProjectForm),
+    deleteProject
+  );
+
+  router.delete(
+    '/company/deleteApartment',
+    authMiddleware(Roles.Company),
+    formValidationMiddleware(deleteApartmentForm),
+    deleteApartment
+  );
+
+  router.delete(
+    '/company/deletePanorama',
+    authMiddleware(Roles.Company),
+    formValidationMiddleware(deletePanoramaOrMarkerForm),
+    deletePanorama
+  );
+  router.delete(
+    '/company/deleteMarker',
+    authMiddleware(Roles.Company),
+    formValidationMiddleware(deletePanoramaOrMarkerForm),
+    deleteMarker
+  );
+  router.delete(
+    '/company/deleteHotspot',
+    authMiddleware(Roles.Company),
+    formValidationMiddleware(deleteHotspotForm),
+    deleteHotspot
   );
 };
