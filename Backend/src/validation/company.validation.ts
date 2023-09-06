@@ -121,4 +121,44 @@ const hotspotForm = object({
   }),
 });
 
-export { projectForm, apartmentForm, panoramaForm, markerForm, hotspotForm };
+const deleteProjectForm = object({
+  body: object({
+    projectId: string().trim().nonempty(),
+  }),
+});
+
+const deleteApartmentForm = object({
+  body: object({
+    projectId: string().trim().nonempty(),
+    apartmentId: string().trim().nonempty(),
+  }),
+});
+
+const deletePanoramaOrMarkerForm = object({
+  body: object({
+    projectId: string().trim().nonempty(),
+    apartmentId: string().trim().nonempty(),
+    panoramaId: string().trim().nonempty(),
+  }),
+});
+
+const deleteHotspotForm = object({
+  body: object({
+    projectId: string().trim().nonempty(),
+    apartmentId: string().trim().nonempty(),
+    panoramaId: string().trim().nonempty(),
+    hotspotId: string().trim().nonempty(),
+  }),
+});
+
+export {
+  projectForm,
+  apartmentForm,
+  panoramaForm,
+  markerForm,
+  hotspotForm,
+  deleteProjectForm,
+  deleteApartmentForm,
+  deletePanoramaOrMarkerForm,
+  deleteHotspotForm,
+};
