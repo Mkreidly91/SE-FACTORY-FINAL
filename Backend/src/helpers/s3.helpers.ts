@@ -21,7 +21,7 @@ function getFileExtension(fileName: string) {
 }
 
 function getFileUrl(fileName: string) {
-  return `https://${envConfig.BUCKET_NAME}s3.${envConfig.BUCKET_REGION}.amazonaws.com/${fileName}`;
+  return `https://${envConfig.BUCKET_NAME}.s3.${envConfig.BUCKET_REGION}.amazonaws.com/${fileName}`;
 }
 
 function getFileNameFromUrl(url: string) {
