@@ -10,16 +10,25 @@ import { deleteBulk, deleteFile, upload } from '../helpers/s3.helpers';
 import { IMarker, Marker } from '../models/marker';
 import { Hotspot, IHotspot } from '../models/hotspot';
 
-const createProjectService = async ({ owner, name, description }: IProject) => {
+const createProjectService = async (
+  fileData: Express.Multer.File,
+  { owner, name, description, features }: IProject
+) => {
   const company = await Company.findById(owner);
+
   if (!company) {
     throw new HttpException(400, 'company not found');
   }
+  const storageRes = await upload(fileData);
+
   const project = new Project({
     name,
     description,
     owner,
+    features: features || [],
+    thumbnail: storageRes,
   });
+
   company.projects.push(project._id);
   await project.save();
   await company.save();
@@ -154,8 +163,8 @@ const deleteProjectService = async (projectId: mongoose.Types.ObjectId) => {
     throw new HttpException(400, 'Owner not found');
   }
 
+  let filesToDelete: string[] = [project.thumbnail];
   if (project.apartments.length > 0) {
-    let filesToDelete: string[] = [];
     const panormasToDelete = project.apartments.forEach((apartment) => {
       const apartmentUrl = apartment.url;
       if (apartment.panoramas.length > 0) {
@@ -165,9 +174,8 @@ const deleteProjectService = async (projectId: mongoose.Types.ObjectId) => {
         filesToDelete = [...filesToDelete, apartmentUrl];
       }
     });
-
-    await deleteBulk(filesToDelete);
   }
+  await deleteBulk(filesToDelete);
 
   owner.projects = owner.projects.filter((id) => !id.equals(project._id));
   await owner.save();
@@ -293,6 +301,13 @@ const deleteHotspotService = async (
   return panorama.hotspots;
 };
 
+const getCompanyProjectsService = async (userId: string) => {
+  const company = await Company.findById(userId).populate('projects');
+  if (!company) {
+    throw new HttpException(400, 'User not found');
+  }
+  return company;
+};
 export {
   createProjectService,
   addApartmentService,
@@ -304,4 +319,5 @@ export {
   deletePanoramaService,
   deleteMarkerService,
   deleteHotspotService,
+  getCompanyProjectsService,
 };

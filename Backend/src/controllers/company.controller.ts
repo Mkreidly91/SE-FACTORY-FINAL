@@ -13,6 +13,7 @@ import {
   deletePanoramaService,
   deleteMarkerService,
   deleteHotspotService,
+  getCompanyProjectsService,
 } from '../services';
 import mongoose, { Types } from 'mongoose';
 import { HttpException } from '../exceptions/HttpException';
@@ -24,11 +25,13 @@ const createProject = async (
 ) => {
   try {
     const user = req.user;
-    const { name, description } = req.body;
-    const { message, data } = await createProjectService({
+    const { name, description, features } = req.body;
+    const files: Express.Multer.File[] = Object.values(req.files);
+    const { message, data } = await createProjectService(files[0], {
       owner: new mongoose.Types.ObjectId(user._id),
       name,
       description,
+      features,
     });
 
     return res.status(200).json({
@@ -229,6 +232,23 @@ const deleteHotspot = async (
   }
 };
 
+const getCompanyProjects = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const user = req.user;
+    const serviceRes = await getCompanyProjectsService(user._id);
+    return res.status(200).json({
+      message: 'Successfully fetched Projects',
+      data: serviceRes.projects,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export {
   createProject,
   addApartment,
@@ -240,4 +260,5 @@ export {
   deletePanorama,
   deleteMarker,
   deleteHotspot,
+  getCompanyProjects,
 };

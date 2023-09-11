@@ -10,6 +10,7 @@ import {
   deletePanorama,
   deleteMarker,
   deleteHotspot,
+  getCompanyProjects,
 } from './company.controller';
 import { uploadToS3, deleteFromS3 } from './s3.controller';
 export {
@@ -27,4 +28,5 @@ export {
   deletePanorama,
   deleteMarker,
   deleteHotspot,
+  getCompanyProjects,
 };
