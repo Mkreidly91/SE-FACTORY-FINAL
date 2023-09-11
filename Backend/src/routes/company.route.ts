@@ -26,6 +26,7 @@ import {
   deletePanorama,
   deleteMarker,
   deleteHotspot,
+  getCompanyProjects,
 } from '../controllers';
 
 export default (router: Router) => {
@@ -34,6 +35,7 @@ export default (router: Router) => {
   router.post(
     '/company/createProject',
     authMiddleware(Roles.Company),
+    multer().any(),
     formValidationMiddleware(projectForm),
     createProject
   );
@@ -95,5 +97,11 @@ export default (router: Router) => {
     authMiddleware(Roles.Company),
     formValidationMiddleware(deleteHotspotForm),
     deleteHotspot
+  );
+
+  router.get(
+    '/company/getCompanyProjects',
+    authMiddleware(Roles.Company),
+    getCompanyProjects
   );
 };
