@@ -65,3 +65,7 @@ button {
   border-radius: 12px;
   background: linear-gradient(140deg, rgb(203, 200, 200), #272c37) border-box;
 }
+
+.monster {
+  font-family: 'Montserrat', sans-serif;
+}
