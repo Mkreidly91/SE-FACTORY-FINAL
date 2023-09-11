@@ -4,6 +4,8 @@ import { IApartment, ApartmentSchema, IApartmentDocument } from './apartment';
 interface IProject {
   name: string;
   description: string;
+  thumbnail?: string;
+  features?: string[];
   apartments?: IApartmentDocument[];
   owner: mongoose.Types.ObjectId;
 }
@@ -12,6 +14,8 @@ interface IProjectDocument extends IProject, Document {}
 const ProjectSchema = new Schema<IProject>({
   name: { type: String, required: true },
   description: { type: String, required: true },
+  features: [],
+  thumbnail: { type: String, required: true },
   apartments: [ApartmentSchema],
   owner: { type: Schema.Types.ObjectId, ref: 'Company' },
 });
