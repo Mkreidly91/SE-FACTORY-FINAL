@@ -10,6 +10,9 @@ const projectForm = object({
     name: string().trim().min(1).max(18),
     description: string().trim().nonempty(),
     features: array(string().trim().nonempty()).optional(),
+    bedrooms: number().positive(),
+    bathrooms: number().positive(),
+    size: number().positive(),
   }),
   files: array(
     object({
@@ -88,11 +91,6 @@ const apartmentForm = object({
         message: `File size must not exceed ${maxFileSize / (1024 * 1024)}MB.`,
       }
     ),
-  body: object({
-    name: string().trim().min(1).max(18),
-    description: string().trim().nonempty(),
-    projectId: string().trim().nonempty(),
-  }),
 });
 
 const panoramaForm = object({
@@ -132,14 +130,12 @@ const panoramaForm = object({
     ),
   body: object({
     projectId: string().trim().nonempty(),
-    apartmentId: string().trim().nonempty(),
   }),
 });
 
 const markerForm = object({
   body: object({
     projectId: string().trim().nonempty(),
-    apartmentId: string().trim().nonempty(),
     panoramaId: string().trim().nonempty(),
     x: number(),
     y: number(),
@@ -150,7 +146,6 @@ const markerForm = object({
 const hotspotForm = object({
   body: object({
     projectId: string().trim().nonempty(),
-    apartmentId: string().trim().nonempty(),
     panoramaId: string().trim().nonempty(),
     link: string().trim().url().nonempty().optional(),
     info: string().trim().nonempty().optional(),
@@ -165,17 +160,9 @@ const deleteProjectForm = object({
   }),
 });
 
-const deleteApartmentForm = object({
-  body: object({
-    projectId: string().trim().nonempty(),
-    apartmentId: string().trim().nonempty(),
-  }),
-});
-
 const deletePanoramaOrMarkerForm = object({
   body: object({
     projectId: string().trim().nonempty(),
-    apartmentId: string().trim().nonempty(),
     panoramaId: string().trim().nonempty(),
   }),
 });
@@ -183,7 +170,6 @@ const deletePanoramaOrMarkerForm = object({
 const deleteHotspotForm = object({
   body: object({
     projectId: string().trim().nonempty(),
-    apartmentId: string().trim().nonempty(),
     panoramaId: string().trim().nonempty(),
     hotspotId: string().trim().nonempty(),
   }),
