@@ -9,7 +9,8 @@ const DashboardRoutes = () => {
   return (
     <Routes>
       <Route index path="/projects" element={<Projects />} />
-      <Route path="projects/addProject" element={<AddOrEditProject />} />
+      <Route path="projects/addProject/" element={<AddOrEditProject />} />
+      <Route path="projects/addProject/:id" element={<AddOrEditProject />} />
       {/* <Route path="/dashboard/settings" element={DashboardSettings} /> */}
       {/* Add more dashboard-specific routes */}
     </Routes>
