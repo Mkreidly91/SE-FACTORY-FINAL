@@ -11,6 +11,7 @@ import {
   deleteApartmentForm,
   deletePanoramaOrMarkerForm,
   deleteHotspotForm,
+  editProjectSchema,
 } from '../validation/company.validation';
 import formValidationMiddleware from '../middlewares/formValidation.middleware';
 import {
@@ -28,6 +29,7 @@ import {
   deleteHotspot,
   getCompanyProjects,
 } from '../controllers';
+import { editProject, getProjectById } from '../controllers/company.controller';
 
 export default (router: Router) => {
   router.post('/company/upload', multer().any(), uploadToS3);
@@ -103,5 +105,18 @@ export default (router: Router) => {
     '/company/getCompanyProjects',
     authMiddleware(Roles.Company),
     getCompanyProjects
+  );
+
+  router.get(
+    '/company/getProject/:projectId',
+    authMiddleware(Roles.Company),
+    getProjectById
+  );
+
+  router.put(
+    '/company/editProject/:projectId',
+    multer().any(),
+    formValidationMiddleware(editProjectSchema),
+    editProject
   );
 };
