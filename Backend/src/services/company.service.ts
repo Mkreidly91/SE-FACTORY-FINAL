@@ -11,23 +11,31 @@ import { IMarker, Marker } from '../models/marker';
 import { Hotspot, IHotspot } from '../models/hotspot';
 import { FileSystemCredentials } from 'aws-sdk';
 
-const createProjectService = async (
-  fileData: Express.Multer.File,
-  { owner, name, description, features }: IProject
-) => {
+const createProjectService = async ({
+  owner,
+  name,
+  description,
+  features,
+  bedrooms,
+  bathrooms,
+  size,
+}: IProject) => {
   const company = await Company.findById(owner);
 
   if (!company) {
     throw new HttpException(400, 'company not found');
   }
-  const storageRes = await upload(fileData);
+  // const storageRes = await upload(fileData);
 
   const project = new Project({
     name,
     description,
     owner,
     features: features || [],
-    thumbnail: storageRes,
+    // thumbnail: storageRes,
+    bedrooms,
+    bathrooms,
+    size,
   });
 
   company.projects.push(project._id);
@@ -37,6 +45,25 @@ const createProjectService = async (
     message: 'Project successfully created',
     data: project,
   };
+};
+
+const ProjectThumbnailService = async (
+  fileData: Express.Multer.File,
+  projectId: string
+) => {
+  const project = await Project.findById(projectId);
+
+  if (!project) {
+    throw new HttpException(400, 'Project not found');
+  }
+
+  if (project.thumbnail) {
+    await deleteFile(project.thumbnail);
+  }
+  const storageRes = await upload(fileData);
+  project.thumbnail = storageRes;
+  const newProject = await project.save();
+  return newProject;
 };
 
 const addApartmentService = async (

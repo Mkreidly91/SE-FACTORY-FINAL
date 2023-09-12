@@ -29,13 +29,16 @@ const createProject = async (
 ) => {
   try {
     const user = req.user;
-    const { name, description, features } = req.body;
+    const { name, description, features, bedrooms, bathrooms, size } = req.body;
     const files: Express.Multer.File[] = Object.values(req.files);
-    const { message, data } = await createProjectService(files[0], {
+    const { message, data } = await createProjectService({
       owner: new mongoose.Types.ObjectId(user._id),
       name,
       description,
       features,
+      bedrooms,
+      bathrooms,
+      size,
     });
 
     return res.status(200).json({
@@ -45,6 +48,16 @@ const createProject = async (
   } catch (error) {
     next(error);
   }
+};
+
+const addProjectThumbnail = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const files: Express.Multer.File[] = Object.values(req.files);
+  } catch (error) {}
 };
 
 const addApartment = async (
