@@ -3,7 +3,7 @@ interface hotSpotProps {
   yaw: Number;
   pitch: Number;
   onClick?: () => void;
-  className: String;
+  className?: String;
 }
 
 const Arrows = ({ yaw, pitch, onClick, className }: hotSpotProps) => {
