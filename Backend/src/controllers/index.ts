@@ -11,6 +11,8 @@ import {
   deleteMarker,
   deleteHotspot,
   getCompanyProjects,
+  getProjectById,
+  editProject,
 } from './company.controller';
 import { uploadToS3, deleteFromS3 } from './s3.controller';
 export {
@@ -29,4 +31,6 @@ export {
   deleteMarker,
   deleteHotspot,
   getCompanyProjects,
+  getProjectById,
+  editProject,
 };

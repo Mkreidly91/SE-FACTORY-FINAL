@@ -17,6 +17,10 @@ import {
 } from '../services';
 import mongoose, { Types } from 'mongoose';
 import { HttpException } from '../exceptions/HttpException';
+import {
+  editProjectService,
+  getProjectByIdService,
+} from '../services/company.service';
 
 const createProject = async (
   req: AuthRequest,
@@ -249,6 +253,46 @@ const getCompanyProjects = async (
   }
 };
 
+const getProjectById = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { projectId } = req.params;
+    const serviceRes = await getProjectByIdService(projectId);
+    return res.status(200).json({
+      message: 'Successfully fetched Projects',
+      data: serviceRes,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const editProject = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { projectId } = req.params;
+    const files: Express.Multer.File[] = Object.values(req.files);
+    let serviceRes;
+    if (files[0]) {
+      serviceRes = await editProjectService(projectId, req.body, files[0]);
+    } else {
+      serviceRes = await editProjectService(projectId, req.body);
+    }
+
+    return res.status(200).json({
+      message: 'Successfully Edited Project',
+      data: serviceRes,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 export {
   createProject,
   addApartment,
@@ -261,4 +305,6 @@ export {
   deleteMarker,
   deleteHotspot,
   getCompanyProjects,
+  getProjectById,
+  editProject,
 };
