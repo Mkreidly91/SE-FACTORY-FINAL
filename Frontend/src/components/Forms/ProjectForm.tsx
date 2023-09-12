@@ -1,46 +1,85 @@
 import { Button, TextField } from '@mui/material';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { projectFormSchema } from '../../validation/company.validation';
+import {
+  projectFormSchema,
+  ProjectFormSchemaType,
+} from '../../validation/company.validation';
 import Photo from '@mui/icons-material/PhotoSizeSelectActualOutlined';
 import NoPhoto from '@mui/icons-material/ImageNotSupportedOutlined';
-import { useState } from 'react';
-import { createProject } from '../../api/company.api';
+import { useEffect, useState } from 'react';
+import { createProject, editProject } from '../../api/company.api';
 import FeatureBox from '../Common/FeatureBox';
+import FileUploadForm from '../Common/FileUploadForm';
+import { useNavigate } from 'react-router-dom';
+import { filterChangedFormFields } from '../../helpers/helpers';
 
-export type ProjectFormSchemaType = z.infer<typeof projectFormSchema>;
-
-const ProjectForm = () => {
+const ProjectForm = ({
+  initialValues = { name: '', features: [], description: '', thumbnail: '' },
+  id = '',
+}) => {
   const [preview, setPreview] = useState() as any;
-  const [features, setFeatures] = useState([]) as any;
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (initialValues && id) {
+      const { name, features, description, thumbnail } = initialValues;
+      reset({ name, description, features });
+      setPreview(thumbnail);
+    }
+  }, [initialValues, id]);
+
   const onSubmit: SubmitHandler<ProjectFormSchemaType> = async (data) => {
-    console.log(features);
-    await createProject({ ...data, features: features });
-    reset();
-    setFeatures([]);
-    setPreview();
+    if (!id) {
+      const res = await createProject(data);
+      navigate(`${res._id}`);
+      return;
+    } else {
+      const changedFieldValues = filterChangedFormFields(data, dirtyFields);
+      const res = await editProject(id, changedFieldValues);
+      reset();
+    }
+
+    // fields = { ...fields, ...dirtyFields };
+    // reset();
+    // setFeatures([]);
+    // setPreview();
   };
 
   const {
+    control,
+
     register,
     handleSubmit,
     reset,
     clearErrors,
-    formState: { errors, isSubmitting, touchedFields, isValid },
+    formState: {
+      errors,
+      isSubmitting,
+      touchedFields,
+      isValid,
+      dirtyFields,
+      isDirty,
+    },
   } = useForm<ProjectFormSchemaType>({
     resolver: zodResolver(projectFormSchema),
     mode: 'onTouched',
     criteriaMode: 'firstError',
+    defaultValues: {
+      name: initialValues?.name,
+    },
   });
 
   console.log(errors);
+  console.log(dirtyFields);
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex gap-4 w-full h-full justify-center  mt-20 p-[80px]"
+      className="flex gap-4 w-full h-full justify-around  mt-20"
     >
-      <div className="project-form-left w-[800px] flex flex-col gap-1 items-center ">
+      <div className="project-form-left w-[50%] flex flex-col gap-1 items-center ">
         <div className="flex flex-col gap-3 w-full justify-center">
           <label className="font-semibold">Project Name</label>
           <TextField
@@ -66,11 +105,17 @@ const ProjectForm = () => {
             {...register('description')}
           />
         </div>
-        <FeatureBox features={features} setFeatures={setFeatures} />
+        <Controller
+          name="features"
+          control={control}
+          render={({ field: { value, onChange } }) => (
+            <FeatureBox features={value} setFeatures={onChange} />
+          )}
+        />
       </div>
 
-      <div className="project-form-right w-[500px] flex flex-col gap-3">
-        <div className="image-preview flex items-center justify-center w-[500px] h-[500px] bg-gray-200 text-[200px] rounded-md ">
+      <div className="project-form-right w-[300px] grow flex flex-col gap-3">
+        <div className="image-preview flex items-center justify-center w-[300px] h-[300px] bg-gray-200 text-[200px] rounded-md ">
           {preview ? (
             <img
               src={preview}
@@ -128,9 +173,7 @@ const ProjectForm = () => {
           className="bg-red-200 text-red-200 font-extrabold"
           // style={{ color: 'red' }}
           type="submit"
-          disabled={
-            isSubmitting || !isValid || Object.keys(touchedFields).length === 3
-          }
+          disabled={id ? !isDirty || isSubmitting : isSubmitting || !isValid}
         >
           submit
         </Button>
