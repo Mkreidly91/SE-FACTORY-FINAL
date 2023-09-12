@@ -67,4 +67,16 @@ const editProject = async (projectId: string, fields: any) => {
   }
 };
 
-export { getProjects, createProject, getProjectById, editProject };
+const deleteProject = async (projectId: string) => {
+  const res = await axios.delete(`${baseURL}company/deleteProject`, {
+    data: { projectId },
+    ...headers(),
+  });
+};
+export {
+  getProjects,
+  createProject,
+  getProjectById,
+  editProject,
+  deleteProject,
+};
