@@ -3,22 +3,35 @@ import { ListItemButton, ListItemText, ListItemIcon } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 interface DashListItemProps {
-  to: string;
+  to?: string;
   icon: ReactNode;
   text: string;
 }
 const DashListItem = ({ to, icon, text }: DashListItemProps) => {
   return (
-    <Link to={to}>
-      <ListItemButton>
-        <ListItemIcon>{icon}</ListItemIcon>
-        <ListItemText>
-          <span className="monster font-medium text-[14px] text-gray-500">
-            {text}
-          </span>
-        </ListItemText>
-      </ListItemButton>
-    </Link>
+    <>
+      {to ? (
+        <Link to={to}>
+          <ListItemButton>
+            <ListItemIcon>{icon}</ListItemIcon>
+            <ListItemText>
+              <span className="monster font-medium text-[14px] text-white">
+                {text}
+              </span>
+            </ListItemText>
+          </ListItemButton>
+        </Link>
+      ) : (
+        <ListItemButton>
+          <ListItemIcon>{icon}</ListItemIcon>
+          <ListItemText>
+            <span className="monster font-medium text-[14px] text-white">
+              {text}
+            </span>
+          </ListItemText>
+        </ListItemButton>
+      )}
+    </>
   );
 };
 export default DashListItem;
