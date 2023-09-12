@@ -4,6 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { LocationOnOutlined } from '@mui/icons-material';
 
 type ProjectCardProps = {
   title?: string;
@@ -16,8 +17,14 @@ export default function ProjectCard({
   img,
 }: ProjectCardProps) {
   return (
-    <Card sx={{ maxWidth: 345, fontFamily: 'inherit' }}>
-      <CardMedia component="img" alt="green iguana" height="140" src={img} />
+    <Card className="monster" sx={{ width: 300, borderRadius: '16px' }}>
+      <CardMedia
+        component="img"
+        alt="Project thumbnail"
+        height="140px"
+        sx={{ height: 300, objectFit: 'cover' }}
+        src={img}
+      />
       <CardContent>
         <Typography
           sx={{ fontFamily: 'inherit' }}
@@ -25,17 +32,20 @@ export default function ProjectCard({
           variant="h5"
           component="div"
         >
-          {title || 'Lizard'}
+          {title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {description ||
-            'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica'}
+          description
         </Typography>
+        <div className="location flex items-center gap-2 mt-3 ml-[-5px]">
+          <LocationOnOutlined sx={{ color: '#2499E3' }} />
+          <span>Beit Meri, Lebanon</span>
+        </div>
       </CardContent>
-      <CardActions>
+      {/* <CardActions>
         <Button size="small">Share</Button>
         <Button size="small">Learn More</Button>
-      </CardActions>
+      </CardActions> */}
     </Card>
   );
 }
