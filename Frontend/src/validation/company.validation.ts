@@ -1,4 +1,4 @@
-import { string, number, object, array, any } from 'zod';
+import { z, string, number, object, array, any } from 'zod';
 
 const projectFormSchema = object({
   name: string().trim().max(18).nonempty('Name field is required'),
@@ -155,6 +155,8 @@ const deleteHotspotForm = object({
     hotspotId: string().trim().nonempty(),
   }),
 });
+
+export type ProjectFormSchemaType = z.infer<typeof projectFormSchema>;
 
 export {
   projectFormSchema,
