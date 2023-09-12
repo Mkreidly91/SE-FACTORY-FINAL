@@ -1,14 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Tabs, Tab } from '@mui/material';
 import ProjectForm from '../../../components/Forms/ProjectForm';
 import ObjectViewer from '../../sample3d/ObjectViewer';
 import ModelsAndPanoramaForm from '../../../components/Forms/ModelsAndPanoramaForm';
+import { useParams } from 'react-router-dom';
+import { getProjectById } from '../../../api/company.api';
+import { ProjectFormSchemaType } from '../../../validation/company.validation';
 
 const AddOrEditProject = () => {
   const [activeTab, setActiveTab] = useState(0);
-  console.log(activeTab);
+  const [state, setState] = useState();
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      const fetchProject = async () => {
+        const res = await getProjectById(id);
+        setState(res);
+      };
+      fetchProject();
+    }
+  }, [id]);
+
   return (
-    <div>
+    <div className="w-full p-5">
       <div className="tabs-wrapper flex justify-center">
         <Tabs
           className="w-fit"
@@ -19,6 +34,7 @@ const AddOrEditProject = () => {
           sx={{ width: 'fit' }}
         >
           <Tab
+            sx={{ marginRight: '20px' }}
             value={0}
             label={<span className="monster">Project Details</span>}
           />
@@ -29,8 +45,8 @@ const AddOrEditProject = () => {
         </Tabs>
       </div>
 
-      <div role="tabpanel" hidden={activeTab !== 0}>
-        {activeTab === 0 && <ProjectForm />}
+      <div className="w-full" role="tabpanel" hidden={activeTab !== 0}>
+        {activeTab === 0 && <ProjectForm initialValues={state} id={id} />}
       </div>
 
       <div role="tabpanel" hidden={activeTab !== 1}>
