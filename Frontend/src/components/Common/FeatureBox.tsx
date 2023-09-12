@@ -5,10 +5,12 @@ import { AddCircleRounded } from '@mui/icons-material';
 
 interface FeatureBoxProps {
   features: string[];
-  setFeatures: React.Dispatch<React.SetStateAction<string[]>>; // Define the type of setFeatures
+  setFeatures: any;
+  //  setFeatures: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>; // Define the type of setFeatures
+  // setFeatures: React.Dispatch<React.SetStateAction<string[]>>; // Define the type of setFeatures
 }
 
-const FeatureBox = ({ features, setFeatures }: FeatureBoxProps) => {
+const FeatureBox = ({ features = [], setFeatures }: FeatureBoxProps) => {
   // const [tags, setFeatures] = useState([]) as any;
   const [text, setText] = useState('');
 
@@ -16,8 +18,16 @@ const FeatureBox = ({ features, setFeatures }: FeatureBoxProps) => {
     const newState = features.filter((e: any) => e !== t);
     setFeatures(newState);
   }
+  // function onDelete(t: string) {
+  //   const newState = features.filter((e: any) => e !== t);
+  //   setFeatures(newState);
+  // }
+  // function onAdd() {
+  //   setFeatures((prev: any) => [...prev, text]);
+  //   setText('');
+  // }
   function onAdd() {
-    setFeatures((prev: any) => [...prev, text]);
+    setFeatures([...features, text]);
     setText('');
   }
 
