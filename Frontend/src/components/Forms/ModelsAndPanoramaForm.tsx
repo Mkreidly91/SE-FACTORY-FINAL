@@ -4,9 +4,9 @@ import MultiFileUpload from '../Common/MultiFileUpload';
 
 const ModelsAndPanoramaForm = () => {
   return (
-    <>
+    <div className="w-full h-full">
       <MultiFileUpload />
-    </>
+    </div>
   );
 };
 
