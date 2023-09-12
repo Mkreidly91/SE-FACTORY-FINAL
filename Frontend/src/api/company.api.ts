@@ -1,6 +1,6 @@
 const baseURL = 'http://localhost:8080/';
 import axios from 'axios';
-import { ProjectFormSchemaType } from '../components/Forms/ProjectForm';
+import { ProjectFormSchemaType } from '../validation/company.validation';
 import { headers } from './api.helpers';
 
 const getProjects = async () => {
@@ -52,7 +52,6 @@ const createProject = async (formData: ProjectFormSchemaType) => {
 
 const editProject = async (projectId: string, fields: any) => {
   try {
-    console.log(fields);
     const res = await axios.put(
       `${baseURL}company/editProject/${projectId}`,
       fields,
@@ -67,4 +66,24 @@ const editProject = async (projectId: string, fields: any) => {
   }
 };
 
-export { getProjects, createProject, getProjectById, editProject };
+const deleteProject = async (projectId: string) => {
+  try {
+    const res = await axios.delete(`${baseURL}company/deleteProject`, {
+      data: {
+        projectId,
+      },
+      ...headers(),
+    });
+    return res.status;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
+  getProjects,
+  createProject,
+  getProjectById,
+  editProject,
+  deleteProject,
+};
