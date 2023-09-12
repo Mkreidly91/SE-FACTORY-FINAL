@@ -6,6 +6,7 @@ import ModelsAndPanoramaForm from '../../../components/Forms/ModelsAndPanoramaFo
 import { useParams } from 'react-router-dom';
 import { getProjectById } from '../../../api/company.api';
 import { ProjectFormSchemaType } from '../../../validation/company.validation';
+import MarkersAndHotspots from './MarkersAndHotspots';
 
 const AddOrEditProject = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -39,8 +40,15 @@ const AddOrEditProject = () => {
             label={<span className="monster">Project Details</span>}
           />
           <Tab
+            sx={{ marginRight: '20px' }}
             value={1}
             label={<span className="monster">Listing Details</span>}
+            disabled={id ? false : true}
+          />
+          <Tab
+            value={2}
+            label={<span className="monster">Customize</span>}
+            disabled={id ? false : true}
           />
         </Tabs>
       </div>
@@ -53,6 +61,12 @@ const AddOrEditProject = () => {
         {activeTab === 1 && (
           // <ObjectViewer url="https://vizi-bucket.s3.eu-west-1.amazonaws.com/newTable.glb" />
           <ModelsAndPanoramaForm />
+        )}
+      </div>
+      <div role="tabpanel" hidden={activeTab !== 2}>
+        {activeTab === 2 && state && (
+          // <ObjectViewer url="https://vizi-bucket.s3.eu-west-1.amazonaws.com/newTable.glb" />
+          <MarkersAndHotspots initialState={state} />
         )}
       </div>
     </div>
