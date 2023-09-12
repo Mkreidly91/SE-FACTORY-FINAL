@@ -20,7 +20,7 @@ const ProjectSchema = new Schema<IProject>({
   name: { type: String, required: true },
   description: { type: String, required: true },
   features: [],
-  thumbnail: { type: String, required: true },
+  thumbnail: { type: String },
   owner: { type: Schema.Types.ObjectId, ref: 'Company' },
   url: { type: String },
   bedrooms: { type: Number, required: true },

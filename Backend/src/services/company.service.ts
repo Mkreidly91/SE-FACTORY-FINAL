@@ -71,7 +71,6 @@ const addApartmentService = async (
   projectId: string
 ) => {
   const project = await Project.findById(projectId);
-
   if (!project) {
     throw new HttpException(400, 'Project not found');
   }
@@ -167,15 +166,22 @@ const deleteProjectService = async (projectId: mongoose.Types.ObjectId) => {
   if (!owner) {
     throw new HttpException(400, 'Owner not found');
   }
+  let filesToDelete: string[] = [];
 
-  let filesToDelete: string[] = [project.thumbnail, project.url];
+  if (project.thumbnail) {
+    filesToDelete = [project.thumbnail, project.url];
+  }
+  if (project.url) {
+    filesToDelete = [...filesToDelete, project.url];
+  }
 
   if (project.panoramas.length > 0) {
     const panoramaUrls = project.panoramas.map((e) => e.url);
     filesToDelete = [...filesToDelete, ...panoramaUrls];
   }
-
-  await deleteBulk(filesToDelete);
+  if (filesToDelete.length > 0) {
+    await deleteBulk(filesToDelete);
+  }
 
   owner.projects = owner.projects.filter((id) => !id.equals(project._id));
   await owner.save();

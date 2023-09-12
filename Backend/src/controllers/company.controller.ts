@@ -29,7 +29,7 @@ const createProject = async (
   try {
     const user = req.user;
     const { name, description, features, bedrooms, bathrooms, size } = req.body;
-    const files: Express.Multer.File[] = Object.values(req.files);
+    // const files: Express.Multer.File[] = Object.values(req.files);
     const { message, data } = await createProjectService({
       owner: new mongoose.Types.ObjectId(user._id),
       name,

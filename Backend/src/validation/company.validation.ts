@@ -49,10 +49,14 @@ const projectForm = object({
           thumbNailFileSize / (1024 * 1024)
         }MB.`,
       }
-    ),
+    )
+    .optional(),
 });
 
 const apartmentForm = object({
+  body: object({
+    projectId: string().trim().nonempty(),
+  }),
   files: array(
     object({
       fieldname: string().trim().nonempty(),
