@@ -8,7 +8,6 @@ import {
   markerForm,
   hotspotForm,
   deleteProjectForm,
-  deleteApartmentForm,
   deletePanoramaOrMarkerForm,
   deleteHotspotForm,
   editProjectSchema,
