@@ -10,7 +10,6 @@ interface IProject {
   bedrooms: number;
   bathrooms: number;
   size: number;
-
   owner: mongoose.Types.ObjectId;
   url?: string;
   panoramas?: IPanoramaDocument[];

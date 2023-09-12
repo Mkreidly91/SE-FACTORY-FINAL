@@ -9,7 +9,6 @@ import {
   addMarkerService,
   addHotspotService,
   deleteProjectService,
-  deleteApartmentService,
   deletePanoramaService,
   deleteMarkerService,
   deleteHotspotService,
