@@ -189,6 +189,27 @@ const deleteHotspotForm = object({
   }),
 });
 
+const editProjectSchema = object({
+  params: object({
+    projectId: string().trim().nonempty(),
+  }),
+  body: object({
+    name: string().trim().min(1).max(18),
+    description: string().trim().nonempty(),
+    features: array(string().trim().nonempty()).optional(),
+  }).partial(),
+  files: array(
+    object({
+      fieldname: string().trim().nonempty(),
+      originalname: string().trim().nonempty(),
+      encoding: string().trim().nonempty(),
+      mimetype: string().trim().nonempty(),
+      buffer: any(),
+      size: number(),
+    })
+  ).optional(),
+}).partial();
+
 export {
   projectForm,
   apartmentForm,
@@ -199,4 +220,5 @@ export {
   deleteApartmentForm,
   deletePanoramaOrMarkerForm,
   deleteHotspotForm,
+  editProjectSchema,
 };
