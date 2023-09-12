@@ -11,21 +11,21 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
-// import { MainListItems, SecondaryListItems } from './ListItems';
-
-// import LeaflitIcon from '../images/LeaflitIcon.png'
-
 import Badge from '@mui/material/Badge';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
-import Logo from '../../assets/icons/logo/logo-full-black.svg';
-import LogoOwl from '../../assets/icons/logo/logo-owl.svg';
+import Logo from '../../assets/icons/logo/logo-full.svg';
+import LogoOwl from '../../assets/icons/logo/logo-owl-white.svg';
 import { ListItemButton, ListItemText, ListItemIcon } from '@mui/material';
 import ProjectIcon from '@mui/icons-material/AccountTreeOutlined';
 import ProfileIcon from '@mui/icons-material/AccountBoxOutlined';
 import { Link } from 'react-router-dom';
 import DashboardRoutes from './DashboardRoutes';
 import DashListItem from './DashListItem';
+import DashIcon from '@mui/icons-material/Dashboard';
+
+import Banner from '../../assets/images/company-profile/company-profile.jpeg';
+import companyLogo from '../../assets/images/company-profile/companyLogo.png';
 
 const drawerWidth: number = 240;
 
@@ -92,81 +92,70 @@ function DashBoard({
     setOpen(!open);
   };
   return (
-    <div className="flex max-w-[100vw] h-full pt-[26px] pl-[21px]">
-      {/* <AppBar position="absolute" open={open}>
-        <Toolbar
-          sx={{
-            pr: '24px', // keep right padding when drawer closed
-            zIndex: '4000',
-          }}
-        >
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={toggleDrawer}
+    <div className="flex  w-full h-full ">
+      <Drawer
+        className="border-r-0  bg-red-200"
+        variant="permanent"
+        open={open}
+        sx={{
+          backgroundImage:
+            'linear-gradient(140deg, rgba(52, 83, 154, 1) 0%, #272c37 100%)',
+          backgroundColor: 'transparent',
+        }}
+      >
+        <div className="sidebarBackgound dash-gradient bg-red-200 h-full">
+          <Toolbar
+            //   className="flex justify-center items-center"
             sx={{
-              marginRight: '36px',
-              ...(open && { display: 'none' }),
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              px: [1],
+              py: [1],
+              mb: '4rem',
             }}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            fontFamily={'Nunito Sans'}
-            fontWeight={900}
-            sx={{ flexGrow: 1 }}
-          >
-            {'Leaflit Care'}
-          </Typography>
-        </Toolbar>
-      </AppBar> */}
-      <Drawer className="border-r-0" variant="permanent" open={open}>
-        <Toolbar
-          //   className="flex justify-center items-center"
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            px: [1],
-            py: [1],
-            mb: '4rem',
-          }}
-        >
-          <div className="logo-container" onClick={toggleDrawer}>
-            {open ? (
-              <img className="w-[300px]" src={Logo} alt="" />
-            ) : (
-              <img className="w-[80px]" src={LogoOwl} alt="" />
-            )}
-          </div>
+            <div
+              className="logo-container cursor-pointer mt-[30px]"
+              onClick={toggleDrawer}
+            >
+              {open ? (
+                <img className="w-[112px]" src={Logo} alt="" />
+              ) : (
+                <img className="w-[35px]" src={LogoOwl} alt="" />
+              )}
+            </div>
+          </Toolbar>
+          <List className="grow" sx={{ paddingLeft: '5px' }} component="nav">
+            <DashListItem
+              icon={<DashIcon sx={{ color: 'white' }} />}
+              text="Dashboard"
+            />
+            <DashListItem
+              to="/dashboard/projects"
+              icon={<ProjectIcon sx={{ color: 'white' }} />}
+              text="Projects"
+            />
 
-          {/* <IconButton onClick={toggleDrawer}>
-            <ChevronLeftIcon />
-          </IconButton> */}
-        </Toolbar>
-        <List className="grow" sx={{ paddingLeft: '5px' }} component="nav">
-          <div className="monster pl-[16px] text-gray-500 font-semibold mb-5">
-            Dashboard
-          </div>
-          <DashListItem
-            to="/dashboard/projects"
-            icon={<ProjectIcon />}
-            text="Projects"
-          />
-
-          <DashListItem
-            to="/dashboard/projects/addProject"
-            icon={<ProfileIcon />}
-            text="Profile"
-          />
-        </List>
+            <DashListItem
+              to="/dashboard/projects/addProject"
+              icon={<ProfileIcon sx={{ color: 'white' }} />}
+              text="Profile"
+            />
+          </List>
+        </div>
       </Drawer>
-      <div className="grow overflow-x-auto">
+
+      <div className="w-full overflow-y-auto  b-grey-light">
+        <div className="dashboard-header h-[18%] max-h-[200px] relative">
+          <img
+            src={companyLogo}
+            alt=""
+            className="absolute left-[10%] top-[60%] w-[150px] h-[150px]"
+          />
+          <img src={Banner} className="w-full h-full object-cover" />
+        </div>
+
         {/* <Toolbar /> */}
         <DashboardRoutes />
       </div>
@@ -175,3 +164,8 @@ function DashBoard({
 }
 
 export default DashBoard;
+{
+  /* <IconButton onClick={toggleDrawer}>
+            <ChevronLeftIcon />
+          </IconButton> */
+}
