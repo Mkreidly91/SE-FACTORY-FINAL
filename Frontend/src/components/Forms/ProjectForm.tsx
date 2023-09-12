@@ -39,7 +39,6 @@ const ProjectForm = ({
     } else {
       const changedFieldValues = filterChangedFormFields(data, dirtyFields);
       const res = await editProject(id, changedFieldValues);
-      reset();
     }
 
     // fields = { ...fields, ...dirtyFields };
