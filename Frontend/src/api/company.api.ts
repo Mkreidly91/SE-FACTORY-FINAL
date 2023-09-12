@@ -18,6 +18,21 @@ const getProjects = async () => {
   }
 };
 
+const getProjectById = async (projectId: string) => {
+  try {
+    const res = await axios.get(
+      `${baseURL}company/getProject/${projectId}`,
+      headers()
+    );
+    if (res.status === 200) {
+      console.log(res);
+      return res.data.data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const createProject = async (formData: ProjectFormSchemaType) => {
   try {
     console.log(formData);
@@ -28,10 +43,28 @@ const createProject = async (formData: ProjectFormSchemaType) => {
     );
     if (res.status === 200) {
       console.log(res);
+      return res.data.data;
     }
   } catch (error) {
     console.log(error);
   }
 };
 
-export { getProjects, createProject };
+const editProject = async (projectId: string, fields: any) => {
+  try {
+    console.log(fields);
+    const res = await axios.put(
+      `${baseURL}company/editProject/${projectId}`,
+      fields,
+      headers({ 'Content-Type': 'multipart/form-data' })
+    );
+    if (res.status === 200) {
+      console.log(res);
+      return res.data.data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { getProjects, createProject, getProjectById, editProject };
