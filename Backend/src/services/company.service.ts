@@ -9,6 +9,7 @@ import { HttpException } from '../exceptions/HttpException';
 import { deleteBulk, deleteFile, upload } from '../helpers/s3.helpers';
 import { IMarker, Marker } from '../models/marker';
 import { Hotspot, IHotspot } from '../models/hotspot';
+import { FileSystemCredentials } from 'aws-sdk';
 
 const createProjectService = async (
   fileData: Express.Multer.File,
@@ -308,6 +309,32 @@ const getCompanyProjectsService = async (userId: string) => {
   }
   return company;
 };
+
+const getProjectByIdService = async (projectId: string) => {
+  const project = await Project.findById(projectId);
+  if (!project) {
+    throw new HttpException(400, 'Project not found');
+  }
+  return project;
+};
+
+const editProjectService = async (
+  projectId: string,
+  fields: any,
+  fileData?: Express.Multer.File
+) => {
+  const project = await Project.findByIdAndUpdate(projectId, fields);
+  if (!project) {
+    throw new HttpException(400, 'Project not found');
+  }
+  if (fileData) {
+    await deleteFile(project.thumbnail);
+    const storageRes = await upload(fileData);
+    project.thumbnail = storageRes;
+  }
+  const newProject = await project.save();
+  return newProject;
+};
 export {
   createProjectService,
   addApartmentService,
@@ -320,4 +347,6 @@ export {
   deleteMarkerService,
   deleteHotspotService,
   getCompanyProjectsService,
+  getProjectByIdService,
+  editProjectService,
 };
