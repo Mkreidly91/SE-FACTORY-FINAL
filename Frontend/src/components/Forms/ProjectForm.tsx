@@ -87,7 +87,6 @@ const ProjectForm = ({
             onFocus={() => clearErrors('name')}
             error={Boolean(errors.name)}
             helperText={errors?.name?.message || ' '}
-            size="small"
             {...register('name')}
           />
         </div>

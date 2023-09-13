@@ -78,15 +78,7 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-function DashBoard({
-  // title,
-  children,
-}: // prefix,
-{
-  // title?: string;
-  children: any;
-  // prefix: string;
-}) {
+function DashBoard({ children }: { children?: any }) {
   const [open, setOpen] = useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -155,8 +147,6 @@ function DashBoard({
           />
           <img src={Banner} className="w-full h-full object-cover" />
         </div>
-
-        {/* <Toolbar /> */}
         <DashboardRoutes />
       </div>
     </div>
