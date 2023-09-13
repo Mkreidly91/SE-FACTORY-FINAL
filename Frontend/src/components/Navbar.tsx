@@ -1,10 +1,11 @@
 import logo from '../assets/icons/logo/logo-full.svg';
 import Button from './Common/Button';
-import { FC } from 'react';
 
-const Navbar: FC = () => {
+const Navbar = ({ className }: { className?: string }) => {
   return (
-    <div className="flex justify-between items-center py-8 px-10 text-white bg-transparent z-10  ">
+    <div
+      className={`flex justify-between items-center py-8 px-10 text-white bg-transparent z-10 ${className}`}
+    >
       <img src={logo} alt="" className="w-[100px]" />
       <div className="nav-button-container flex items-center  gap-24">
         <Button text="ABOUT" />
