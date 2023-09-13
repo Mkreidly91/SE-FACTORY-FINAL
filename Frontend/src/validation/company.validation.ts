@@ -5,7 +5,10 @@ const projectFormSchema = object({
   description: string().trim().nonempty('Description field is required'),
 
   features: array(string()).optional().default([]),
-  file: any().refine((files) => files?.length === 1, 'No image selected'),
+  file: z.union([
+    any().refine((files) => files?.length === 1, 'No image selected'),
+    string().trim().url(),
+  ]),
   // file: array(any().refine((files) => files.length !== 1, 'No image selected')),
   //
   // .length(1, 'No image selected')

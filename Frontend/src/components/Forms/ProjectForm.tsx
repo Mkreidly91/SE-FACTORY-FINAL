@@ -26,7 +26,7 @@ const ProjectForm = ({
   useEffect(() => {
     if (initialValues && id) {
       const { name, features, description, thumbnail } = initialValues;
-      reset({ name, description, features });
+      reset({ name, description, features, file: thumbnail });
       setPreview(thumbnail);
     }
   }, [initialValues, id]);
@@ -67,7 +67,7 @@ const ProjectForm = ({
     mode: 'onTouched',
     criteriaMode: 'firstError',
     defaultValues: {
-      name: initialValues?.name,
+      file: initialValues?.thumbnail || '',
     },
   });
 
