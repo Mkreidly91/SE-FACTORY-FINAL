@@ -118,15 +118,10 @@ const markerForm = object({
 });
 
 const hotspotForm = object({
-  body: object({
-    projectId: string().trim().nonempty(),
-    apartmentId: string().trim().nonempty(),
-    panoramaId: string().trim().nonempty(),
-    link: string().trim().url().nonempty().optional(),
-    info: string().trim().nonempty().optional(),
-    yaw: number(),
-    pitch: number(),
-  }),
+  link: string().trim().url().nonempty().optional(),
+  info: string().trim().optional(),
+  // yaw: number(),
+  // pitch: number(),
 });
 
 const deleteProjectForm = object({
@@ -160,6 +155,7 @@ const deleteHotspotForm = object({
 });
 
 export type ProjectFormSchemaType = z.infer<typeof projectFormSchema>;
+export type HotspotSchemaType = z.infer<typeof hotspotForm>;
 
 export {
   projectFormSchema,
