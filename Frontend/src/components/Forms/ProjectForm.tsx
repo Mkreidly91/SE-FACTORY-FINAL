@@ -9,14 +9,24 @@ import {
 import Photo from '@mui/icons-material/PhotoSizeSelectActualOutlined';
 import NoPhoto from '@mui/icons-material/ImageNotSupportedOutlined';
 import { useEffect, useState } from 'react';
-import { createProject, editProject } from '../../api/company.api';
+import {
+  createProject,
+  deleteProject,
+  editProject,
+} from '../../api/company.api';
 import FeatureBox from '../Common/FeatureBox';
 import FileUploadForm from '../Common/FileUploadForm';
 import { useNavigate } from 'react-router-dom';
 import { filterChangedFormFields } from '../../helpers/helpers';
 
 const ProjectForm = ({
-  initialValues = { name: '', features: [], description: '', thumbnail: '' },
+  initialValues = {
+    name: '',
+    features: [],
+    description: '',
+    thumbnail: '',
+    _id: '',
+  },
   id = '',
 }) => {
   const [preview, setPreview] = useState() as any;
@@ -163,16 +173,32 @@ const ProjectForm = ({
           {errors?.file?.message?.toString() || ' '}
         </div>
 
-        {/* <div className="error"> {Object.values(errors)[0]?.message || ''}</div> */}
-        <Button
-          color="inherit"
-          className="bg-red-200 text-red-200 font-extrabold"
-          // style={{ color: 'red' }}
-          type="submit"
-          disabled={id ? !isDirty || isSubmitting : isSubmitting || !isValid}
-        >
-          submit
-        </Button>
+        <div className="project-form-buttons flex justify-center gap-3s">
+          <Button
+            color="inherit"
+            className="bg-red-200 text-red-200 font-extrabold"
+            // style={{ color: 'red' }}
+            type="submit"
+            disabled={id ? !isDirty || isSubmitting : isSubmitting || !isValid}
+          >
+            Submit
+          </Button>
+
+          {id && (
+            <Button
+              color="inherit"
+              className="bg-red-200 text-red-200 font-extrabold"
+              style={{ color: 'red' }}
+              type="button"
+              onClick={async () => {
+                await deleteProject(initialValues?._id);
+                navigate('/dashboard/projects');
+              }}
+            >
+              Delete Project
+            </Button>
+          )}
+        </div>
       </div>
     </form>
   );

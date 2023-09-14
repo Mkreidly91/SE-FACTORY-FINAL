@@ -9,7 +9,6 @@ import {
   addMarkerService,
   addHotspotService,
   deleteProjectService,
-  deleteApartmentService,
   deletePanoramaService,
   deleteMarkerService,
   deleteHotspotService,
@@ -29,13 +28,16 @@ const createProject = async (
 ) => {
   try {
     const user = req.user;
-    const { name, description, features } = req.body;
-    const files: Express.Multer.File[] = Object.values(req.files);
-    const { message, data } = await createProjectService(files[0], {
+    const { name, description, features, bedrooms, bathrooms, size } = req.body;
+    // const files: Express.Multer.File[] = Object.values(req.files);
+    const { message, data } = await createProjectService({
       owner: new mongoose.Types.ObjectId(user._id),
       name,
       description,
       features,
+      bedrooms,
+      bathrooms,
+      size,
     });
 
     return res.status(200).json({
@@ -47,6 +49,16 @@ const createProject = async (
   }
 };
 
+const addProjectThumbnail = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const files: Express.Multer.File[] = Object.values(req.files);
+  } catch (error) {}
+};
+
 const addApartment = async (
   req: AuthRequest,
   res: Response,
@@ -54,14 +66,11 @@ const addApartment = async (
 ) => {
   try {
     const user = req.user;
-    const { name, description, projectId } = req.body;
+    const { projectId } = req.body;
 
     const files: Express.Multer.File[] = Object.values(req.files);
 
-    const apartment = await addApartmentService(projectId, files[0], {
-      name,
-      description,
-    });
+    const apartment = await addApartmentService(files[0], projectId);
 
     return res.status(200).json({
       message: 'Successfully added apartment',
@@ -78,13 +87,9 @@ const addPanorama = async (
   next: NextFunction
 ) => {
   try {
-    const { projectId, apartmentId } = req.body;
+    const { projectId } = req.body;
     const files: Express.Multer.File[] = Object.values(req.files);
-    const panoramas = await addPanoramaService(
-      projectId,
-      apartmentId,
-      files[0]
-    );
+    const panoramas = await addPanoramaService(projectId, files[0]);
     return res.status(200).json({
       message: 'Successfully added panorama',
       data: panoramas,
@@ -100,8 +105,8 @@ const addMarker = async (
   next: NextFunction
 ) => {
   try {
-    const { projectId, apartmentId, panoramaId, x, y, z } = req.body;
-    const marker = await addMarkerService(projectId, apartmentId, panoramaId, {
+    const { projectId, panoramaId, x, y, z } = req.body;
+    const marker = await addMarkerService(projectId, panoramaId, {
       x,
       y,
       z,
@@ -122,11 +127,10 @@ const addHotspot = async (
 ) => {
   try {
     // projectId: Types.ObjectId, apartmentId: Types.ObjectId, panoramaId: Types.ObjectId, { link, info, yaw, pitch }: IHotspot)
-    const { projectId, apartmentId, panoramaId, link, info, yaw, pitch } =
-      req.body;
+    const { projectId, panoramaId, link, info, yaw, pitch } = req.body;
     const hotspot = await addHotspotService(
       projectId,
-      apartmentId,
+
       panoramaId,
       { link, info, yaw, pitch }
     );
@@ -156,33 +160,16 @@ const deleteProject = async (
   }
 };
 
-const deleteApartment = async (
-  req: AuthRequest,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const { projectId, apartmentId } = req.body;
-    const newApartments = await deleteApartmentService(projectId, apartmentId);
-    return res.status(200).json({
-      message: 'Successfully deleted apartment',
-      data: newApartments,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
 const deletePanorama = async (
   req: AuthRequest,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const { projectId, apartmentId, panoramaId } = req.body;
+    const { projectId, panoramaId } = req.body;
     const newPanoramas = await deletePanoramaService(
       projectId,
-      apartmentId,
+
       panoramaId
     );
     return res.status(200).json({
@@ -200,10 +187,10 @@ const deleteMarker = async (
   next: NextFunction
 ) => {
   try {
-    const { projectId, apartmentId, panoramaId } = req.body;
+    const { projectId, panoramaId } = req.body;
     const newPanoramas = await deleteMarkerService(
       projectId,
-      apartmentId,
+
       panoramaId
     );
     return res.status(200).json({
@@ -223,7 +210,6 @@ const deleteHotspot = async (
     const { projectId, apartmentId, panoramaId, hotspotId } = req.body;
     const newHotpots = await deleteHotspotService(
       projectId,
-      apartmentId,
       panoramaId,
       hotspotId
     );
@@ -300,7 +286,6 @@ export {
   addMarker,
   addHotspot,
   deleteProject,
-  deleteApartment,
   deletePanorama,
   deleteMarker,
   deleteHotspot,
