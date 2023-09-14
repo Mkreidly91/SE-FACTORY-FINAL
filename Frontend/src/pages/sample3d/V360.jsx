@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState, useRef } from 'react';
 import View360, { ControlBar, EquirectProjection } from '@egjs/react-view360';
 import '@egjs/react-view360/css/view360.min.css';
-import img from './panorama.jpg';
+import img from './bedroom.jpeg';
 import Arrows from '../../components/Hotpots/Arrows/Arrows';
 import Button from '../../components/Common/Button';
 import AdjustIcon from '@mui/icons-material/Adjust';
@@ -23,9 +23,9 @@ const V360 = ({ image }) => {
   const projection = useMemo(
     () =>
       new EquirectProjection({
-        src: image,
+        src: img,
       }),
-    [image]
+    [img]
   );
   const viewRef = useRef();
 
