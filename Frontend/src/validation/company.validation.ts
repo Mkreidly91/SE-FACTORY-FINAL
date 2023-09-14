@@ -3,16 +3,14 @@ import { z, string, number, object, array, any } from 'zod';
 const projectFormSchema = object({
   name: string().trim().max(18).nonempty('Name field is required'),
   description: string().trim().nonempty('Description field is required'),
-
+  bedrooms: number().positive('Please provide a valid number'),
+  bathrooms: number().positive('Please provide a valid number'),
+  size: number().positive('Please provide a valid number'),
   features: array(string()).optional().default([]),
   file: z.union([
     any().refine((files) => files?.length === 1, 'No image selected'),
     string().trim().url(),
   ]),
-  // file: array(any().refine((files) => files.length !== 1, 'No image selected')),
-  //
-  // .length(1, 'No image selected')
-  // .nonempty('No image selected'),
 });
 
 const imageFileTypes = ['image/jpeg', 'image/png'];
@@ -20,6 +18,11 @@ const modelFileTypes = ['model/gltf-binary', 'application/octet-stream'];
 const maxFileSize = 50 * 1024 * 1024;
 
 const apartmentForm = object({
+  body: object({
+    name: string().trim().min(1).max(18),
+    description: string().trim().nonempty(),
+    projectId: string().trim().nonempty(),
+  }),
   files: array(
     object({
       fieldname: string().trim().nonempty(),
@@ -58,11 +61,6 @@ const apartmentForm = object({
         message: `File size must not exceed ${maxFileSize / (1024 * 1024)}MB.`,
       }
     ),
-  body: object({
-    name: string().trim().min(1).max(18),
-    description: string().trim().nonempty(),
-    projectId: string().trim().nonempty(),
-  }),
 });
 
 const panoramaForm = object({
