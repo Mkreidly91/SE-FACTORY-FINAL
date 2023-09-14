@@ -20,23 +20,45 @@ import { useNavigate } from 'react-router-dom';
 import { filterChangedFormFields } from '../../helpers/helpers';
 
 const ProjectForm = ({
-  initialValues = {
-    name: '',
-    features: [],
-    description: '',
-    thumbnail: '',
-    _id: '',
-  },
+  initialValues,
   id = '',
+}: {
+  initialValues: {
+    name: string;
+    description: string;
+    bedrooms: number;
+    bathrooms: number;
+    size: number;
+    features: string[];
+    thumbnail: string;
+  };
+  id: string;
 }) => {
+  console.log(initialValues);
   const [preview, setPreview] = useState() as any;
 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (initialValues && id) {
-      const { name, features, description, thumbnail } = initialValues;
-      reset({ name, description, features, file: thumbnail || '' });
+      const {
+        name,
+        features,
+        description,
+        thumbnail,
+        size,
+        bedrooms,
+        bathrooms,
+      } = initialValues;
+      reset({
+        name,
+        description,
+        features,
+        size,
+        bedrooms,
+        bathrooms,
+        file: thumbnail,
+      });
       setPreview(thumbnail);
     }
   }, [initialValues, id]);
@@ -50,11 +72,6 @@ const ProjectForm = ({
       const changedFieldValues = filterChangedFormFields(data, dirtyFields);
       const res = await editProject(id, changedFieldValues);
     }
-
-    // fields = { ...fields, ...dirtyFields };
-    // reset();
-    // setFeatures([]);
-    // setPreview();
   };
 
   const {
@@ -77,7 +94,9 @@ const ProjectForm = ({
     mode: 'onTouched',
     criteriaMode: 'firstError',
     defaultValues: {
-      file: initialValues?.thumbnail || '',
+      size: 0,
+      bedrooms: 0,
+      bathrooms: 0,
     },
   });
 
@@ -111,6 +130,46 @@ const ProjectForm = ({
             {...register('description')}
           />
         </div>
+
+        <div className="flex flex-col gap-3 w-full justify-center">
+          <label className="font-semibold">Area</label>
+          <TextField
+            className="max-w-[600px]"
+            type="number"
+            InputLabelProps={{ className: '' }}
+            onFocus={() => clearErrors('size')}
+            error={Boolean(errors.size)}
+            helperText={errors?.size?.message || ' '}
+            {...register('size', { valueAsNumber: true })}
+          />
+        </div>
+
+        <div className="flex flex-col gap-3 w-full justify-center">
+          <label className="font-semibold">Bedrooms</label>
+          <TextField
+            className="max-w-[600px]"
+            type="number"
+            InputLabelProps={{ className: '' }}
+            onFocus={() => clearErrors('size')}
+            error={Boolean(errors.bedrooms)}
+            helperText={errors?.bedrooms?.message || ' '}
+            {...register('bedrooms', { valueAsNumber: true })}
+          />
+        </div>
+
+        <div className="flex flex-col gap-3 w-full justify-center">
+          <label className="font-semibold">Bathrooms</label>
+          <TextField
+            className="max-w-[600px]"
+            type="number"
+            InputLabelProps={{ className: '' }}
+            onFocus={() => clearErrors('bathrooms')}
+            error={Boolean(errors.bathrooms)}
+            helperText={errors?.bathrooms?.message || ' '}
+            {...register('bathrooms', { valueAsNumber: true })}
+          />
+        </div>
+
         <Controller
           name="features"
           control={control}
@@ -177,7 +236,6 @@ const ProjectForm = ({
           <Button
             color="inherit"
             className="bg-red-200 text-red-200 font-extrabold"
-            // style={{ color: 'red' }}
             type="submit"
             disabled={id ? !isDirty || isSubmitting : isSubmitting || !isValid}
           >
@@ -191,8 +249,9 @@ const ProjectForm = ({
               style={{ color: 'red' }}
               type="button"
               onClick={async () => {
-                await deleteProject(initialValues?._id);
-                navigate('/dashboard/projects');
+                const status = await deleteProject(initialValues?._id);
+
+                if (status === 200) navigate('/dashboard/projects');
               }}
             >
               Delete Project

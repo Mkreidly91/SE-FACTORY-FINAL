@@ -58,14 +58,11 @@ const AddOrEditProject = () => {
       </div>
 
       <div role="tabpanel" hidden={activeTab !== 1}>
-        {activeTab === 1 && (
-          // <ObjectViewer url="https://vizi-bucket.s3.eu-west-1.amazonaws.com/newTable.glb" />
-          <ModelsAndPanoramaForm />
-        )}
+        {activeTab === 1 && <ModelsAndPanoramaForm />}
       </div>
+
       <div role="tabpanel" hidden={activeTab !== 2}>
         {activeTab === 2 && state && (
-          // <ObjectViewer url="https://vizi-bucket.s3.eu-west-1.amazonaws.com/newTable.glb" />
           <MarkersAndHotspots initialState={state} />
         )}
       </div>
