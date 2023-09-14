@@ -10,6 +10,8 @@ import owl from '../../assets/icons/logo/logo-owl.svg';
 import Model from './apartment.js';
 import Marker from '../../components/Marker/Marker.js';
 import ThreeSixtyIcon from '@mui/icons-material/ThreeSixty';
+import BasicSelect from '../../components/Common/BasicSelect.js';
+import HotspotForm from '../../components/Forms/HotspotForm.js';
 
 const Test = () => {
   const aspect = window.innerWidth / window.innerHeight;
@@ -121,6 +123,7 @@ const Test = () => {
           </Suspense>
         </Canvas>
       </div>
+      <HotspotForm />
     </div>
   );
 };
