@@ -11,28 +11,23 @@ import { IMarker, Marker } from '../models/marker';
 import { Hotspot, IHotspot } from '../models/hotspot';
 import { FileSystemCredentials } from 'aws-sdk';
 
-const createProjectService = async ({
-  owner,
-  name,
-  description,
-  features,
-  bedrooms,
-  bathrooms,
-  size,
-}: IProject) => {
+const createProjectService = async (
+  fileData: Express.Multer.File,
+  { owner, name, description, features, bedrooms, bathrooms, size }: IProject
+) => {
   const company = await Company.findById(owner);
 
   if (!company) {
     throw new HttpException(400, 'company not found');
   }
-  // const storageRes = await upload(fileData);
+  const storageRes = await upload(fileData);
 
   const project = new Project({
     name,
     description,
     owner,
     features: features || [],
-    // thumbnail: storageRes,
+    thumbnail: storageRes,
     bedrooms,
     bathrooms,
     size,
@@ -169,7 +164,7 @@ const deleteProjectService = async (projectId: mongoose.Types.ObjectId) => {
   let filesToDelete: string[] = [];
 
   if (project.thumbnail) {
-    filesToDelete = [project.thumbnail, project.url];
+    filesToDelete = [project.thumbnail];
   }
   if (project.url) {
     filesToDelete = [...filesToDelete, project.url];

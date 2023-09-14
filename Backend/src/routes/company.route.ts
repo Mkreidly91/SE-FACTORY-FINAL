@@ -30,8 +30,6 @@ import {
 import { editProject, getProjectById } from '../controllers/company.controller';
 
 export default (router: Router) => {
-  router.post('/company/upload', multer().any(), uploadToS3);
-  router.post('/company/delete', deleteFromS3);
   router.post(
     '/company/createProject',
     authMiddleware(Roles.Company),
