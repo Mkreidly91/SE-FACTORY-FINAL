@@ -1,8 +1,8 @@
-import { Schema, model, Document } from 'mongoose';
+import mongoose, { Schema, model, Document } from 'mongoose';
 
 interface IHotspot {
   info?: string;
-  link?: string;
+  link?: mongoose.Types.ObjectId;
   yaw: number;
   pitch: number;
 }
@@ -11,7 +11,7 @@ interface IHotspotDocument extends IHotspot, Document {}
 
 const HotspotSchema = new Schema<IHotspot>({
   info: String,
-  link: String,
+  link: [{ type: Schema.Types.ObjectId, ref: 'Panorama' }],
   yaw: { type: Number, required: true },
   pitch: { type: Number, required: true },
 });
