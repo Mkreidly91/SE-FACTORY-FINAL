@@ -1,18 +1,28 @@
 import './Arrow.css';
 interface hotSpotProps {
-  yaw: Number;
-  pitch: Number;
+  yaw: Number | String;
+  pitch: Number | String;
   onClick?: () => void;
+  scale?: string;
   className?: String;
 }
 
-const Arrows = ({ yaw, pitch, onClick, className }: hotSpotProps) => {
+const Arrows = ({
+  yaw,
+  pitch,
+  onClick,
+  className,
+  scale = 1,
+}: hotSpotProps) => {
   return (
     <div
-      className={`view360-hotspot arrows text-red-400 cursor-pointer ${className}`}
+      className={`view360-hotspot  text-red-400 cursor-pointer ${className}  `}
       data-yaw={yaw}
       data-pitch={pitch}
-    ></div>
+      onClick={onClick}
+    >
+      <div style={{ transform: `scale(${scale})` }} className={`arrows `}></div>
+    </div>
   );
 };
 

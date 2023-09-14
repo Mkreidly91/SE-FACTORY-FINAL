@@ -26,7 +26,7 @@ const ProjectForm = ({
   useEffect(() => {
     if (initialValues && id) {
       const { name, features, description, thumbnail } = initialValues;
-      reset({ name, description, features, file: thumbnail });
+      reset({ name, description, features, file: thumbnail || '' });
       setPreview(thumbnail);
     }
   }, [initialValues, id]);
@@ -71,8 +71,6 @@ const ProjectForm = ({
     },
   });
 
-  console.log(errors);
-  console.log(dirtyFields);
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
