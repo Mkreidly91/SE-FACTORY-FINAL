@@ -3,7 +3,7 @@ import { Canvas, ThreeEvent } from '@react-three/fiber';
 import React, { useState, useEffect, FC, Suspense, useRef } from 'react';
 import * as THREE from 'three';
 import { AnyObject } from 'three/examples/jsm/nodes/Nodes.js';
-import V360 from './V360.jsx';
+import V360 from './V360.tsx';
 import img from './panorama.jpg';
 import bedroom from './bedroom.jpeg';
 import owl from '../../assets/icons/logo/logo-owl.svg';

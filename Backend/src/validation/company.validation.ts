@@ -10,9 +10,18 @@ const projectForm = object({
     name: string().trim().min(1).max(18),
     description: string().trim().nonempty(),
     features: array(string().trim().nonempty()).optional(),
-    bedrooms: number().positive(),
-    bathrooms: number().positive(),
-    size: number().positive(),
+    bedrooms: string()
+      .trim()
+      .nonempty()
+      .transform((v) => parseInt(v)),
+    bathrooms: string()
+      .trim()
+      .nonempty()
+      .transform((v) => parseInt(v)),
+    size: string()
+      .trim()
+      .nonempty()
+      .transform((v) => parseInt(v)),
   }),
   files: array(
     object({
