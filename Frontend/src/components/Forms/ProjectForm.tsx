@@ -28,13 +28,15 @@ const ProjectForm = ({
     description: string;
     bedrooms: number;
     bathrooms: number;
+    location: string;
+    price: number;
     size: number;
     features: string[];
     thumbnail: string;
   };
   id: string;
 }) => {
-  console.log(initialValues);
+  // console.log(initialValues);
   const [preview, setPreview] = useState() as any;
 
   const navigate = useNavigate();
@@ -49,6 +51,8 @@ const ProjectForm = ({
         size,
         bedrooms,
         bathrooms,
+        location,
+        price,
       } = initialValues;
       reset({
         name,
@@ -57,6 +61,8 @@ const ProjectForm = ({
         size,
         bedrooms,
         bathrooms,
+        location,
+        price,
         file: thumbnail,
       });
       setPreview(thumbnail);
@@ -64,6 +70,7 @@ const ProjectForm = ({
   }, [initialValues, id]);
 
   const onSubmit: SubmitHandler<ProjectFormSchemaType> = async (data) => {
+    // console.log(data);
     if (!id) {
       const res = await createProject(data);
       navigate(`${res._id}`);
@@ -97,6 +104,7 @@ const ProjectForm = ({
       size: 0,
       bedrooms: 0,
       bathrooms: 0,
+      price: 0,
     },
   });
 
@@ -132,6 +140,18 @@ const ProjectForm = ({
         </div>
 
         <div className="flex flex-col gap-3 w-full justify-center">
+          <label className="font-semibold">Location</label>
+          <TextField
+            className="max-w-[600px]"
+            InputLabelProps={{ className: '' }}
+            onFocus={() => clearErrors('location')}
+            error={Boolean(errors.location)}
+            helperText={errors?.location?.message || ' '}
+            {...register('location')}
+          />
+        </div>
+
+        <div className="flex flex-col gap-3 w-full justify-center">
           <label className="font-semibold">Area</label>
           <TextField
             className="max-w-[600px]"
@@ -141,6 +161,19 @@ const ProjectForm = ({
             error={Boolean(errors.size)}
             helperText={errors?.size?.message || ' '}
             {...register('size', { valueAsNumber: true })}
+          />
+        </div>
+
+        <div className="flex flex-col gap-3 w-full justify-center">
+          <label className="font-semibold">Price</label>
+          <TextField
+            className="max-w-[600px]"
+            type="number"
+            InputLabelProps={{ className: '' }}
+            onFocus={() => clearErrors('price')}
+            error={Boolean(errors.price)}
+            helperText={errors?.price?.message || ' '}
+            {...register('price', { valueAsNumber: true })}
           />
         </div>
 

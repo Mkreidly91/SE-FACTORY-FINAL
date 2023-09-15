@@ -3,9 +3,11 @@ import { z, string, number, object, array, any } from 'zod';
 const projectFormSchema = object({
   name: string().trim().max(18).nonempty('Name field is required'),
   description: string().trim().nonempty('Description field is required'),
+  location: string().trim().nonempty('Location field is required'),
   bedrooms: number().positive('Please provide a valid number'),
   bathrooms: number().positive('Please provide a valid number'),
   size: number().positive('Please provide a valid number'),
+  price: number().positive('Please provide a valid number'),
   features: array(string()).optional().default([]),
   file: z.union([
     any().refine((files) => files?.length === 1, 'No image selected'),
