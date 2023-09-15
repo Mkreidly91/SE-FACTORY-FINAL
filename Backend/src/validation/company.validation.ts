@@ -9,8 +9,13 @@ const projectForm = object({
   body: object({
     name: string().trim().min(1).max(18),
     description: string().trim().nonempty(),
+    location: string().trim().nonempty(),
     features: array(string().trim().nonempty()).optional(),
     bedrooms: string()
+      .trim()
+      .nonempty()
+      .transform((v) => parseInt(v)),
+    price: string()
       .trim()
       .nonempty()
       .transform((v) => parseInt(v)),
@@ -107,6 +112,10 @@ const apartmentForm = object({
 });
 
 const panoramaForm = object({
+  body: object({
+    projectId: string().trim().nonempty(),
+    name: string().trim().nonempty().optional(),
+  }),
   files: array(
     object({
       fieldname: string().trim().nonempty(),
@@ -141,9 +150,6 @@ const panoramaForm = object({
         message: `File size must not exceed ${maxFileSize / (1024 * 1024)}MB.`,
       }
     ),
-  body: object({
-    projectId: string().trim().nonempty(),
-  }),
 });
 
 const markerForm = object({
@@ -160,7 +166,7 @@ const hotspotForm = object({
   body: object({
     projectId: string().trim().nonempty(),
     panoramaId: string().trim().nonempty(),
-    link: string().trim().url().nonempty().optional(),
+    link: string().trim().nonempty().optional(),
     info: string().trim().nonempty().optional(),
     yaw: number(),
     pitch: number(),
@@ -195,7 +201,24 @@ const editProjectSchema = object({
   body: object({
     name: string().trim().min(1).max(18),
     description: string().trim().nonempty(),
+    location: string().trim().nonempty(),
     features: array(string().trim().nonempty()).optional(),
+    bedrooms: string()
+      .trim()
+      .nonempty()
+      .transform((v) => parseInt(v)),
+    price: string()
+      .trim()
+      .nonempty()
+      .transform((v) => parseInt(v)),
+    bathrooms: string()
+      .trim()
+      .nonempty()
+      .transform((v) => parseInt(v)),
+    size: string()
+      .trim()
+      .nonempty()
+      .transform((v) => parseInt(v)),
   }).partial(),
   files: array(
     object({
