@@ -1,8 +1,9 @@
 .arrows {
-  /* position: relative;
+  /* ;
   position: absolute;
   top: 50%;
   left: 50%; */
+  position: relative;
   width: 40px;
   height: 40px;
   /* transform: translate(-50%, -50%); */
@@ -34,7 +35,7 @@
   0% {
     border-left: 10px solid transparent;
     border-bottom: 10px solid transparent;
-    transform: translate(13.33333px, 30px) rotate(135deg);
+    transform: translate(0, 30px) rotate(135deg);
   }
   10%,
   90% {
@@ -44,11 +45,11 @@
   50% {
     border-left: 10px solid rgba(0, 0, 0, 0.7);
     border-bottom: 10px solid rgba(0, 0, 0, 0.7);
-    transform: translate(13.33333px, 0px) rotate(135deg);
+    transform: translate(0, 0px) rotate(135deg);
   }
   100% {
     border-left: 10px solid transparent;
     border-bottom: 10px solid transparent;
-    transform: translate(13.33333px, -30px) rotate(135deg);
+    transform: translate(0, -30px) rotate(135deg);
   }
 }
