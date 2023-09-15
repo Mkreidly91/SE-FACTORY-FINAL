@@ -13,7 +13,17 @@ import { FileSystemCredentials } from 'aws-sdk';
 
 const createProjectService = async (
   fileData: Express.Multer.File,
-  { owner, name, description, features, bedrooms, bathrooms, size }: IProject
+  {
+    owner,
+    name,
+    description,
+    features,
+    bedrooms,
+    bathrooms,
+    size,
+    location,
+    price,
+  }: IProject
 ) => {
   const company = await Company.findById(owner);
 
@@ -31,6 +41,8 @@ const createProjectService = async (
     bedrooms,
     bathrooms,
     size,
+    location,
+    price,
   });
 
   company.projects.push(project._id);
@@ -81,6 +93,7 @@ const addApartmentService = async (
 
 const addPanoramaService = async (
   projectId: mongoose.Types.ObjectId,
+  name: string,
   fileData: Express.Multer.File
 ) => {
   const project = await Project.findById(projectId);
@@ -90,7 +103,7 @@ const addPanoramaService = async (
 
   const storageRes = await upload(fileData);
 
-  const panorama = new Panorama({ url: storageRes });
+  const panorama = new Panorama({ url: storageRes, name });
   project.panoramas.push(panorama);
   await project.save();
   return panorama;

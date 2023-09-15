@@ -28,7 +28,16 @@ const createProject = async (
 ) => {
   try {
     const user = req.user;
-    const { name, description, features, bedrooms, bathrooms, size } = req.body;
+    const {
+      name,
+      description,
+      features,
+      bedrooms,
+      bathrooms,
+      size,
+      location,
+      price,
+    } = req.body;
     const files: Express.Multer.File[] = Object.values(req.files);
     const { message, data } = await createProjectService(files[0], {
       owner: new mongoose.Types.ObjectId(user._id),
@@ -38,6 +47,8 @@ const createProject = async (
       bedrooms,
       bathrooms,
       size,
+      location,
+      price,
     });
 
     return res.status(200).json({
@@ -87,9 +98,9 @@ const addPanorama = async (
   next: NextFunction
 ) => {
   try {
-    const { projectId } = req.body;
+    const { projectId, name } = req.body;
     const files: Express.Multer.File[] = Object.values(req.files);
-    const panoramas = await addPanoramaService(projectId, files[0]);
+    const panoramas = await addPanoramaService(projectId, name, files[0]);
     return res.status(200).json({
       message: 'Successfully added panorama',
       data: panoramas,
