@@ -11,7 +11,7 @@ interface IHotspotDocument extends IHotspot, Document {}
 
 const HotspotSchema = new Schema<IHotspot>({
   info: String,
-  link: [{ type: Schema.Types.ObjectId, ref: 'Panorama' }],
+  link: { type: Schema.Types.ObjectId, ref: 'Panorama' },
   yaw: { type: Number, required: true },
   pitch: { type: Number, required: true },
 });
