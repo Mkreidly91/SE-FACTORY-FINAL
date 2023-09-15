@@ -22,8 +22,9 @@ interface IhotspotForm {
   panoramaId?: string;
   panoramas?: any;
   deleteAction?: () => void;
+  setOpen: (arg0: boolean) => void;
 }
-const HotspotForm = ({ initialValues, id = '' }: IhotspotForm) => {
+const HotspotForm = ({ initialValues, id = '', setOpen }: IhotspotForm) => {
   const [preview, setPreview] = useState() as any;
 
   const navigate = useNavigate();
@@ -74,7 +75,7 @@ const HotspotForm = ({ initialValues, id = '' }: IhotspotForm) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className=" gap-4 w-full h-full justify-around  mt-20 bg-white"
+      className=" gap-4 w-full h-full justify-around  mt-20 bg-transparent text-white"
     >
       <div className="flex flex-col gap-3 w-full justify-center">
         <label className="font-semibold">Link to</label>
@@ -125,20 +126,32 @@ const HotspotForm = ({ initialValues, id = '' }: IhotspotForm) => {
       <div className="button-container">
         <Button
           color="inherit"
-          className="bg-red-200 text-red-200 font-extrabold"
+          className="text-xs font-extrabold"
           type="submit"
           disabled={id ? !isDirty || isSubmitting : isSubmitting || !isValid}
+          size="small"
         >
-          Submit
+          Add
         </Button>
-        {/* <Button
+        <Button
           color="inherit"
           className="bg-red-200 text-red-200 font-extrabold"
           type="submit"
           disabled={id ? !isDirty || isSubmitting : isSubmitting || !isValid}
+          size="small"
         >
           Delete
-        </Button> */}
+        </Button>
+        <Button
+          color="inherit"
+          className="bg-red-200 text-red-200 font-extrabold"
+          onClick={() => {
+            setOpen(false);
+          }}
+          size="small"
+        >
+          Cancel
+        </Button>
       </div>
     </form>
   );
