@@ -85,6 +85,37 @@ const addHotspot = async (
   }
 };
 
+const addApartment = async (projectId: string, formData: any) => {
+  try {
+    const res = await axios.post(
+      `${baseURL}company/addApartment`,
+      { projectId, ...formData },
+      headers({ 'Content-Type': 'multipart/form-data' })
+    );
+    if (res.status === 200) {
+      console.log(res);
+      return res.data.data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+const addPanorama = async (projectId: string, formData: any) => {
+  try {
+    const res = await axios.post(
+      `${baseURL}company/addPanorama`,
+      { projectId, ...formData },
+      headers({ 'Content-Type': 'multipart/form-data' })
+    );
+    if (res.status === 200) {
+      console.log(res);
+      return res.data.data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const editProject = async (projectId: string, fields: any) => {
   try {
     const res = await axios.put(
@@ -138,9 +169,23 @@ const deleteProject = async (projectId: string) => {
   }
 };
 
+const deleteApartment = async (projectId: string) => {
+  try {
+    const res = await axios.delete(`${baseURL}company/deleteApartment`, {
+      data: {
+        projectId,
+      },
+      ...headers(),
+    });
+    return res.status;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const deletePanorama = async (projectId: string, panoramaId: string) => {
   try {
-    const res = await axios.delete(`${baseURL}company/deleteProject`, {
+    const res = await axios.delete(`${baseURL}company/deletePanorama`, {
       data: {
         projectId,
         panoramaId,
@@ -179,11 +224,14 @@ const deleteHotspot = async (
 export {
   getProjects,
   createProject,
+  addApartment,
+  addPanorama,
   addHotspot,
   getProjectById,
   getPanoramaById,
   editProject,
   deleteProject,
+  deleteApartment,
   deletePanorama,
   editHotspot,
   deleteHotspot,
