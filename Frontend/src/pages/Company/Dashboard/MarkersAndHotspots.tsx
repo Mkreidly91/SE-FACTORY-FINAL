@@ -24,11 +24,7 @@ const MarkersAndHotspots = ({ initialState }) => {
             )}
           </div>
           {images && (
-            <ImageSlider
-              images={images}
-              imageCardStyles="aspect-[16/9] h-auto"
-              onClick={() => {}}
-            />
+           
           )}
         </div>
       </div>
