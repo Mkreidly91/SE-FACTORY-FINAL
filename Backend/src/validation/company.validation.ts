@@ -232,6 +232,22 @@ const editProjectSchema = object({
   ).optional(),
 }).partial();
 
+const editHotspotSchema = object({
+  params: object({
+    projectId: string().trim().nonempty(),
+    panoramaId: string().trim().nonempty(),
+    hotspotId: string().trim().nonempty(),
+  }),
+  body: object({
+    projectId: string().trim().nonempty(),
+    panoramaId: string().trim().nonempty(),
+    link: string().trim().nonempty().optional(),
+    info: string().trim().nonempty().optional(),
+    yaw: number(),
+    pitch: number(),
+  }).partial(),
+});
+
 export {
   projectForm,
   apartmentForm,
@@ -242,4 +258,5 @@ export {
   deletePanoramaOrMarkerForm,
   deleteHotspotForm,
   editProjectSchema,
+  editHotspotSchema,
 };
