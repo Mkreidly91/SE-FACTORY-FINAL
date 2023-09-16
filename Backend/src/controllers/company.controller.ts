@@ -17,7 +17,9 @@ import {
 import mongoose, { Types } from 'mongoose';
 import { HttpException } from '../exceptions/HttpException';
 import {
+  editHotspotService,
   editProjectService,
+  getPanoramaByIdService,
   getProjectByIdService,
 } from '../services/company.service';
 
@@ -139,7 +141,7 @@ const addHotspot = async (
   try {
     // projectId: Types.ObjectId, apartmentId: Types.ObjectId, panoramaId: Types.ObjectId, { link, info, yaw, pitch }: IHotspot)
     const { projectId, panoramaId, link, info, yaw, pitch } = req.body;
-    const hotspot = await addHotspotService(
+    const newPanos = await addHotspotService(
       projectId,
 
       panoramaId,
@@ -147,7 +149,7 @@ const addHotspot = async (
     );
     return res.status(200).json({
       message: 'Successfully added hotspot',
-      data: hotspot,
+      data: newPanos,
     });
   } catch (error) {
     next(error);
@@ -218,7 +220,7 @@ const deleteHotspot = async (
   next: NextFunction
 ) => {
   try {
-    const { projectId, apartmentId, panoramaId, hotspotId } = req.body;
+    const { projectId, panoramaId, hotspotId } = req.body;
     const newHotpots = await deleteHotspotService(
       projectId,
       panoramaId,
@@ -267,6 +269,23 @@ const getProjectById = async (
   }
 };
 
+const getPanoramaById = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { projectId, panoramaId } = req.params;
+    const serviceRes = await getPanoramaByIdService(projectId, panoramaId);
+    return res.status(200).json({
+      message: 'Successfully fetched Panorama',
+      data: serviceRes,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const editProject = async (
   req: AuthRequest,
   res: Response,
@@ -290,6 +309,30 @@ const editProject = async (
     next(error);
   }
 };
+
+const editHotspot = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { projectId, panoramaId, hotspotId } = req.params;
+
+    const serviceRes = await editHotspotService(
+      projectId,
+      panoramaId,
+      hotspotId,
+      req.body
+    );
+    return res.status(200).json({
+      message: 'Successfully Edited Hotspot',
+      data: serviceRes,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export {
   createProject,
   addApartment,
@@ -302,5 +345,7 @@ export {
   deleteHotspot,
   getCompanyProjects,
   getProjectById,
+  getPanoramaById,
   editProject,
+  editHotspot,
 };

@@ -12,6 +12,8 @@ import {
   getCompanyProjects,
   getProjectById,
   editProject,
+  getPanoramaById,
+  editHotspot,
 } from './company.controller';
 import { uploadToS3, deleteFromS3 } from './s3.controller';
 export {
@@ -31,4 +33,6 @@ export {
   getCompanyProjects,
   getProjectById,
   editProject,
+  getPanoramaById,
+  editHotspot,
 };
