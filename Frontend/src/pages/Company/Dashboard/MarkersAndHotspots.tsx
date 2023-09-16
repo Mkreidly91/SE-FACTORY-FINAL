@@ -6,10 +6,7 @@ import PanoEditor from '../../sample3d/PanoEditor.tsx';
 
 const MarkersAndHotspots = ({ initialState }) => {
   const objectUrl = initialState.url;
-  const panoramas = initialState.panoramas;
 
-  const images = initialState.panoramas.map((e) => e.url);
-  const [selected, setSelected] = useState(1);
   return (
     <Suspense>
       <div className="w-full ">
@@ -19,13 +16,8 @@ const MarkersAndHotspots = ({ initialState }) => {
           </div>
 
           <div className="w-[80%] m-auto ">
-            {initialState && initialState.panoramas && (
-              <PanoEditor id={initialState.panoramas[1]._id} isEdit />
-            )}
+            <PanoEditor isEdit />
           </div>
-          {images && (
-           
-          )}
         </div>
       </div>
     </Suspense>
