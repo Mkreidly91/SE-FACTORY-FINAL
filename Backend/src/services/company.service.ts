@@ -123,7 +123,7 @@ const addHotspotService = async (
   if (!panorama) {
     throw new HttpException(400, 'panorama not found');
   }
-
+  console.log(yaw, pitch);
   const hotspot = new Hotspot({
     link,
     info,
@@ -133,7 +133,7 @@ const addHotspotService = async (
 
   panorama.hotspots.push(hotspot);
   await project.save();
-  return hotspot;
+  return panorama.hotspots;
 };
 
 const addMarkerService = async (
@@ -217,6 +217,13 @@ const deletePanoramaService = async (
   project.panoramas = project.panoramas.filter(
     (e) => !e._id.equals(panoramaId)
   );
+
+  for (const pano of project.panoramas) {
+    pano.hotspots = pano.hotspots.filter(
+      (hotspot) => !hotspot.link.equals(panoramaId)
+    );
+  }
+
   await project.save();
   return project.panoramas;
 };
@@ -267,6 +274,7 @@ const deleteHotspotService = async (
 
   panorama.hotspots = panorama.hotspots.filter((e) => !e._id.equals(hotspotId));
   await project.save();
+  console.log(panorama.hotspots);
   return panorama.hotspots;
 };
 
@@ -286,6 +294,22 @@ const getProjectByIdService = async (projectId: string) => {
   return project;
 };
 
+const getPanoramaByIdService = async (
+  projectId: string,
+  panoramaId: string
+) => {
+  const project = await Project.findById(projectId);
+  if (!project) {
+    throw new HttpException(400, 'Project not found');
+  }
+  const panorama = project.panoramas.find((e) => e._id.equals(panoramaId));
+  if (!panorama) {
+    throw new HttpException(400, 'Panorama not found');
+  }
+
+  return panorama;
+};
+
 const editProjectService = async (
   projectId: string,
   fields: any,
@@ -303,6 +327,38 @@ const editProjectService = async (
   const newProject = await project.save();
   return newProject;
 };
+
+const editHotspotService = async (
+  projectId: string,
+  panoramaId: string,
+  hotspotId: string,
+  fields: any
+) => {
+  const project = await Project.findById(projectId);
+  if (!project) {
+    throw new HttpException(400, 'Project not found');
+  }
+
+  const panorama = project.panoramas.find((e) => e._id.equals(panoramaId));
+  if (!panorama) {
+    throw new HttpException(400, 'Panorama not found');
+  }
+
+  const hotspot = panorama.hotspots.find((e) => e._id.equals(hotspotId));
+  if (!hotspot) {
+    throw new HttpException(400, 'Hotspot not found');
+  }
+  console.log(hotspot['info']);
+  hotspot.info = fields.info ? fields.info : hotspot.info;
+  hotspot.link = fields.link ? fields.link : hotspot.link;
+  const newProject = await project.save();
+  const newHotspots = newProject.panoramas.find((e) =>
+    e._id.equals(panoramaId)
+  ).hotspots;
+
+  // console.log(newHotspots);
+  return newHotspots;
+};
 export {
   createProjectService,
   addApartmentService,
@@ -315,5 +371,7 @@ export {
   deleteHotspotService,
   getCompanyProjectsService,
   getProjectByIdService,
+  getPanoramaByIdService,
   editProjectService,
+  editHotspotService,
 };

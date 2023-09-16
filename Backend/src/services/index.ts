@@ -10,6 +10,8 @@ import {
   deleteHotspotService,
   getCompanyProjectsService,
   editProjectService,
+  getPanoramaByIdService,
+  editHotspotService,
 } from './company.service';
 
 export {
@@ -24,4 +26,6 @@ export {
   deleteHotspotService,
   getCompanyProjectsService,
   editProjectService,
+  getPanoramaByIdService,
+  editHotspotService,
 };
