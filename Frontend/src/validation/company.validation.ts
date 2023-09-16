@@ -4,10 +4,18 @@ const projectFormSchema = object({
   name: string().trim().max(18).nonempty('Name field is required'),
   description: string().trim().nonempty('Description field is required'),
   location: string().trim().nonempty('Location field is required'),
-  bedrooms: number().positive('Please provide a valid number'),
-  bathrooms: number().positive('Please provide a valid number'),
-  size: number().positive('Please provide a valid number'),
-  price: number().positive('Please provide a valid number'),
+  bedrooms: number({
+    invalid_type_error: 'Please provide a valid number',
+  }).positive('Please provide a valid number'),
+  bathrooms: number({
+    invalid_type_error: 'Please provide a valid number',
+  }).positive('Please provide a valid number'),
+  size: number({
+    invalid_type_error: 'Please provide a valid number',
+  }).positive('Please provide a valid number'),
+  price: number({
+    invalid_type_error: 'Please provide a valid number',
+  }).positive('Please provide a valid number'),
   features: array(string()).optional().default([]),
   file: z.union([
     any().refine((files) => files?.length === 1, 'No image selected'),
@@ -118,7 +126,7 @@ const markerForm = object({
 });
 
 const hotspotForm = object({
-  link: string().trim().url().nonempty().optional(),
+  link: string().trim().nonempty('Please choose an image').optional(),
   info: string().trim().optional(),
   // yaw: number(),
   // pitch: number(),

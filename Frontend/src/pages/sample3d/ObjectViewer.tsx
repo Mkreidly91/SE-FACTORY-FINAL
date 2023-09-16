@@ -16,13 +16,13 @@ export const ObjectViewer = ({ url }: { url: string }) => {
     1000
   );
   camera.position.set(60, 60, 60);
-  camera.zoom = 80;
+  camera.zoom = 50;
 
   return (
-    <div className="w-[80%] h-[500px] mx-auto">
+    <div className="w-[80%] h-[500px] mx-auto ">
       {m && (
         <Canvas
-          className=" border h-full bg-transparent"
+          className=" border border-black h-full bg-transparent rounded-md"
           frameloop="demand"
           camera={camera}
           dpr={window.devicePixelRatio}
@@ -44,7 +44,6 @@ export const ObjectViewer = ({ url }: { url: string }) => {
             {m && (
               <primitive
                 onPointerDown={(e) => {
-                  console.log(e.normal);
                   //   placeMarker(e);
                 }}
                 object={m.scene}
