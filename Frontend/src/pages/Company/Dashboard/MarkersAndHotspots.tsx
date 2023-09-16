@@ -20,11 +20,7 @@ const MarkersAndHotspots = ({ initialState }) => {
 
           <div className="w-[80%] m-auto ">
             {initialState && initialState.panoramas && (
-              <PanoEditor
-                projectId={initialState._id}
-                id={initialState.panoramas[1]._id}
-                initialPanoramas={initialState.panoramas}
-              />
+              <PanoEditor id={initialState.panoramas[1]._id} isEdit />
             )}
           </div>
           {images && (
