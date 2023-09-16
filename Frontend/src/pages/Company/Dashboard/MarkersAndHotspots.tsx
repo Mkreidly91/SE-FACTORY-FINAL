@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import ImageSlider from '../../../components/Common/ImageSlider/ImageSlider';
 import ObjectViewer from '../../sample3d/ObjectViewer';
 import V360 from '../../sample3d/V360.tsx';
@@ -6,34 +6,40 @@ import PanoEditor from '../../sample3d/PanoEditor.tsx';
 
 const MarkersAndHotspots = ({ initialState }) => {
   const objectUrl = initialState.url;
-  // const imageUrl = initialState.apartments[0].panoramas[0].url;
-  const panoramas = initialState.panoramas.map((e) => e.url);
+  const panoramas = initialState.panoramas;
+
   console.log(initialState);
+  // const imageUrl = initialState.apartments[0].panoramas[0].url;
+
+  // const [panoramas, setPanoramas] = useState(initialState.panoramas);
+  const images = initialState.panoramas.map((e) => e.url);
+  const [selected, setSelected] = useState(1);
   return (
-    <>
-      <Suspense>
-        <div className="mt-20">
-          {objectUrl && <ObjectViewer url={initialState.url} />}
-          <div className="w-[70%] m-auto ">
-            <V360 image={''} />
+    <Suspense>
+      <div className="w-full ">
+        <div className="mt-20 w-full">
+          <div className="mb-10">
+            {objectUrl && <ObjectViewer url={initialState.url} />}
           </div>
-          {panoramas && (
+
+          <div className="w-[80%] m-auto ">
+            {initialState && initialState.panoramas && (
+              <PanoEditor
+                projectId={initialState._id}
+                id={initialState.panoramas[1]._id}
+                initialPanoramas={initialState.panoramas}
+              />
+            )}
+          </div>
+          {images && (
             <ImageSlider
-              images={panoramas}
+              images={images}
               imageCardStyles="aspect-[16/9] h-auto"
             />
           )}
         </div>
-        <div className="w-[70%] m-auto ">
-          {panoramas && initialState.panoramas && (
-            <PanoEditor
-              initial={initialState.panoramas[1]}
-              panoramas={initialState.panoramas}
-            />
-          )}
-        </div>
-      </Suspense>
-    </>
+      </div>
+    </Suspense>
   );
 };
 
