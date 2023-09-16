@@ -35,8 +35,6 @@ const Test = () => {
   const [images, setImages] = useState([img, bedroom]);
 
   const [markers, setMarkers] = useState([]);
-  // console.log(markers);
-  console.log(images);
 
   function placeMarker(e: ThreeEvent<MouseEvent>) {
     if (images[0] && e.normal?.y === 1) {
@@ -134,7 +132,7 @@ export default Test;
   /* <group
 dispose={null}
 onPointerDown={(e) => {
-  console.log(e.normal);
+ 
   placeMarker(e);
 }}
 >

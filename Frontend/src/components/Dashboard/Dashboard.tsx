@@ -2,24 +2,13 @@ import { useState } from 'react';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import { styled } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-
-import Badge from '@mui/material/Badge';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-
 import Logo from '../../assets/icons/logo/logo-full.svg';
 import LogoOwl from '../../assets/icons/logo/logo-owl-white.svg';
-import { ListItemButton, ListItemText, ListItemIcon } from '@mui/material';
 import ProjectIcon from '@mui/icons-material/AccountTreeOutlined';
 import ProfileIcon from '@mui/icons-material/AccountBoxOutlined';
-import { Link } from 'react-router-dom';
+import LogoutIcon from '@mui/icons-material/LogoutOutlined';
 import DashboardRoutes from './DashboardRoutes';
 import DashListItem from './DashListItem';
 import DashIcon from '@mui/icons-material/Dashboard';
@@ -133,6 +122,11 @@ function DashBoard({ children }: { children?: any }) {
               to="/dashboard/projects/addProject"
               icon={<ProfileIcon sx={{ color: 'white' }} />}
               text="Profile"
+            />
+
+            <DashListItem
+              icon={<LogoutIcon sx={{ color: 'white' }} />}
+              text="Log out"
             />
           </List>
         </div>

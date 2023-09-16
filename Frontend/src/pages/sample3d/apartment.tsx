@@ -11,7 +11,6 @@ const Model = ({ placeMarker, children }) => {
     m && (
       <primitive
         onPointerDown={(e) => {
-          console.log(e.normal);
           placeMarker(e);
         }}
         object={m.scene}
