@@ -8,10 +8,6 @@ const MarkersAndHotspots = ({ initialState }) => {
   const objectUrl = initialState.url;
   const panoramas = initialState.panoramas;
 
-  console.log(initialState);
-  // const imageUrl = initialState.apartments[0].panoramas[0].url;
-
-  // const [panoramas, setPanoramas] = useState(initialState.panoramas);
   const images = initialState.panoramas.map((e) => e.url);
   const [selected, setSelected] = useState(1);
   return (
@@ -35,6 +31,7 @@ const MarkersAndHotspots = ({ initialState }) => {
             <ImageSlider
               images={images}
               imageCardStyles="aspect-[16/9] h-auto"
+              onClick={() => {}}
             />
           )}
         </div>

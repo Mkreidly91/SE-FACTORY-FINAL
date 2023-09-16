@@ -344,11 +344,11 @@ const editHotspotService = async (
     throw new HttpException(400, 'Panorama not found');
   }
 
-  const hotspot = panorama.hotspots.find((e) => e._id.equals(hotspotId));
+  let hotspot = panorama.hotspots.find((e) => e._id.equals(hotspotId));
   if (!hotspot) {
     throw new HttpException(400, 'Hotspot not found');
   }
-  console.log(hotspot['info']);
+
   hotspot.info = fields.info ? fields.info : hotspot.info;
   hotspot.link = fields.link ? fields.link : hotspot.link;
   const newProject = await project.save();

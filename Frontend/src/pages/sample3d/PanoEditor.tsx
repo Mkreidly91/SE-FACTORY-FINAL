@@ -58,7 +58,7 @@ const PanoEditor = ({
   }, [projectId, id]);
 
   const [state, setState] = useState() as any;
-  const [panoramas, setPanoramas] = useState(initialPanoramas);
+  const [panoramas, setPanoramas] = useState();
   const [selectedHotspot, setSelectedHotspot] = useState<IHotspot>();
   const [isOpen, setOpen] = useState(false);
 
