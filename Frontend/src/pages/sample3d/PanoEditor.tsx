@@ -12,40 +12,61 @@ import '@egjs/react-view360/css/view360.min.css';
 import '@egjs/view360/css/loading-spinner.min.css';
 import def from './bedroom.jpeg';
 import HotspotForm from '../../components/Forms/HotspotForm';
-import { Drawer } from '@mui/material';
+import {
+  addHotspot,
+  deleteHotspot,
+  editHotspot,
+  getPanoramaById,
+  getProjectById,
+} from '../../api/company.api';
+import { useParams } from 'react-router-dom';
 
-interface IPanorama {
+export interface IPanorama {
+  _id: string;
   url: string;
   marker?: any;
   hotspots?: any[];
 }
+export interface IHotspot {
+  _id: string;
+  link: string;
+  info: string;
+}
+
 const PanoEditor = ({
-  initial,
-  panoramas,
+  id,
+  initialPanoramas,
 }: {
-  initial: IPanorama;
-  panoramas: IPanorama[];
+  id: string;
+  initialPanoramas: IPanorama[];
 }) => {
+  const { id: projectId } = useParams();
+
   useEffect(() => {
-    console.log(initial);
-    setState(initial);
-    setHotspots(hotspots);
-  }, [initial]);
+    if (projectId) {
+      const fetchInfo = async () => {
+        const res = await getProjectById(projectId);
+        setPanoramas(res.panoramas);
+        if (id) {
+          setState(res.panoramas.find((e) => e._id === id));
+        } else {
+          setState(res.panoramas[0]);
+        }
+      };
+      fetchInfo();
+    }
+  }, [projectId, id]);
 
-  const [hotspots, setHotspots] = useState<IPanorama | null>();
+  const [state, setState] = useState() as any;
+  const [panoramas, setPanoramas] = useState(initialPanoramas);
+  const [selectedHotspot, setSelectedHotspot] = useState<IHotspot>();
+  const [isOpen, setOpen] = useState(false);
 
-  const [state, setState] = useState(initial) as any;
-  const [open, setOpen] = useState(false);
+  console.log(state);
 
   const toggleDrawer = () => {
     setOpen((prev) => !prev);
   };
-
-  const [p, setP] = useState(def);
-  const imgUrl = new URL(
-    'https://vizi-bucket.s3.eu-west-1.amazonaws.com/27df8097-3fbf-4705-b592-8a9714036157.jpeg',
-    import.meta.url
-  ).href;
 
   const plugin = useMemo(() => {
     return new ControlBar({ fullscreenButton: true });
@@ -63,17 +84,68 @@ const PanoEditor = ({
     }
   }, [state]);
 
-  const viewRef = useRef();
-  // Refresh Hotspots for hotspot changes
+  const viewRef = useRef() as any;
+
   useEffect(() => {
     if (viewRef.current) {
       viewRef.current?.hotspot?.refresh();
       viewRef.current?.hotspot?.render(viewRef.current?.camera);
     }
-  }, [hotspots, state]);
+  }, [state, state?.hotspots, viewRef?.current]);
 
+  const handleAddHotspot = async (fields) => {
+    if (viewRef.current.camera) {
+      const yaw = viewRef.current.camera.yaw;
+      const pitch = viewRef.current.camera.pitch;
+      const res = await addHotspot(projectId, state?._id, {
+        ...fields,
+        yaw,
+        pitch,
+      });
+      if (res) {
+        toggleDrawer();
+        setSelectedHotspot(undefined);
+        setState((prev: any) => ({ ...prev, hotspots: res }));
+      }
+    }
+  };
+
+  const handleDeleteHotspot = async () => {
+    const [status, data] = await deleteHotspot(
+      projectId,
+      state?._id,
+      selectedHotspot?._id
+    );
+    if (status === 200) {
+      toggleDrawer();
+      setSelectedHotspot(undefined);
+      setState((prev: any) => ({ ...prev, hotspots: data }));
+    }
+  };
+
+  const handleEditHotspot = async (fields: Partial<IHotspot>) => {
+    if (projectId && selectedHotspot) {
+      const res = await editHotspot(
+        projectId,
+        state?._id,
+        selectedHotspot?._id,
+        fields
+      );
+      if (res) {
+        setState((prev: any) => ({ ...prev, hotspots: res }));
+      }
+    }
+  };
+
+  const onHotSpotChange = async (h: IHotspot) => {
+    if (projectId) {
+      const newPanorama = await getPanoramaById(projectId, h.link);
+      setState(newPanorama);
+    }
+  };
   return (
-    state.url && (
+    state &&
+    panoramas && (
       <View360
         plugins={[plugin, spinner]}
         ref={viewRef}
@@ -91,77 +163,49 @@ const PanoEditor = ({
           text="Add Hotspot"
           className="absolute top-2 left-2 bg-white px-2 py-3 rounded-md button-gradient text-white text-sm"
           onClick={() => {
-            // setHotspot((prev: any) => [
-            //   <Arrows
-            //     yaw={viewRef.current?.camera?.yaw}
-            //     pitch={viewRef.current?.camera?.pitch}
-            //   />,
-            //   ...prev,
-            // ]);
             toggleDrawer();
+            setSelectedHotspot(undefined);
           }}
         />
-        {open && (
+        {isOpen && (
           <div
             onClick={() => toggleDrawer()}
             className="form-cancel absolute top-0 left-0 w-full h-full  z-30 bg-black opacity-50"
           ></div>
         )}
         <div
-          className={`button-gradient h-full w-[30%] max-w-[300px] p-5 absolute z-50 left-0 top-0 transform ${
-            open ? 'translate-x-0' : '-translate-x-full'
+          className={`bg-white bg-transparent flex items-end h-full w-[30%] max-w-[300px] p-5 absolute z-50 left-0 top-0 transform ${
+            isOpen ? 'translate-x-0' : '-translate-x-full'
           } transition-transform duration-300 ease-in-out`}
         >
-          <HotspotForm setOpen={setOpen} />
+          <HotspotForm
+            selectedHotspot={selectedHotspot}
+            setOpen={setOpen}
+            isOpen={isOpen}
+            panoramas={panoramas.filter((e) => e._id !== state._id)}
+            addAction={async (data) => handleAddHotspot(data)}
+            deleteAction={async (data) => handleDeleteHotspot(data)}
+            editAction={async (data) => handleEditHotspot(data)}
+          />
         </div>
 
         <div className="view360-hotspots">
-          {state.hotspots?.map((h: any) => (
-            <Arrows
-              yaw={h.yaw}
-              pitch={h.pitch}
-              edit
-              onClick={() => {
-                setState((prev) => {
-                  return panoramas.find((e) => e._id === h.link);
-                });
-              }}
-            />
-          ))}
-
-          <Arrows
-            yaw={'0'}
-            pitch={'0'}
-            onClick={() => {
-              setP(new URL('./panorama.jpg', import.meta.url).href);
-            }}
-          />
-
-          <Arrows
-            yaw={'20'}
-            pitch={'0'}
-            onClick={() => {
-              setP(new URL('./bedroom.jpeg', import.meta.url).href);
-            }}
-            scale={2}
-          />
-
-          {hotspots}
-          {/* <div
-            className="view360-hotspot text-red-400 "
-            data-yaw={position.yaw}
-            data-pitch={position.pitch}
-          >
-            <span
-              onClick={() => setSofaInfo((prev) => !prev)}
-              className="p-5 bg-black rounded-full"
-            >
-              Ikea sofa
-            </span>
-            {sofaInfo && (
-              <span className="p-5 bg-white">price: $500 color: Beige</span>
-            )}
-          </div> */}
+          {state.hotspots &&
+            state.hotspots?.map((h: any) => (
+              <Arrows
+                yaw={h.yaw}
+                pitch={h.pitch}
+                info={h.info}
+                edit
+                onEditClick={() => {
+                  setSelectedHotspot(h);
+                  toggleDrawer();
+                }}
+                onClick={async () => {
+                  onHotSpotChange(h);
+                }}
+              />
+            ))}
         </div>
       </View360>
     )
