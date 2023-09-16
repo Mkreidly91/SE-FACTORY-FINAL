@@ -5,9 +5,7 @@ import { projectFormSchema } from '../validation/company.validation';
 import { z } from 'zod';
 type FormSchemaType = z.infer<typeof projectFormSchema>;
 const TestRHF = () => {
-  const onSubmit: SubmitHandler<FormSchemaType> = (data) => {
-    console.log(data);
-  };
+  const onSubmit: SubmitHandler<FormSchemaType> = (data) => {};
 
   const {
     register,

@@ -27,14 +27,12 @@ const Pano = () => {
         view: view,
         pinFirstLevel: true,
       });
-      console.log(scene);
       scene.switchTo({
         transitionDuration: 1000,
       });
     }
   }, [w.current]);
 
-  console.log(w);
   return <div className="pano-container w-full h-full border" ref={w}></div>;
 };
 
