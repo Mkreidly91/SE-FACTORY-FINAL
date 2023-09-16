@@ -1,4 +1,5 @@
 import './imageSlider.css';
+import { Delete } from '@mui/icons-material';
 const ImageCard = ({
   url,
   onClick,
@@ -24,11 +25,13 @@ const ImageSlider = ({
   imageCardStyles,
   panoramas = [],
   onClick,
+  onDelete,
 }: {
   className: string;
   imageCardStyles?: string;
   panoramas: any[];
   onClick: (id: string) => void;
+  onDelete: (id: string) => void;
 }) => {
   return (
     <div
@@ -37,11 +40,23 @@ const ImageSlider = ({
       <div className="flex gap-3 flex-nowrap lg:ml-40 md:ml-20 ml-10 ">
         {panoramas &&
           panoramas.map((e) => (
-            <ImageCard
-              imageCardStyles={imageCardStyles}
-              url={e.url}
-              onClick={() => onClick(e._id)}
-            />
+            <div className="relative">
+              <ImageCard
+                imageCardStyles={imageCardStyles}
+                url={e.url}
+                onClick={() => onClick(e._id)}
+              />
+
+              {onDelete && (
+                <Delete
+                  className={
+                    'text-[1rem] absolute right-2 top-2 cursor-pointer hover:text-blue-500'
+                  }
+                  sx={{ color: 'white' }}
+                  onClick={() => onDelete(e._id)}
+                />
+              )}
+            </div>
           ))}
       </div>
     </div>
