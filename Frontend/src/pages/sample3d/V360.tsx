@@ -17,7 +17,6 @@ const V360 = ({ image }) => {
     yaw: 110,
     pitch: -30,
   });
-  console.log(def);
 
   const [sofaInfo, setSofaInfo] = useState(false);
   const [hotspots, setHotspot] = useState([]) as any;
@@ -41,7 +40,6 @@ const V360 = ({ image }) => {
   );
 
   const viewRef = useRef();
-  console.log(p);
   // Refresh Hotspots for hotspot changes
   useEffect(() => {
     if (viewRef.current) {

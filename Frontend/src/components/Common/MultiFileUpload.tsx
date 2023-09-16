@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 
 function MultiFileUpload() {
   const [files, setFiles] = useState({});
-  console.log(files);
+
   const [isOverlayDragged, setIsOverlayDragged] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -24,7 +24,6 @@ function MultiFileUpload() {
 
   const handleSubmit = () => {
     alert(`Submitted Files:\n${fileInputRef.current?.files}`);
-    console.log(fileInputRef.current?.files);
     // alert(`Submitted Files:\n${JSON.stringify(Object.keys(files))}`);
     // console.log(Object.keys(files));
   };
