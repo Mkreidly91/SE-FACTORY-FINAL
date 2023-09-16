@@ -1,56 +1,58 @@
 import { Button, MenuItem, TextField } from '@mui/material';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  projectFormSchema,
-  ProjectFormSchemaType,
-} from '../../validation/company.validation';
 import { useEffect, useState } from 'react';
-import { createProject, editProject } from '../../api/company.api';
-import { useNavigate } from 'react-router-dom';
 import { filterChangedFormFields } from '../../helpers/helpers';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import {
   HotspotSchemaType,
   hotspotForm,
 } from '../../validation/company.validation';
-import BasicSelect from '../Common/BasicSelect';
 
 interface IhotspotForm {
-  initialValues?: HotspotSchemaType;
-  id?: string;
+  selectedHotspot?: {
+    link?: string | undefined;
+    info?: string | undefined;
+    id: string;
+  };
   projectId?: string;
   panoramaId?: string;
   panoramas?: any;
-  deleteAction?: () => void;
+  deleteAction: () => Promise<void>;
+  addAction: (arg0: any) => Promise<void>;
+  editAction: (arg0: any) => Promise<void>;
   setOpen: (arg0: boolean) => void;
+  isOpen?: boolean;
 }
-const HotspotForm = ({ initialValues, id = '', setOpen }: IhotspotForm) => {
-  const [preview, setPreview] = useState() as any;
-
-  const navigate = useNavigate();
-
+const HotspotForm = ({
+  selectedHotspot,
+  panoramas,
+  setOpen,
+  isOpen,
+  addAction,
+  deleteAction,
+  editAction,
+}: IhotspotForm) => {
   useEffect(() => {
-    if (initialValues && id) {
-      const { link, info } = initialValues;
-      reset({ link, info });
+    if (selectedHotspot) {
+      const { link, info } = selectedHotspot;
+      reset({ link, info: info || '' });
     }
-  }, [initialValues, id]);
+    if (!isOpen) {
+      reset({ info: '', link: '' });
+      clearErrors('link');
+      clearErrors('info');
+    }
+  }, [isOpen, selectedHotspot]);
 
-  const onSubmit: SubmitHandler<HotspotSchemaType> = (data) => {
-    console.log(data);
-    // if (!id) {
-    //   const res = await createProject(data);
-    //   navigate(`${res._id}`);
-    //   return;
-    // } else {
-    //   const changedFieldValues = filterChangedFormFields(data, dirtyFields);
-    //   const res = await editProject(id, changedFieldValues);
-    // }
-
-    // fields = { ...fields, ...dirtyFields };
-    // reset();
-    // setFeatures([]);
-    // setPreview();
+  const onSubmit: SubmitHandler<HotspotSchemaType> = async (data) => {
+    if (!selectedHotspot) {
+      addAction(data);
+      return;
+    } else {
+      const changedFieldValues = filterChangedFormFields(data, dirtyFields);
+      await editAction(changedFieldValues);
+      reset({ link: data.link }, { keepValues: true });
+    }
   };
 
   const {
@@ -58,57 +60,46 @@ const HotspotForm = ({ initialValues, id = '', setOpen }: IhotspotForm) => {
     handleSubmit,
     reset,
     clearErrors,
-    formState: {
-      errors,
-      isSubmitting,
-      touchedFields,
-      isValid,
-      dirtyFields,
-      isDirty,
-    },
+    getValues,
+    formState: { errors, isSubmitting, isValid, dirtyFields, isDirty },
   } = useForm<HotspotSchemaType>({
     resolver: zodResolver(hotspotForm),
     mode: 'onTouched',
     criteriaMode: 'firstError',
+    defaultValues: {
+      link: '',
+      info: '',
+    },
   });
-  console.log(isValid);
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className=" gap-4 w-full h-full justify-around  mt-20 bg-transparent text-white"
+      className=" gap-4 w-full h-full justify-around  mt-20 bg-transparent"
     >
       <div className="flex flex-col gap-3 w-full justify-center">
         <label className="font-semibold">Link to</label>
+
         <TextField
           className="max-w-[600px]"
           select
+          defaultValue={selectedHotspot?.link || ''}
           onFocus={() => clearErrors('link')}
           error={Boolean(errors.link)}
           helperText={errors?.link?.message || ' '}
           {...register('link')}
+          value={getValues('link')}
         >
-          <MenuItem value={'None'}>None</MenuItem>
-          <MenuItem
-            value={
-              'https://vizi-bucket.s3.eu-west-1.amazonaws.com/ab16f33c-bb77-444e-ad2d-654dbba58ed9.glb'
-            }
-          >
-            Bedroom
-          </MenuItem>
-          <MenuItem
-            value={
-              'https://vizi-bucket.s3.eu-west-1.amazonaws.com/ab16f33c-bb77-444e-ad2d-654dbba58ed9.glb'
-            }
-          >
-            Bathroom
-          </MenuItem>
-          <MenuItem
-            value={
-              'https://vizi-bucket.s3.eu-west-1.amazonaws.com/ab16f33c-bb77-444e-ad2d-654dbba58ed9.glb'
-            }
-          >
-            Salon
-          </MenuItem>
+          <MenuItem value={''}>None</MenuItem>
+          {panoramas &&
+            panoramas?.map((e: any) => (
+              <MenuItem key={e._id} value={e._id}>
+                <div>
+                  <span>{e.name || ''}</span>
+                  <img className="w-[100px] " src={e.url} />
+                </div>
+              </MenuItem>
+            ))}
         </TextField>
       </div>
 
@@ -123,30 +114,38 @@ const HotspotForm = ({ initialValues, id = '', setOpen }: IhotspotForm) => {
         />
       </div>
 
-      <div className="button-container">
+      <div className="button-container flex justify-center">
         <Button
           color="inherit"
           className="text-xs font-extrabold"
           type="submit"
-          disabled={id ? !isDirty || isSubmitting : isSubmitting || !isValid}
+          disabled={
+            selectedHotspot
+              ? !isDirty || isSubmitting
+              : isSubmitting || !isValid
+          }
           size="small"
         >
-          Add
+          {selectedHotspot ? 'Edit' : 'Add'}
         </Button>
-        <Button
-          color="inherit"
-          className="bg-red-200 text-red-200 font-extrabold"
-          type="submit"
-          disabled={id ? !isDirty || isSubmitting : isSubmitting || !isValid}
-          size="small"
-        >
-          Delete
-        </Button>
+
+        {selectedHotspot && (
+          <Button
+            color="inherit"
+            className="bg-red-200 text-red-200 font-extrabold"
+            size="small"
+            onClick={async () => deleteAction()}
+          >
+            Delete
+          </Button>
+        )}
+
         <Button
           color="inherit"
           className="bg-red-200 text-red-200 font-extrabold"
           onClick={() => {
             setOpen(false);
+            reset();
           }}
           size="small"
         >
