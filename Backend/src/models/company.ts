@@ -4,6 +4,7 @@ import { IProjectDocument } from './project';
 interface ICompany extends IUser {
   logo: string;
   projects?: mongoose.Types.ObjectId[];
+  tel?: string;
 }
 
 interface ICompanyDocument extends ICompany, Document {}
@@ -20,6 +21,7 @@ const CompanySchema = new Schema<ICompany>({
   },
   password: { type: String, required: true, minlength: 6 },
   logo: { type: String },
+  tel: { type: String },
   projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
 });
 
