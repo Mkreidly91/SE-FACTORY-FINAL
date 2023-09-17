@@ -3,6 +3,8 @@ import { register, login } from '../controllers';
 
 import { CreateUserForm } from '../validation/user.validation';
 import formValidationMiddleware from '../middlewares/formValidation.middleware';
+import { getUser } from '../controllers/auth.controller';
+import authMiddleware, { Roles } from '../middlewares/auth.middleware';
 
 export default (router: express.Router) => {
   router.post(
@@ -11,4 +13,5 @@ export default (router: express.Router) => {
     register
   );
   router.post('/auth/login', login);
+  router.get('/auth/getUser', authMiddleware(Roles.All), getUser);
 };

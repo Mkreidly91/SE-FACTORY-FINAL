@@ -1,10 +1,10 @@
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { Customer } from '../models/customer';
 import { Company } from '../models/company';
 import envConfig from '../configs/env.config';
-import { Roles } from '../middlewares/auth.middleware';
+import { AuthRequest, Roles } from '../middlewares/auth.middleware';
 
 const register = async (req: Request, res: Response) => {
   try {
@@ -92,4 +92,17 @@ const login = async (req: Request, res: Response) => {
     return res.status(500).send();
   }
 };
-export { register, login };
+
+const getUser = async (req: AuthRequest, res: Response, next: NextFunction) => {
+  try {
+    const user = req.user;
+    const profile =
+      (await Customer.findById(user._id).select('-password')) ||
+      (await Company.findById(user._id).select('-password'));
+    console.log(profile);
+    return res.status(200).json({ profile });
+  } catch (error) {
+    next(error);
+  }
+};
+export { register, login, getUser };
