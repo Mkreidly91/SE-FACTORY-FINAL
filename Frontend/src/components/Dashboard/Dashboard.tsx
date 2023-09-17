@@ -119,7 +119,7 @@ function DashBoard({ children }: { children?: any }) {
             />
 
             <DashListItem
-              to="/dashboard/projects/addProject"
+              to="/dashboard/editProfile"
               icon={<ProfileIcon sx={{ color: 'white' }} />}
               text="Profile"
             />
