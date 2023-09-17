@@ -327,6 +327,26 @@ const editProjectService = async (
   const newProject = await project.save();
   return newProject;
 };
+const editProfileService = async (
+  user: any,
+  fields: any,
+  fileData?: Express.Multer.File
+) => {
+  const profile = await Company.findByIdAndUpdate(user._id, fields);
+  if (!profile) {
+    throw new HttpException(400, 'Profile not found');
+  }
+
+  if (fileData) {
+    if (profile.logo) {
+      await deleteFile(profile.logo);
+    }
+    const storageRes = await upload(fileData);
+    profile.logo = storageRes;
+  }
+  const newProfile = await profile.save();
+  return newProfile;
+};
 
 const editHotspotService = async (
   projectId: string,
@@ -369,6 +389,7 @@ export {
   deletePanoramaService,
   deleteMarkerService,
   deleteHotspotService,
+  editProfileService,
   getCompanyProjectsService,
   getProjectByIdService,
   getPanoramaByIdService,
