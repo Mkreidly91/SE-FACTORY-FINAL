@@ -28,14 +28,9 @@ const Projects = () => {
       <div className="projects-card-container flex gap-5 ">
         {projects &&
           projects.map((p: any) => {
-            const { name, description, thumbnail } = p;
             return (
               <Link to={`addProject/${p._id}`} state={p}>
-                <ProjectCard
-                  title={name}
-                  description={description}
-                  img={thumbnail}
-                />
+                <ProjectCard project={p} />
               </Link>
             );
           })}
