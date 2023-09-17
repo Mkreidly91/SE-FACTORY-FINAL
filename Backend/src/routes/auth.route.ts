@@ -1,7 +1,7 @@
 import express from 'express';
 import { register, login } from '../controllers';
 
-import { CreateUserForm } from '../validation/validation';
+import { CreateUserForm } from '../validation/user.validation';
 import formValidationMiddleware from '../middlewares/formValidation.middleware';
 
 export default (router: express.Router) => {

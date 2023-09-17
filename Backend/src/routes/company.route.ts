@@ -28,10 +28,12 @@ import {
   editHotspot,
 } from '../controllers';
 import {
+  editProfile,
   editProject,
   getPanoramaById,
   getProjectById,
 } from '../controllers/company.controller';
+import { editUserSchema } from '../validation/user.validation';
 
 export default (router: Router) => {
   router.post(
@@ -126,5 +128,13 @@ export default (router: Router) => {
     multer().any(),
     formValidationMiddleware(editHotspotSchema),
     editHotspot
+  );
+
+  router.put(
+    '/company/editProfile',
+    authMiddleware(Roles.Company),
+    multer().any(),
+    formValidationMiddleware(editUserSchema),
+    editProfile
   );
 };
