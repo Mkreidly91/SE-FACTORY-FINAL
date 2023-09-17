@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 interface DashListItemProps {
   to?: string;
   icon: ReactNode;
-  text: string;
+  text: string | number;
+  className?: string;
 }
-const DashListItem = ({ to, icon, text }: DashListItemProps) => {
+const DashListItem = ({ to, icon, text, className }: DashListItemProps) => {
   return (
     <>
       {to ? (
@@ -15,7 +16,9 @@ const DashListItem = ({ to, icon, text }: DashListItemProps) => {
           <ListItemButton>
             <ListItemIcon>{icon}</ListItemIcon>
             <ListItemText>
-              <span className="monster font-medium text-[14px] text-white">
+              <span
+                className={`monster font-medium text-[14px] text-white ${className}`}
+              >
                 {text}
               </span>
             </ListItemText>
@@ -25,7 +28,9 @@ const DashListItem = ({ to, icon, text }: DashListItemProps) => {
         <ListItemButton>
           <ListItemIcon>{icon}</ListItemIcon>
           <ListItemText>
-            <span className="monster font-medium text-[14px] text-white">
+            <span
+              className={`monster font-medium text-[14px] text-white ${className}`}
+            >
               {text}
             </span>
           </ListItemText>
