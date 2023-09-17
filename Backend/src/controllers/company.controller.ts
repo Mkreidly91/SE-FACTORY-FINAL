@@ -18,6 +18,7 @@ import mongoose, { Types } from 'mongoose';
 import { HttpException } from '../exceptions/HttpException';
 import {
   editHotspotService,
+  editProfileService,
   editProjectService,
   getPanoramaByIdService,
   getProjectByIdService,
@@ -285,6 +286,30 @@ const getPanoramaById = async (
     next(error);
   }
 };
+const editProfile = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const user = req.user;
+
+    const files: Express.Multer.File[] = Object.values(req.files);
+    let serviceRes;
+    if (files[0]) {
+      serviceRes = await editProfileService(user, req.body, files[0]);
+    } else {
+      serviceRes = await editProfileService(user, req.body);
+    }
+
+    return res.status(200).json({
+      message: 'Successfully Edited Profile',
+      data: serviceRes,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 const editProject = async (
   req: AuthRequest,
@@ -348,4 +373,5 @@ export {
   getPanoramaById,
   editProject,
   editHotspot,
+  editProfile,
 };
