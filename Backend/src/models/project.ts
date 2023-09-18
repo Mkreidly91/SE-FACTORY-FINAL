@@ -32,7 +32,7 @@ const ProjectSchema = new Schema<IProject>({
   size: { type: Number, required: true },
   panoramas: [PanoramaSchema],
 });
-
+ProjectSchema.index({ name: 'text', description: 'text', location: 'text' });
 const Project = model<IProjectDocument>('Project', ProjectSchema);
 
 export { IProjectDocument, IProject, Project };
