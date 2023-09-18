@@ -6,6 +6,8 @@ import DashBoard from './components/Dashboard/Dashboard';
 import DashboardRoutes from './components/Dashboard/DashboardRoutes';
 import { Routes, Route } from 'react-router-dom';
 import CompanyHome from './pages/Company/CompanyHome';
+import GetStarted from './pages/Company/GetStarted';
+
 function App() {
   return (
     <div className="app sora h-full w-full">
@@ -16,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/test" element={<Test />} />
         <Route path="/companyHome" element={<CompanyHome />} />
+        <Route path="/getStarted" element={<GetStarted />} />
         <Route
           path="/dashboard/*"
           element={
