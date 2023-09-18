@@ -63,19 +63,6 @@ button {
   /* background: linear-gradient(140deg, whitesmoke, #272c37) border-box; */
 }
 
-.button-gradient::after {
-  position: absolute;
-  content: '';
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-  width: 102%;
-  height: 104%;
-  border-radius: 12px;
-  background: linear-gradient(140deg, rgb(203, 200, 200), #272c37) border-box;
-}
-
 .dash-gradient {
   position: relative;
   background: linear-gradient(140deg, rgba(52, 83, 154, 1) 0%, #272c37 100%);
