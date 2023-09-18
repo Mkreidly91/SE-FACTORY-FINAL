@@ -26,13 +26,13 @@ const CompanyHome = () => {
           transform="translateY(100px)"
           className="hero-text flex flex-col items-center justify-center w-full h-full  gap-10 z-10 text-white relative "
         >
-          <span className="  text-center text-3xl font-semibold max-w-[800px] md:text-6xl">
+          <span className="  text-center text-2xl w-[80%] font-semibold max-w-[800px] md:text-6xl">
             Showcase Your Construction Projects with Immersive 3D Tours
           </span>
 
           <Button
             text="Get Started"
-            className="button-gradient px-10 py-5 rounded-xl text-xl font-light"
+            className="button-gradient px-5 py-2.5 md:px-10 md:py-5 rounded-xl md:text-xl font-light text-white"
           />
         </InView>
       </section>
@@ -85,7 +85,7 @@ const CompanyHome = () => {
 
       <section className="bg-gray-800 py-10">
         <div className="pano-text flex flex-col items-center  gap-14 text-white mt-[-5%]">
-          <span className=" text-2xl font-semibold  text-center  md:text-4xl md:w-[60%]">
+          <span className="font-semibold  text-center  text-2xl md:text-4xl md:w-[60%]">
             Immerse Your Audience with Interactive Panoramas
           </span>
           <span className="w-[80%] text-center">
@@ -95,7 +95,7 @@ const CompanyHome = () => {
             of real estate. Welcome to the future of property presentation
           </span>
           <div className="features display flex flex-col gap-10 w-full  pb-16">
-            <span className="features-title text-center font-semibold md:text-4xl">
+            <span className="features-title text-center font-semibold  text-2xl md:text-4xl">
               Features
             </span>
 
@@ -122,12 +122,12 @@ const CompanyHome = () => {
       </section>
       <section>
         <div className="get-started-footer flex flex-col gap-10 items-center py-10">
-          <span className="font-semibold md:text-4xl md:w-[50%] text-center">
+          <span className="font-semibold text-xl md:text-4xl  w-[60%] md:w-[50%] text-center">
             Transform your presence with a 3D edge
           </span>
           <Button
-            className="button-gradient py-3 px-5 rounded-md text-white w-fit  md:text-lg"
-            text="Get started"
+            text="Get Started"
+            className="button-gradient px-5 py-2.5 md:px-10 md:py-5 rounded-xl md:text-xl font-light text-white"
           />
         </div>
       </section>
