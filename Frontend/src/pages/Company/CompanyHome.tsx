@@ -10,6 +10,7 @@ import laptop from '../../assets/images/company-home/Laptop.png';
 import InViews from '../../components/animation/InView';
 import InView from '../../components/animation/InView';
 import V360 from '../sample3d/V360';
+import Footer from '../../components/Footer';
 const CompanyHome = () => {
   return (
     <>
@@ -52,8 +53,8 @@ const CompanyHome = () => {
           <img src={logo4} alt="" className="object-contain" />
         </div>
 
-        <div className="laptop flex  items-center justify-center text-center  pb-[10%] md:flex ">
-          <div className=" w-fit flex items-center">
+        <div className="laptop flex   items-center justify-center text-center   md:flex  ">
+          <div className=" w-fit flex flex-col items-center md:flex-row ">
             <InView transform="translateY(100px) w-fit" delay="0.5">
               <div className=" w-fit laptop-text flex flex-col items-center  justify-center">
                 <span className=" text-2xl md:text-5xl font-semibold w-[70%]">
@@ -72,7 +73,7 @@ const CompanyHome = () => {
           </div>
         </div>
       </section>
-      <section className="flex flex-col h-[50vh]  w-full h-full justify-center items-center  relative md:h-[100vh]  ">
+      <section className="flex flex-col h-[50vh]  w-full  justify-center items-center  relative md:h-[100vh]  ">
         <InView delay="1.2" className="w-[80%]     ">
           <V360 className={'rounded-2xl m-auto border-none'} />
         </InView>
@@ -81,7 +82,8 @@ const CompanyHome = () => {
           <div className="grey-bg h-[25vh] w-full bg-gray-800 md:h-[50vh] "></div>
         </div>
       </section>
-      <section className="bg-gray-800">
+
+      <section className="bg-gray-800 py-10">
         <div className="pano-text flex flex-col items-center  gap-14 text-white mt-[-5%]">
           <span className=" text-2xl font-semibold  text-center  md:text-4xl md:w-[60%]">
             Immerse Your Audience with Interactive Panoramas
@@ -92,23 +94,23 @@ const CompanyHome = () => {
             view. Elevate your listings and captivate your audience in the world
             of real estate. Welcome to the future of property presentation
           </span>
-          <div className="features display flex flex-col gap-10 w-full pb-10">
+          <div className="features display flex flex-col gap-10 w-full  pb-16">
             <span className="features-title text-center font-semibold md:text-4xl">
               Features
             </span>
 
-            <div className="features-wrapper flex gap-5 items-center justify-around font-light md:text-2xl">
-              <div className="flex flex-col gap-10 ">
+            <div className="features-wrapper flex gap-5 items-center justify-center font-light md:text-2xl md:gap-40">
+              <div className="flex flex-col gap-20 ">
                 <span className=" underline underline-offset-8">
                   1. Company portfolio
                 </span>
                 <span className=" underline underline-offset-8">
-                  3. Curated tours
+                  2. Curated 3D tours
                 </span>
               </div>
-              <div className="flex flex-col gap-10">
+              <div className="flex flex-col gap-20">
                 <span className=" underline underline-offset-8">
-                  2. Search homes
+                  3. Search homes
                 </span>
                 <span className=" underline underline-offset-8">
                   4. Apply digitally
@@ -118,6 +120,18 @@ const CompanyHome = () => {
           </div>
         </div>
       </section>
+      <section>
+        <div className="get-started-footer flex flex-col gap-10 items-center py-10">
+          <span className="font-semibold md:text-4xl md:w-[50%] text-center">
+            Transform your presence with a 3D edge
+          </span>
+          <Button
+            className="button-gradient py-3 px-5 rounded-md text-white w-fit  md:text-lg"
+            text="Get started"
+          />
+        </div>
+      </section>
+      <Footer />
     </>
   );
 };
