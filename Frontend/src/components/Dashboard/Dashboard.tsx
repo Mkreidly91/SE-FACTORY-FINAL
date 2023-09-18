@@ -15,6 +15,7 @@ import DashIcon from '@mui/icons-material/Dashboard';
 
 import Banner from '../../assets/images/company-profile/company-profile.jpeg';
 import companyLogo from '../../assets/images/company-profile/companyLogo.png';
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth: number = 240;
 
@@ -69,6 +70,7 @@ const Drawer = styled(MuiDrawer, {
 
 function DashBoard({ children }: { children?: any }) {
   const [open, setOpen] = useState(true);
+  const navigate = useNavigate();
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -127,6 +129,10 @@ function DashBoard({ children }: { children?: any }) {
             <DashListItem
               icon={<LogoutIcon sx={{ color: 'white' }} />}
               text="Log out"
+              onClick={() => {
+                localStorage.clear();
+                navigate('/login');
+              }}
             />
           </List>
         </div>
