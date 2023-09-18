@@ -25,7 +25,7 @@ const CompanyHome = () => {
           transform="translateY(100px)"
           className="hero-text flex flex-col items-center justify-center w-full h-full  gap-10 z-10 text-white relative "
         >
-          <span className=" text-6xl text-center font-semibold max-w-[800px]">
+          <span className="  text-center text-3xl font-semibold max-w-[800px] md:text-6xl">
             Showcase Your Construction Projects with Immersive 3D Tours
           </span>
 
@@ -52,7 +52,7 @@ const CompanyHome = () => {
           <img src={logo4} alt="" className="object-contain" />
         </div>
 
-        <div className="laptop flex items-center justify-center text-center  pb-[10%] ">
+        <div className="laptop flex  items-center justify-center text-center  pb-[10%] md:flex ">
           <div className=" w-fit flex items-center">
             <InView transform="translateY(100px) w-fit" delay="0.5">
               <div className=" w-fit laptop-text flex flex-col items-center  justify-center">
@@ -60,7 +60,7 @@ const CompanyHome = () => {
                   Unlock the power of 3D virual tours
                 </span>
                 <br />
-                <span className="w-[70%]">
+                <span className="w-[70%] hidden md:block">
                   Live Virtual Experience – search, explore, and discuss with
                   friends or family in real time.
                 </span>
@@ -82,8 +82,8 @@ const CompanyHome = () => {
         </div>
       </section>
       <section className="bg-gray-800">
-        <div className="pano-text flex flex-col items-center gap-5 text-white">
-          <span className="text-4xl font-semibold w-[60%] text-center">
+        <div className="pano-text flex flex-col items-center  gap-14 text-white mt-[-5%]">
+          <span className=" text-2xl font-semibold  text-center  md:text-4xl md:w-[60%]">
             Immerse Your Audience with Interactive Panoramas
           </span>
           <span className="w-[80%] text-center">
@@ -92,17 +92,27 @@ const CompanyHome = () => {
             view. Elevate your listings and captivate your audience in the world
             of real estate. Welcome to the future of property presentation
           </span>
-          <div className="features display flex flex-col gap-5 w-full">
-            <span className="features-title text-center">Features</span>
+          <div className="features display flex flex-col gap-10 w-full pb-10">
+            <span className="features-title text-center font-semibold md:text-4xl">
+              Features
+            </span>
 
-            <div className="features-wrapper flex gap-5   items-center justify-around">
-              <div className="flex flex-col gap-5">
-                <span>1. Company portfolio</span>
-                <span>3. Curated tours</span>
+            <div className="features-wrapper flex gap-5 items-center justify-around font-light md:text-2xl">
+              <div className="flex flex-col gap-10 ">
+                <span className=" underline underline-offset-8">
+                  1. Company portfolio
+                </span>
+                <span className=" underline underline-offset-8">
+                  3. Curated tours
+                </span>
               </div>
-              <div className="flex flex-col gap-5">
-                <span>2. Search homes</span>
-                <span>4. Apply digitally</span>
+              <div className="flex flex-col gap-10">
+                <span className=" underline underline-offset-8">
+                  2. Search homes
+                </span>
+                <span className=" underline underline-offset-8">
+                  4. Apply digitally
+                </span>
               </div>
             </div>
           </div>
