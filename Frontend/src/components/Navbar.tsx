@@ -4,9 +4,9 @@ import Button from './Common/Button';
 const Navbar = ({ className }: { className?: string }) => {
   return (
     <div
-      className={`flex justify-between items-center py-8 px-10 text-white bg-transparent z-10 ${className}`}
+      className={`flex justify-between items-center  py-6 px-8 md:py-8 md:px-10 text-white bg-transparent z-10 ${className}`}
     >
-      <img src={logo} alt="" className="w-[100px]" />
+      <img src={logo} alt="" className="w-[75px] md:w-[100px]" />
       <div className="nav-button-container flex items-center  gap-24">
         <Button text="ABOUT" />
         <Button text="SERVICE" />
