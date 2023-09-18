@@ -5,23 +5,12 @@ import { Customer } from '../models/customer';
 import { Company } from '../models/company';
 import envConfig from '../configs/env.config';
 import { AuthRequest, Roles } from '../middlewares/auth.middleware';
+import { HttpException } from '../exceptions/HttpException';
 
-const register = async (req: Request, res: Response) => {
+const register = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { body } = req;
     const { name, email, password, userType } = body;
-
-    // if (!name) {
-    //   return res.status(400).send({ error: 'Name is required' });
-    // }
-    // if (!email) {
-    //   return res.status(400).send({ error: 'Email is required' });
-    // }
-    // if (!password) {
-    //   return res.status(400).send({ error: 'Password is required' });
-    // } else if (password.length < 6) {
-    //   return res.status(400).send({ error: 'Password too short' });
-    // }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -42,33 +31,28 @@ const register = async (req: Request, res: Response) => {
     return res.status(200).send({ message: 'User successfully registered.' });
   } catch (error) {
     if (error.code === 11000) {
-      return res.status(400).send({ error: 'Email already exists' });
+      next(new HttpException(400, 'Email already exists'));
+    } else {
+      next(error);
     }
-    return res.status(500).send(error);
   }
 };
 
-const login = async (req: Request, res: Response) => {
+const login = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { email: login, password } = req.body;
 
-    if (!login) {
-      return res.status(400).send({ error: 'Email is required' });
-    }
-    if (!password) {
-      return res.status(400).send({ error: 'Password is required' });
-    }
+    if (!login) throw new HttpException(400, 'Email is required');
+    if (!password) throw new HttpException(400, 'Password is required');
 
     const user =
       (await Customer.findOne({ email: login }).select('+password')) ||
       (await Company.findOne({ email: login }).select('+password'));
 
-    if (!user)
-      return res.status(404).send({ error: 'email/password incorrect' });
+    if (!user) throw new HttpException(404, 'email/password incorrect');
 
     const isValid = await bcrypt.compare(password, user.password);
-    if (!isValid)
-      return res.status(404).send({ error: 'email/password incorrect' });
+    if (!isValid) throw new HttpException(404, 'email/password incorrect');
 
     const {
       password: hashedPassword,
@@ -78,7 +62,6 @@ const login = async (req: Request, res: Response) => {
       ...userInfo
     } = user.toJSON();
     const token = jwt.sign({ name, email, _id }, envConfig.JWT_SECRET);
-
     return res.send({
       token,
       user: {
@@ -88,17 +71,18 @@ const login = async (req: Request, res: Response) => {
       },
     });
   } catch (error) {
-    console.log(error);
-    return res.status(500).send();
+    next(error);
   }
 };
-
 const getUser = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const user = req.user;
     const profile =
       (await Customer.findById(user._id).select('-password')) ||
       (await Company.findById(user._id).select('-password'));
+    if (!profile) {
+      throw new HttpException(400, 'Profile not found');
+    }
     console.log(profile);
     return res.status(200).json({ profile });
   } catch (error) {
