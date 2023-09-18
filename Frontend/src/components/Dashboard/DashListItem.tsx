@@ -7,8 +7,15 @@ interface DashListItemProps {
   icon: ReactNode;
   text: string | number;
   className?: string;
+  onClick?: () => void;
 }
-const DashListItem = ({ to, icon, text, className }: DashListItemProps) => {
+const DashListItem = ({
+  to,
+  icon,
+  text,
+  className,
+  onClick,
+}: DashListItemProps) => {
   return (
     <>
       {to ? (
@@ -25,7 +32,11 @@ const DashListItem = ({ to, icon, text, className }: DashListItemProps) => {
           </ListItemButton>
         </Link>
       ) : (
-        <ListItemButton>
+        <ListItemButton
+          onClick={() => {
+            onClick ? onClick() : undefined;
+          }}
+        >
           <ListItemIcon>{icon}</ListItemIcon>
           <ListItemText>
             <span

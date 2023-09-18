@@ -24,15 +24,12 @@ const EditProfileForm = ({
 }: {
   initialValues: { name: string; email: string; logo?: string; tel?: string };
 }) => {
-  console.log(initialValues);
-
   const [preview, setPreview] = useState() as any;
   const navigate = useNavigate();
 
   useEffect(() => {
     if (initialValues) {
       const { name, email, tel, logo } = initialValues;
-      console.log(logo, tel);
       reset({
         name,
         email,
@@ -44,8 +41,6 @@ const EditProfileForm = ({
   }, [initialValues]);
 
   const onSubmit: SubmitHandler<UserSchema> = async (data) => {
-    // console.log(data);
-
     const changedFieldValues = filterChangedFormFields(data, dirtyFields);
     const res = await editCompanyProfile(data);
   };
