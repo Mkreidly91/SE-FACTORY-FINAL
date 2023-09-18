@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import logo from '../assets/icons/logo/logo-full.svg';
 import Button from './Common/Button';
 
@@ -15,11 +16,12 @@ const Navbar = ({ className }: { className?: string }) => {
         "
         />
       </div>
-
-      <Button
-        text="Log in"
-        className=" text-gray-400  px-[20px] py-[12px] rounded-xl  border-2 border-solid border-gray-400"
-      />
+      <Link to="/login">
+        <Button
+          text="Log in"
+          className=" text-gray-400  px-[20px] py-[12px] rounded-xl  border-2 border-solid border-gray-400 cursor-pointer"
+        />
+      </Link>
     </div>
   );
 };

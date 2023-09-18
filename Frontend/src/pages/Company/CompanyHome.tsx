@@ -15,7 +15,7 @@ const CompanyHome = () => {
   return (
     <>
       <section className="hero h-[100vh] relative ">
-        <Navbar className="absolute top-0  w-full" />
+        <Navbar className="absolute top-0  w-full z-50" />
         <img
           src={companyHero}
           alt=""
