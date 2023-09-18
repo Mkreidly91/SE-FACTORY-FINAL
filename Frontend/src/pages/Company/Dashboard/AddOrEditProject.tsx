@@ -8,8 +8,8 @@ import { getProjectById } from '../../../api/company.api';
 import { ProjectFormSchemaType } from '../../../validation/company.validation';
 import MarkersAndHotspots from './MarkersAndHotspots';
 
-const AddOrEditProject = () => {
-  const [activeTab, setActiveTab] = useState(0);
+const AddOrEditProject = ({ tab = 0 }: { tab?: number }) => {
+  const [activeTab, setActiveTab] = useState(tab || 0);
   const [state, setState] = useState();
   const { id } = useParams();
 
