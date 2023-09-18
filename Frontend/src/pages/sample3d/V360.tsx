@@ -12,7 +12,7 @@ import '@egjs/react-view360/css/view360.min.css';
 import '@egjs/view360/css/loading-spinner.min.css';
 import def from './bedroom.jpeg';
 
-const V360 = ({ image }) => {
+const V360 = ({ image, className }) => {
   const [position, setPosition] = useState({
     yaw: 110,
     pitch: -30,
@@ -53,7 +53,7 @@ const V360 = ({ image }) => {
       <View360
         plugins={[plugin, spinner]}
         ref={viewRef}
-        className="is-16by9 "
+        className={`is-16by9 ${className} `}
         projection={projection}
         hotspot={{
           zoom: true,
