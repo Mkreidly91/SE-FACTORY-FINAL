@@ -22,7 +22,6 @@ import {
 import { useParams } from 'react-router-dom';
 import ImageSlider from '../../components/Common/ImageSlider/ImageSlider';
 import UploadButton from '../../components/Common/UploadButton';
-import { PanoramaSharp } from '@mui/icons-material';
 
 export interface IPanorama {
   _id: string;
@@ -45,7 +44,7 @@ const PanoEditor = ({ isEdit = false }: { isEdit: boolean }) => {
     setSelectedHotspot(undefined);
     setPanoramas(res.panoramas);
 
-    const check = res.panoramas.find((e) => e._id === panoramaId);
+    const check = res.panoramas.find((e: IPanorama) => e._id === panoramaId);
     if (check) {
       setPanoramaId(panoramaId);
     } else {
@@ -91,7 +90,7 @@ const PanoEditor = ({ isEdit = false }: { isEdit: boolean }) => {
     }
   }, [selectedPanorama, selectedPanorama?.hotspots, viewRef?.current]);
 
-  const handleAddHotspot = async (fields) => {
+  const handleAddHotspot = async (fields: any) => {
     if (viewRef.current.camera) {
       const yaw = viewRef.current.camera.yaw;
       const pitch = viewRef.current.camera.pitch;
@@ -108,14 +107,16 @@ const PanoEditor = ({ isEdit = false }: { isEdit: boolean }) => {
   };
 
   const handleDeleteHotspot = async () => {
-    const [status, data] = await deleteHotspot(
-      projectId,
-      selectedPanorama?._id,
-      selectedHotspot?._id
-    );
-    if (status === 200) {
-      toggleDrawer();
-      getPanoramas(projectId, panoramaId);
+    if (selectedHotspot && selectedHotspot._id) {
+      const status = await deleteHotspot(
+        projectId,
+        selectedPanorama._id,
+        selectedHotspot._id
+      );
+      if (status === 200) {
+        toggleDrawer();
+        getPanoramas(projectId, panoramaId);
+      }
     }
   };
 
@@ -211,6 +212,7 @@ const PanoEditor = ({ isEdit = false }: { isEdit: boolean }) => {
         {selectedPanorama &&
           selectedPanorama.hotspots?.map((h: any) => (
             <Arrows
+              key={h.link}
               yaw={h.yaw}
               pitch={h.pitch}
               info={h.info}

@@ -42,6 +42,7 @@ const ImageSlider = ({
           panoramas.map((e) => (
             <div className="relative">
               <ImageCard
+                key={e._id}
                 imageCardStyles={imageCardStyles}
                 url={e.url}
                 onClick={() => onClick(e._id)}

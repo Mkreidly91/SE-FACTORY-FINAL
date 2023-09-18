@@ -51,7 +51,7 @@ const FeatureBox = ({ features = [], setFeatures }: FeatureBoxProps) => {
         <div className="flex flex-wrap gap-2">
           {features &&
             features.map((t: string) => {
-              return <Tag text={t} onClick={() => onDelete(t)} />;
+              return <Tag key={t} text={t} onClick={() => onDelete(t)} />;
             })}
         </div>
       </div>

@@ -1,7 +1,7 @@
 const baseURL = 'http://localhost:8080/';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { ProjectFormSchemaType } from '../validation/company.validation';
-import { headers } from './api.helpers';
+import { handleError, headers } from './api.helpers';
 
 const getProjects = async () => {
   try {
@@ -10,11 +10,11 @@ const getProjects = async () => {
       headers()
     );
     if (res.status === 200) {
-      console.log(res);
       return res.data.data;
     }
   } catch (error) {
-    console.log(error);
+    const errors = error as Error | AxiosError;
+    return handleError(errors);
   }
 };
 
@@ -25,11 +25,11 @@ const getProjectById = async (projectId: string) => {
       headers()
     );
     if (res.status === 200) {
-      console.log(res);
       return res.data.data;
     }
   } catch (error) {
-    console.log(error);
+    const errors = error as Error | AxiosError;
+    return handleError(errors);
   }
 };
 
@@ -40,28 +40,27 @@ const getPanoramaById = async (projectId: string, panoramaId: string) => {
       headers()
     );
     if (res.status === 200) {
-      console.log(res);
       return res.data.data;
     }
   } catch (error) {
-    console.log(error);
+    const errors = error as Error | AxiosError;
+    return handleError(errors);
   }
 };
 
 const createProject = async (formData: ProjectFormSchemaType) => {
   try {
-    console.log(formData);
     const res = await axios.post(
       `${baseURL}company/createProject`,
       formData,
       headers({ 'Content-Type': 'multipart/form-data' })
     );
     if (res.status === 200) {
-      console.log(res);
       return res.data.data;
     }
   } catch (error) {
-    console.log(error);
+    const errors = error as Error | AxiosError;
+    return handleError(errors);
   }
 };
 
@@ -77,11 +76,11 @@ const addHotspot = async (
       headers()
     );
     if (res.status === 200) {
-      console.log(res);
       return res.data.data;
     }
   } catch (error) {
-    console.log(error);
+    const errors = error as Error | AxiosError;
+    return handleError(errors);
   }
 };
 
@@ -93,11 +92,11 @@ const addApartment = async (projectId: string, formData: any) => {
       headers({ 'Content-Type': 'multipart/form-data' })
     );
     if (res.status === 200) {
-      console.log(res);
       return res.data.data;
     }
   } catch (error) {
-    console.log(error);
+    const errors = error as Error | AxiosError;
+    return handleError(errors);
   }
 };
 const addPanorama = async (projectId: string, formData: any) => {
@@ -108,11 +107,11 @@ const addPanorama = async (projectId: string, formData: any) => {
       headers({ 'Content-Type': 'multipart/form-data' })
     );
     if (res.status === 200) {
-      console.log(res);
       return res.data.data;
     }
   } catch (error) {
-    console.log(error);
+    const errors = error as Error | AxiosError;
+    return handleError(errors);
   }
 };
 
@@ -124,11 +123,11 @@ const editProject = async (projectId: string, fields: any) => {
       headers({ 'Content-Type': 'multipart/form-data' })
     );
     if (res.status === 200) {
-      console.log(res);
       return res.data.data;
     }
   } catch (error) {
-    console.log(error);
+    const errors = error as Error | AxiosError;
+    return handleError(errors);
   }
 };
 
@@ -145,11 +144,11 @@ const editHotspot = async (
       headers()
     );
     if (res.status === 200) {
-      console.log(res);
       return res.data.data;
     }
   } catch (error) {
-    console.log(error);
+    const errors = error as Error | AxiosError;
+    return handleError(errors);
   }
 };
 
@@ -165,7 +164,8 @@ const deleteProject = async (projectId: string) => {
       return res.data.data;
     }
   } catch (error) {
-    console.log(error);
+    const errors = error as Error | AxiosError;
+    return handleError(errors);
   }
 };
 
@@ -179,7 +179,8 @@ const deleteApartment = async (projectId: string) => {
     });
     return res.status;
   } catch (error) {
-    console.log(error);
+    const errors = error as Error | AxiosError;
+    return handleError(errors);
   }
 };
 
@@ -194,7 +195,8 @@ const deletePanorama = async (projectId: string, panoramaId: string) => {
     });
     return res.status;
   } catch (error) {
-    console.log(error);
+    const errors = error as Error | AxiosError;
+    return handleError(errors);
   }
 };
 
@@ -213,11 +215,11 @@ const deleteHotspot = async (
       ...headers(),
     });
     if (res.status === 200) {
-      console.log(res.data.data);
-      return [res.status, res.data.data];
+      return res.status;
     }
   } catch (error) {
-    console.log(error);
+    const errors = error as Error | AxiosError;
+    return handleError(errors);
   }
 };
 
