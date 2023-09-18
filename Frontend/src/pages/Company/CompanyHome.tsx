@@ -52,39 +52,60 @@ const CompanyHome = () => {
           <img src={logo4} alt="" className="object-contain" />
         </div>
 
-        <div className="laptop flex items-center justify-center text-center ">
-          <InView transform="translateY(100px)" delay="0.5">
-            <div className="laptop-text flex flex-col items-center ">
-              <span className=" text-2xl md:text-5xl font-semibold w-[70%]">
-                Unlock the power of 3D virual tours
-              </span>
-              <br />
-              <span className="w-[70%]">
-                Live Virtual Experience – search, explore, and discuss with
-                friends or family in real time.
-              </span>
-            </div>
-          </InView>
-
-          <InView transform="translateX(100px)" delay="0.8">
-            <img src={laptop} alt="" />
-          </InView>
+        <div className="laptop flex items-center justify-center text-center  pb-[10%] ">
+          <div className=" w-fit flex items-center">
+            <InView transform="translateY(100px) w-fit" delay="0.5">
+              <div className=" w-fit laptop-text flex flex-col items-center  justify-center">
+                <span className=" text-2xl md:text-5xl font-semibold w-[70%]">
+                  Unlock the power of 3D virual tours
+                </span>
+                <br />
+                <span className="w-[70%]">
+                  Live Virtual Experience – search, explore, and discuss with
+                  friends or family in real time.
+                </span>
+              </div>
+            </InView>
+            <InView transform="translateX(100px)" delay="0.8">
+              <img src={laptop} alt="" />
+            </InView>
+          </div>
         </div>
       </section>
-      <section className="flex flex-col items-center gap-5 relative">
-        <InView delay="1.2" className="w-[80%]  ">
+      <section className="flex flex-col h-[50vh]  w-full h-full justify-center items-center  relative md:h-[100vh]  ">
+        <InView delay="1.2" className="w-[80%]     ">
           <V360 className={'rounded-2xl m-auto border-none'} />
         </InView>
-        <div className="pano-text flex flex-col gap-5">
-          <span className="text-2xl">
+        <div className="pano-bg  h-full w-full z-[-1] absolute  ">
+          <div className="white-bg h-[25vh] w-full bg-white md:h-[50vh]"></div>
+          <div className="grey-bg h-[25vh] w-full bg-gray-800 md:h-[50vh] "></div>
+        </div>
+      </section>
+      <section className="bg-gray-800">
+        <div className="pano-text flex flex-col items-center gap-5 text-white">
+          <span className="text-4xl font-semibold w-[60%] text-center">
             Immerse Your Audience with Interactive Panoramas
           </span>
-          <span>
+          <span className="w-[80%] text-center">
             Our panoramic images redefine property presentations. Seamlessly
             integrate hotspots and floor plans to give clients a comprehensive
             view. Elevate your listings and captivate your audience in the world
             of real estate. Welcome to the future of property presentation
           </span>
+          <div className="features display flex flex-col gap-5 w-full">
+            <span className="features-title text-center">Features</span>
+
+            <div className="features-wrapper flex gap-5   items-center justify-around">
+              <div className="flex flex-col gap-5">
+                <span>1. Company portfolio</span>
+                <span>3. Curated tours</span>
+              </div>
+              <div className="flex flex-col gap-5">
+                <span>2. Search homes</span>
+                <span>4. Apply digitally</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </>
