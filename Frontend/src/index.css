@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .page-h {
+    @apply px-10;
+  }
+  .hero-text {
+    @apply text-center text-2xl md:text-6xl w-[80%] font-semibold max-w-[800px];
+  }
+  .button-large-responsive {
+    @apply px-5 py-2.5 md:px-10 md:py-5 rounded-xl md:text-xl font-light text-white;
+  }
+}
