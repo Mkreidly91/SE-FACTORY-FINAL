@@ -25,15 +25,15 @@ const GetStarted = () => {
           transform="translateY(100px)"
           className="absolute top-0 left-0 bg-transparent  flex flex-col items-center justify-center w-full h-full  z-10 text-white  "
         >
-          <span className="hero-text">Unlock new possibilities</span>
+          <span className="hero-text-center">Unlock new possibilities</span>
         </InView>
 
-        {/* <NewObjectViewer
-        className="z-[15] "
-        zoom={20}
-        position={[0, 0, 0]}
-        url="3dModels/low_poly_isometric_rooms.glb"
-      /> */}
+        <NewObjectViewer
+          className="z-[15] "
+          zoom={20}
+          position={[0, 0, 0]}
+          url="3dModels/low_poly_isometric_rooms.glb"
+        />
       </section>
       <section className="py-10  page-h">
         <div className="text-center font-semibold  text-2xl md:text-4xl pb-10">

@@ -24,9 +24,10 @@ const CompanyHome = () => {
 
         <InView
           transform="translateY(100px)"
-          className="hero-text flex flex-col items-center justify-center w-full h-full  gap-10 z-10 text-white relative "
+          className="hero-text flex flex-col items-center justify-center w-full h-full  gap-10 z-10 text-white relative mx-auto
+           "
         >
-          <span className="  text-center text-2xl w-[80%] font-semibold max-w-[800px] md:text-6xl">
+          <span className="  text-center text-2xl md:text-6xl w-[80%] font-semibold max-w-[800px] ">
             Showcase Your Construction Projects with Immersive 3D Tours
           </span>
 
@@ -131,6 +132,7 @@ const CompanyHome = () => {
           />
         </div>
       </section>
+
       <Footer />
     </>
   );

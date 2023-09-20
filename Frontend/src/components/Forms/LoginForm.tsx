@@ -1,16 +1,16 @@
-import { Button, TextField } from "@mui/material";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Button, TextField } from '@mui/material';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { useNavigate } from "react-router-dom";
-import { login } from "../../api/auth.api";
+import { useNavigate } from 'react-router-dom';
+import { login } from '../../api/auth.api';
 import {
   LoginFormSchemaType,
   loginFormSchema,
-} from "../../validation/user.validation";
-import { useState } from "react";
-import { ApiError } from "../../api/api.helpers";
-import ApiErrorHandler from "../Common/ApiError";
+} from '../../validation/user.validation';
+import { useState } from 'react';
+import { ApiError } from '../../api/api.helpers';
+import ApiErrorHandler from '../Common/ApiError';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -19,8 +19,8 @@ const LoginForm = () => {
     const res = await login(data);
     if (res.error) setError(res.error);
     if (res.token) {
-      localStorage.setItem("userInfo", JSON.stringify(res));
-      navigate("/dashboard");
+      localStorage.setItem('userInfo', JSON.stringify(res));
+      navigate('/dashboard');
     }
   };
 
@@ -31,11 +31,11 @@ const LoginForm = () => {
     formState: { errors, isSubmitting, isValid },
   } = useForm<LoginFormSchemaType>({
     resolver: zodResolver(loginFormSchema),
-    mode: "onTouched",
-    criteriaMode: "firstError",
+    mode: 'onSubmit',
+    criteriaMode: 'firstError',
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
@@ -51,10 +51,10 @@ const LoginForm = () => {
           <TextField
             className="max-w-[600px]"
             required
-            onFocus={() => clearErrors("email")}
+            onFocus={() => clearErrors('email')}
             error={Boolean(errors.email)}
-            helperText={errors?.email?.message || " "}
-            {...register("email")}
+            helperText={errors?.email?.message || ' '}
+            {...register('email')}
           />
         </div>
 
@@ -62,24 +62,23 @@ const LoginForm = () => {
           <label className="font-semibold">Password</label>
           <TextField
             className="max-w-[600px]"
-            InputLabelProps={{ className: "" }}
+            InputLabelProps={{ className: '' }}
             required
             type="password"
-            onFocus={() => clearErrors("password")}
+            onFocus={() => clearErrors('password')}
             error={Boolean(errors.password)}
-            helperText={errors?.password?.message || " "}
-            {...register("password")}
+            helperText={errors?.password?.message || ' '}
+            {...register('password')}
           />
         </div>
-      </div>
-      <div className="project-form-buttons flex justify-center gap-3s">
+
         <Button
           color="inherit"
-          className="bg-red-200 text-red-200 font-extrabold"
+          className="bg-red-200 text-red-200 font-extrabold self-start"
           type="submit"
           disabled={isSubmitting || !isValid}
         >
-          Submit
+          Login
         </Button>
       </div>
     </form>
