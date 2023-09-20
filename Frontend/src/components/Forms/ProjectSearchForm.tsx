@@ -1,4 +1,11 @@
-import { Button, Grid, Slider, TextField, Typography } from '@mui/material';
+import {
+  Button,
+  Divider,
+  Grid,
+  Slider,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { Controller, SubmitHandler, set, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -48,14 +55,14 @@ const ProjectSearchForm = ({ onSuccess }: { onSuccess: Function }) => {
   });
 
   const priceLabel = watch('price')
-    .map((sz) => `$${sz}`)
+    .map((sz) => `$${sz.toLocaleString()}`)
     .join(' - ');
   const sizeLabel = watch('size')
-    .map((sz) => `${sz} sqm`)
+    .map((sz) => `${sz.toLocaleString()} sqm`)
     .join(' - ');
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="project-form-left w-[100%]  flex-col gap-1 items-center ">
+      <div className="project-form-left w-[100%]  flex-col  items-center ">
         <ApiErrorHandler error={err} />
         {/* Search */}
         <Grid container alignItems={'stretch'} gap={2}>
@@ -64,7 +71,10 @@ const ProjectSearchForm = ({ onSuccess }: { onSuccess: Function }) => {
             <TextField
               size="medium"
               className="w-[325px]"
-              InputProps={{ startAdornment: <Search /> }}
+              InputProps={{
+                disableUnderline: true,
+                startAdornment: <Search />,
+              }}
               placeholder="Search by location, title, description"
               autoFocus
               InputLabelProps={{ className: '' }}
@@ -74,14 +84,17 @@ const ProjectSearchForm = ({ onSuccess }: { onSuccess: Function }) => {
             />
           </Grid>
 
+          <Divider orientation="vertical" flexItem />
           {/* Beds and Baths */}
-          <Grid item alignItems="stretch" display={'flex'}>
+          <Grid item alignItems="stretch" display={'flex'} className="">
             <TextField
               disabled
               value={`${watch('bedrooms')} Bed - ${watch('bathrooms')} Bath`}
-              sx={{ borderColor: '#c4c4c4', color: '#a2a2a2' }}
-              variant="outlined"
               InputProps={{
+                disableUnderline: true,
+                style: {
+                  width: '200px',
+                },
                 endAdornment: (
                   <BasicPopover>
                     <div className="p-5 w-[300px]">
@@ -96,27 +109,47 @@ const ProjectSearchForm = ({ onSuccess }: { onSuccess: Function }) => {
                               onChange={(_, value) => {
                                 props.field.onChange(value);
                               }}
-                              valueLabelDisplay="auto"
+                              sx={{
+                                '& .MuiSlider-valueLabel': {
+                                  scale: 0.1,
+                                  backgroundColor: 'transparent',
+                                  top: 0,
+                                  color: 'black',
+                                  fontWeight: 'bold',
+                                },
+                              }}
                               min={1}
                               max={30}
                               step={1}
+                              marks
+                              valueLabelDisplay="on"
                             />
                           )}
                         />
                       </div>
 
-                      <div className="flex flex-col gap-3 w-full justify-center">
+                      <div className="flex flex-col gap-5 w-full justify-center">
                         <label className="font-semibold">Bathrooms</label>
                         <Controller
                           name="bathrooms"
                           control={control}
                           render={(props) => (
                             <Slider
+                              valueLabelDisplay="on"
+                              sx={{
+                                '& .MuiSlider-valueLabel': {
+                                  scale: 0.1,
+                                  backgroundColor: 'transparent',
+                                  top: 0,
+                                  color: 'black',
+                                  fontWeight: 'bold',
+                                },
+                              }}
+                              marks
                               {...props.field}
                               onChange={(_, value) => {
                                 props.field.onChange(value);
                               }}
-                              valueLabelDisplay="auto"
                               min={1}
                               max={30}
                               step={1}
@@ -145,6 +178,7 @@ const ProjectSearchForm = ({ onSuccess }: { onSuccess: Function }) => {
                   .map((sz) => `${sz} sqm`)
                   .join(' - ')}
                 InputProps={{
+                  disableUnderline: true,
                   endAdornment: (
                     <BasicPopover>
                       <div className="flex flex-col gap-3 w-500 justify-center w-[300px] p-5">
@@ -155,11 +189,23 @@ const ProjectSearchForm = ({ onSuccess }: { onSuccess: Function }) => {
                           render={(props) => (
                             <Slider
                               {...props.field}
+                              sx={{
+                                '& .MuiSlider-valueLabel': {
+                                  scale: 0.1,
+                                  backgroundColor: 'transparent',
+                                  top: 0,
+                                  color: 'black',
+                                  fontWeight: 'bold',
+                                },
+                              }}
                               onChange={(_, value) => {
                                 props.field.onChange(value);
                               }}
-                              valueLabelDisplay="auto"
-                              max={10000}
+                              valueLabelDisplay="on"
+                              valueLabelFormat={(value) =>
+                                value.toLocaleString()
+                              }
+                              max={5000}
                               step={10}
                             />
                           )}
@@ -177,6 +223,7 @@ const ProjectSearchForm = ({ onSuccess }: { onSuccess: Function }) => {
             <div className="flex flex-col gap-3 w-full justify-center">
               <TextField
                 disabled
+                sx={{ outline: '0px solid red !important' }}
                 className="max-w-[200px]"
                 value={priceLabel}
                 InputProps={{
@@ -189,11 +236,23 @@ const ProjectSearchForm = ({ onSuccess }: { onSuccess: Function }) => {
                           control={control}
                           render={(props) => (
                             <Slider
+                              sx={{
+                                '& .MuiSlider-valueLabel': {
+                                  scale: 0.1,
+                                  backgroundColor: 'transparent',
+                                  top: 0,
+                                  color: 'black',
+                                  fontWeight: 'bold',
+                                },
+                              }}
                               {...props.field}
                               onChange={(_, value) => {
                                 props.field.onChange(value);
                               }}
-                              valueLabelDisplay="auto"
+                              valueLabelDisplay="on"
+                              valueLabelFormat={(value) =>
+                                value.toLocaleString()
+                              }
                               max={10000000}
                               step={1000}
                             />
@@ -209,30 +268,19 @@ const ProjectSearchForm = ({ onSuccess }: { onSuccess: Function }) => {
           <Grid
             item
             display={'flex'}
-            className="button-gradient rounded-md text-white"
+            className="rounded-md text-white  button-gradient"
           >
             <Button
+              className="text-white button-gradient py-5 "
               sx={{ color: 'white' }}
-              variant="outlined"
+              variant="standard"
               type="submit"
               disabled={isSubmitting || !isValid}
-              className="text-white"
             >
               Search
             </Button>
           </Grid>
         </Grid>
-
-        {/* <div className="flex flex-col gap-3 w-full ">
-          <label className="font-semibold">Location</label>
-          <TextField
-            className="max-w-[600px]"
-            onFocus={() => clearErrors('location')}
-            error={Boolean(errors.location)}
-            helperText={errors?.location?.message || ' '}
-            {...register('location')}
-          />
-        </div> */}
       </div>
     </form>
   );
