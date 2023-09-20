@@ -6,7 +6,7 @@
   .page-h {
     @apply px-10;
   }
-  .hero-text {
+  .hero-text-center {
     @apply text-center text-2xl md:text-6xl w-[80%] font-semibold max-w-[800px];
   }
   .button-large-responsive {
