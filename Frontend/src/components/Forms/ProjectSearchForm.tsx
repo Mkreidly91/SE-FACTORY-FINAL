@@ -19,17 +19,9 @@ import BasicPopover from '../Common/Popover';
 import { searchProject } from '../../api/common.api';
 import { Search } from '@mui/icons-material';
 
-const ProjectSearchForm = ({ onSuccess }: { onSuccess: Function }) => {
-  const [err, setError] = useState<ApiError | null>(null);
+const ProjectSearchForm = ({ onFormSubmit }: { onFormSubmit: Function }) => {
   const onSubmit: SubmitHandler<ProjectSearchFormSchemaType> = async (data) => {
-    const res = await searchProject(data);
-    console.log(data);
-    console.log(res);
-    if (res.error) {
-      setError(res.error);
-    } else {
-      onSuccess(res);
-    }
+    onFormSubmit(data);
   };
 
   const {
@@ -63,7 +55,6 @@ const ProjectSearchForm = ({ onSuccess }: { onSuccess: Function }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="project-form-left w-[100%]  flex-col  items-center ">
-        <ApiErrorHandler error={err} />
         {/* Search */}
         <Grid container alignItems={'stretch'} gap={2}>
           <Grid item alignItems="stretch">
@@ -273,7 +264,6 @@ const ProjectSearchForm = ({ onSuccess }: { onSuccess: Function }) => {
             <Button
               className="text-white button-gradient py-5 "
               sx={{ color: 'white' }}
-              variant="standard"
               type="submit"
               disabled={isSubmitting || !isValid}
             >
