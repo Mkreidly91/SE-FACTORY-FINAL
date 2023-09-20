@@ -1,4 +1,5 @@
 import mongoose, { Schema, model, Document } from 'mongoose';
+import { string } from 'zod';
 
 interface IHotspot {
   info?: string;
@@ -10,7 +11,7 @@ interface IHotspot {
 interface IHotspotDocument extends IHotspot, Document {}
 
 const HotspotSchema = new Schema<IHotspot>({
-  info: String,
+  info: { type: String },
   link: { type: Schema.Types.ObjectId, ref: 'Panorama' },
   yaw: { type: Number, required: true },
   pitch: { type: Number, required: true },
