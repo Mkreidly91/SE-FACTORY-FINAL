@@ -2,7 +2,7 @@ import { z, string, number, object, any, optional } from 'zod';
 const phoneNumberRegex = /^[\d\s()+-]+$/;
 
 const editUserSchema = object({
-  name: string().trim().min(1).max(18),
+  name: string().trim().min(1).max(40),
   email: string().trim().email(),
   password: string().trim().min(6),
   userType: number().min(0).max(1),
@@ -22,7 +22,7 @@ const editUserSchema = object({
   ]),
 }).partial();
 const signupFormSchema = object({
-  name: string().trim().min(1).max(18).nonempty('Name field is required'),
+  name: string().trim().min(1).max(40).nonempty('Name field is required'),
   email: string().trim().email().nonempty('Email field is required'),
   password: string().trim().min(6).nonempty('Password field is required'),
   confirmPassword: string()
