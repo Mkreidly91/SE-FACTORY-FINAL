@@ -13,7 +13,7 @@ import V360 from '../sample3d/V360';
 import Footer from '../../components/Footer';
 const CompanyHome = () => {
   return (
-    <>
+    <div className=" overflow-x-hidden">
       <section className="hero h-[100vh] relative ">
         <Navbar className="absolute top-0  w-full z-50" />
         <img
@@ -134,7 +134,7 @@ const CompanyHome = () => {
       </section>
 
       <Footer />
-    </>
+    </div>
   );
 };
 

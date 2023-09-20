@@ -123,7 +123,7 @@ const addHotspotService = async (
   if (!panorama) {
     throw new HttpException(400, 'panorama not found');
   }
-  console.log(yaw, pitch);
+
   const hotspot = new Hotspot({
     link,
     info,
