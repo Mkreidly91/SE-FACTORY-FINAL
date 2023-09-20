@@ -4,7 +4,11 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { IconButton } from '@mui/material';
 
-export default function BasicPopover({ children }: { children: JSX.Element }) {
+export default function BasicPopover({
+  children,
+}: {
+  children: JSX.Element | JSX.Element[];
+}) {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
   );

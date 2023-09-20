@@ -10,6 +10,7 @@ import LoginForm from './components/Forms/LoginForm';
 import SignupForm from './components/Forms/SignupForm';
 import ProjectSearchForm from './components/Forms/ProjectSearchForm';
 import GetStarted from './pages/Company/GetStarted';
+import CustomerPage from './pages/Customer/Customer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/search" element={<ProjectSearchForm />} />
+        <Route path="/customer" element={<CustomerPage />} />
         <Route path="/test" element={<Test />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignupForm />} />
