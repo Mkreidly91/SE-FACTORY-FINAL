@@ -1,4 +1,4 @@
-import { string, number, object, array, any } from 'zod';
+import { string, number, object, array, any, optional } from 'zod';
 
 const thumbNailFileSize = 4 * 1024 * 1024;
 const imageFileTypes = ['image/jpeg', 'image/png'];
@@ -167,7 +167,7 @@ const hotspotForm = object({
     projectId: string().trim().nonempty(),
     panoramaId: string().trim().nonempty(),
     link: string().trim().nonempty().optional(),
-    info: string().trim().nonempty().optional(),
+    info: string().trim().optional().default(''),
     yaw: number(),
     pitch: number(),
   }),
