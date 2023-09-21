@@ -54,18 +54,18 @@ const ProjectSearchForm = ({ onFormSubmit }: { onFormSubmit: Function }) => {
     .join(' - ');
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="project-form-left w-[100%]  flex-col  items-center ">
+      <div className="project-form-left w-[100%]    items-center ">
         {/* Search */}
-        <Grid container alignItems={'stretch'} gap={2}>
-          <Grid item alignItems="stretch">
+        <Grid display={'flex'} alignItems={'stretch'} gap={2}>
+          <Grid item flexGrow={1} alignItems="stretch">
             {/* <label className="font-semibold">Search</label> */}
             <TextField
               size="medium"
-              className="w-[325px]"
               InputProps={{
                 disableUnderline: true,
                 startAdornment: <Search />,
               }}
+              fullWidth
               placeholder="Search by location, title, description"
               autoFocus
               InputLabelProps={{ className: '' }}
