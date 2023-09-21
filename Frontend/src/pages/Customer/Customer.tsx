@@ -83,18 +83,21 @@ const CustomerPage = () => {
           </span>
         </div>
       </div>
-
-      <div className="flex items-center justify-center ">
-        <div className="p-10 w-fit rounded-md">
+      {/* Search sec */}
+      <Container
+        className=" w-full  mb-16 mt-16
+        "
+      >
+        <Grid flex alignItems={'stretch'}>
           <ProjectSearchForm onFormSubmit={handleSubmit} />
-        </div>
-      </div>
-      <Container>
+        </Grid>
+      </Container>
+      <Container className="flex flex-col gap-5">
         {loading ? (
           <CircularProgress />
         ) : (
           <>
-            <Grid container spacing={2}>
+            <Grid container spacing={0}>
               {searchResults?.results &&
                 searchResults.results.map((p: any) => (
                   <motion.div
