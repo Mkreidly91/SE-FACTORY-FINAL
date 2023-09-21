@@ -11,6 +11,9 @@ import SignupForm from './components/Forms/SignupForm';
 import ProjectSearchForm from './components/Forms/ProjectSearchForm';
 import GetStarted from './pages/Company/GetStarted';
 import CustomerPage from './pages/Customer/Customer';
+import { Suspense } from 'react';
+import { Canvas } from '@react-three/fiber';
+import Wobble from './pages/sample3d/WobbleTest';
 
 function App() {
   return (
@@ -21,7 +24,6 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/search" element={<ProjectSearchForm />} />
         <Route path="/customer" element={<CustomerPage />} />
         <Route path="/test" element={<Test />} />
         <Route path="/login" element={<LoginForm />} />
@@ -29,14 +31,15 @@ function App() {
         <Route path="/companyHome" element={<CompanyHome />} />
         <Route path="/getStarted" element={<GetStarted />} />
         <Route
-          path="/dashboard/*"
+          path="/wobble"
           element={
-            <DashBoard>
-              {/* <DashboardRoutes />
-              <ProjectForm /> */}
-            </DashBoard>
+            <Canvas>
+              <ambientLight intensity={2} />
+              <Wobble />
+            </Canvas>
           }
         />
+        <Route path="/dashboard/*" element={<DashBoard />} />
       </Routes>
     </div>
   );
