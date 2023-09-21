@@ -2,7 +2,6 @@ import Navbar from '../../components/Navbar';
 import InView from '../../components/animation/InView';
 import ObjectViewer from '../sample3d/ObjectViewer';
 import V360 from '../sample3d/V360';
-import lowPoly from '';
 import Button from '../../components/Common/Button';
 import { NewObjectViewer } from '../sample3d/NewObjectViewer';
 import * as THREE from 'three';
@@ -14,6 +13,7 @@ import villa4 from '../../assets/images/get-started/Rectangle34.png';
 import villa5 from '../../assets/images/get-started/Rectangle32-1.png';
 import villa6 from '../../assets/images/get-started/Rectangle34.png';
 import Footer from '../../components/Footer';
+import { Link } from 'react-router-dom';
 
 const GetStarted = () => {
   return (
@@ -137,6 +137,7 @@ const GetStarted = () => {
           <span className="font-semibold text-xl md:text-4xl  w-[60%] md:w-[50%] text-center">
             Want to learn more?
           </span>
+
           <Button
             text="Get Started"
             className=" button-gradient button-large-responsive"

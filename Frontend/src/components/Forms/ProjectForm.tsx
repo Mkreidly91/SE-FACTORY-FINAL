@@ -283,7 +283,6 @@ const ProjectForm = ({
               type="button"
               onClick={async () => {
                 const status = await deleteProject(initialValues?._id);
-
                 if (status === 200) navigate('/dashboard/projects');
               }}
             >

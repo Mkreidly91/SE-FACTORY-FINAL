@@ -11,6 +11,7 @@ import InViews from '../../components/animation/InView';
 import InView from '../../components/animation/InView';
 import V360 from '../sample3d/V360';
 import Footer from '../../components/Footer';
+import { Link } from 'react-router-dom';
 const CompanyHome = () => {
   return (
     <div className=" overflow-x-hidden">
@@ -30,11 +31,12 @@ const CompanyHome = () => {
           <span className="  text-center text-2xl md:text-6xl w-[80%] font-semibold max-w-[800px] ">
             Showcase Your Construction Projects with Immersive 3D Tours
           </span>
-
-          <Button
-            text="Get Started"
-            className="button-gradient px-5 py-2.5 md:px-10 md:py-5 rounded-xl md:text-xl font-light text-white"
-          />
+          <Link to="/getStarted">
+            <Button
+              text="Get Started"
+              className="button-gradient px-5 py-2.5 md:px-10 md:py-5 rounded-xl md:text-xl font-light text-white"
+            />
+          </Link>
         </InView>
       </section>
       <section className="hero h-fit relative p-5 ">
@@ -126,10 +128,13 @@ const CompanyHome = () => {
           <span className="font-semibold text-xl md:text-4xl  w-[60%] md:w-[50%] text-center">
             Transform your presence with a 3D edge
           </span>
-          <Button
-            text="Get Started"
-            className="button-gradient px-5 py-2.5 md:px-10 md:py-5 rounded-xl md:text-xl font-light text-white"
-          />
+
+          <Link to="/getStarted">
+            <Button
+              text="Get Started"
+              className="button-gradient px-5 py-2.5 md:px-10 md:py-5 rounded-xl md:text-xl font-light text-white"
+            />
+          </Link>
         </div>
       </section>
 

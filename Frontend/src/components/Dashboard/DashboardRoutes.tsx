@@ -10,10 +10,10 @@ const DashboardRoutes = () => {
       <Route index path="/projects" element={<Projects />} />
       <Route path="projects/addProject/" element={<AddOrEditProject />} />
       <Route path="projects/addProject/:id" element={<AddOrEditProject />} />
-      <Route
+      {/* <Route
         path="projects/addProject/:id/listing"
         element={<AddOrEditProject tab={1} />}
-      />
+      /> */}
       <Route
         path="projects/addProject/:id/customize"
         element={<AddOrEditProject tab={2} />}

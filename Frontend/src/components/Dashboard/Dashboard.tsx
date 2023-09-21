@@ -131,7 +131,7 @@ function DashBoard({ children }: { children?: any }) {
               text="Log out"
               onClick={() => {
                 localStorage.clear();
-                navigate('/login');
+                navigate('/');
               }}
             />
           </List>

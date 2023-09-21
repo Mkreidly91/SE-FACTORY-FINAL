@@ -20,7 +20,7 @@ const LoginForm = () => {
     if (res.error) setError(res.error);
     if (res.token) {
       localStorage.setItem('userInfo', JSON.stringify(res));
-      navigate('/dashboard');
+      navigate('/dashboard/projects');
     }
   };
 

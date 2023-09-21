@@ -39,15 +39,15 @@ const AddOrEditProject = ({ tab = 0 }: { tab?: number }) => {
             value={0}
             label={<span className="monster">Project Details</span>}
           />
-          <Tab
+          {/* <Tab
             sx={{ marginRight: '20px' }}
             value={1}
             label={<span className="monster">Listing Details</span>}
             disabled={id ? false : true}
-          />
+          /> */}
           <Tab
             value={2}
-            label={<span className="monster">Customize</span>}
+            label={<span className="monster">3D tour</span>}
             disabled={id ? false : true}
           />
         </Tabs>
