@@ -7,6 +7,6 @@ RUN npm ci && npm cache clean --force
 ENV NODE_ENV=production
 ENV NODE_OPTIONS=--max_old_space_size=2048
 COPY . .
-EXPOSE 8080
+EXPOSE 80
 RUN npm run build
 CMD ["npm","run","start"]

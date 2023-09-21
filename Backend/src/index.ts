@@ -23,5 +23,5 @@ app.use(errorMiddleware);
 mongodbConnection();
 
 app.listen(envConfig.PORT, () => {
-  console.log('Server running on http://127.0.0.1:8080/');
+  console.log('Server running on http://127.0.0.1:80/');
 });

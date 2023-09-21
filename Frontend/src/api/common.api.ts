@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:8080/';
+const baseURL = 'http://localhost:80/';
 import axios, { AxiosError } from 'axios';
 import { handleError } from './api.helpers';
 import { ProjectSearchFormSchemaType } from '../validation/project.validation';

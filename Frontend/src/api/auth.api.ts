@@ -1,10 +1,10 @@
-const baseURL = "http://localhost:8080/";
-import axios, { AxiosError } from "axios";
+const baseURL = 'http://localhost:80/';
+import axios, { AxiosError } from 'axios';
 import {
   LoginFormSchemaType,
   SignupFormSchemaType,
-} from "../validation/user.validation";
-import { handleError } from "./api.helpers";
+} from '../validation/user.validation';
+import { handleError } from './api.helpers';
 
 const signup = async (formData: SignupFormSchemaType) => {
   try {
@@ -13,7 +13,7 @@ const signup = async (formData: SignupFormSchemaType) => {
       return res.data.data;
     }
   } catch (error) {
-    const errors= error as Error | AxiosError;
+    const errors = error as Error | AxiosError;
     return handleError(errors);
   }
 };
@@ -25,7 +25,7 @@ const login = async (formData: LoginFormSchemaType) => {
       return res.data;
     }
   } catch (error) {
-    const errors= error as Error | AxiosError;
+    const errors = error as Error | AxiosError;
     return handleError(errors);
   }
 };
