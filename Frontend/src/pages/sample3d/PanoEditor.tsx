@@ -163,13 +163,14 @@ const PanoEditor = ({ isEdit = false }: { isEdit: boolean }) => {
         <div className=" absolute top-2 left-2 flex flex-col gap-5">
           <Button
             text="Add Hotspot"
-            className=" bg-white px-2 py-3 rounded-md button-gradient text-white text-sm"
+            className=" bg-white px-2 py-3 rounded-md button-gradient text-white text-sm text-center"
             onClick={() => {
               toggleDrawer();
               setSelectedHotspot(undefined);
             }}
           />
           <UploadButton
+            className=""
             text="Add Panorama"
             accept="image/png, image/jpeg"
             onChange={async (e) => {

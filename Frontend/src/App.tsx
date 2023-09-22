@@ -14,6 +14,7 @@ import CustomerPage from './pages/Customer/Customer';
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import Wobble from './pages/sample3d/WobbleTest';
+import LoginContainer from './pages/Login/SignUp/LoginContainer';
 
 function App() {
   return (
@@ -33,12 +34,12 @@ function App() {
         <Route
           path="/wobble"
           element={
-            <Canvas>
-              <ambientLight intensity={2} />
+            <Canvas className="bg-gray-900">
               <Wobble />
             </Canvas>
           }
         />
+        <Route path="/Lawgin" element={<LoginContainer />} />
         <Route path="/dashboard/*" element={<DashBoard />} />
       </Routes>
     </div>

@@ -13,7 +13,7 @@ const UploadButton = ({
     <label
       className={` bg-white px-2 py-3 rounded-md button-gradient text-white text-sm ${className}`}
     >
-      <span> {text}</span>
+      <span className="text-center">{text}</span>
       <input
         className=""
         accept={accept}

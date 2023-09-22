@@ -15,7 +15,7 @@ const CustomerPage = () => {
   const [searchResults, setSearchResults] = useState<any>();
 
   const [page, setPage] = useState<number>(1);
-  const [perPage, setPerPage] = useState<number>(1);
+  const [perPage, setPerPage] = useState<number>(6);
   const [searchData, setSearchData] = useState<
     ProjectSearchFormSchemaType | undefined
   >();
@@ -92,12 +92,12 @@ const CustomerPage = () => {
           <ProjectSearchForm onFormSubmit={handleSubmit} />
         </Grid>
       </Container>
-      <Container className="flex flex-col gap-5">
+      <Container>
         {loading ? (
           <CircularProgress />
         ) : (
           <>
-            <Grid container spacing={0}>
+            <Grid container columnGap={5} rowGap={3}>
               {searchResults?.results &&
                 searchResults.results.map((p: any) => (
                   <motion.div
@@ -111,7 +111,7 @@ const CustomerPage = () => {
                   </motion.div>
                 ))}
             </Grid>
-            <div className="flex justify-center mt-auto gap-10">
+            <div className="flex justify-center  gap-10 mt-10">
               <Button
                 variant="outlined"
                 color="primary"
@@ -134,6 +134,7 @@ const CustomerPage = () => {
       </Container>
 
       <motion.div className="flex flex-wrap gap-5 p-20"></motion.div>
+      <Footer />
     </div>
   );
 };
