@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import { ApiError } from '../../../api/api.helpers';
 import ApiErrorHandler from '../../../components/Common/ApiError';
+import ghost from '../../../assets/icons/empty-state/ghost.svg';
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
+  const [isEmpty, setIsEmpty] = useState(false);
   const [err, setError] = useState<ApiError | null>(null);
   useEffect(() => {
     const fetchProjects = async () => {
@@ -16,6 +18,7 @@ const Projects = () => {
         if (res.error) setError(res.error);
       } else {
         setProjects(res);
+        setIsEmpty(res.length === 0);
       }
     };
     fetchProjects();
@@ -33,15 +36,24 @@ const Projects = () => {
           </div>
         </Link>
       </div>
-      <div className="projects-card-container flex gap-5 ">
-        {projects &&
+      <div className="projects-card-container flex gap-5">
+        {isEmpty ? (
+          <div className="color-blue-light flex flex-col justify-center items-center m-auto p-10">
+            <span>
+              It's a ghost town in here! Start by adding your first project
+            </span>
+            <img className="  w-40" src={ghost} alt="" />
+          </div>
+        ) : (
+          projects &&
           projects.map((p: any) => {
             return (
               <Link key={p._id} to={`addProject/${p._id}`} state={p}>
                 <ProjectCard project={p} />
               </Link>
             );
-          })}
+          })
+        )}
       </div>
     </div>
   );
