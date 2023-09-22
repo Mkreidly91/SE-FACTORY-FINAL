@@ -179,6 +179,12 @@ const deleteProjectForm = object({
   }),
 });
 
+const deletApartmentForm = object({
+  body: object({
+    projectId: string().trim().nonempty(),
+  }),
+});
+
 const deletePanoramaOrMarkerForm = object({
   body: object({
     projectId: string().trim().nonempty(),
@@ -255,6 +261,7 @@ export {
   markerForm,
   hotspotForm,
   deleteProjectForm,
+  deletApartmentForm,
   deletePanoramaOrMarkerForm,
   deleteHotspotForm,
   editProjectSchema,

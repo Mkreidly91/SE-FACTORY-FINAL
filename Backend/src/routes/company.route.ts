@@ -10,6 +10,7 @@ import {
   deleteProjectForm,
   deletePanoramaOrMarkerForm,
   deleteHotspotForm,
+  deletApartmentForm,
   editProjectSchema,
   editHotspotSchema,
 } from '../validation/company.validation';
@@ -26,6 +27,7 @@ import {
   deleteHotspot,
   getCompanyProjects,
   editHotspot,
+  deleteApartment,
 } from '../controllers';
 import {
   editProfile,
@@ -77,6 +79,13 @@ export default (router: Router) => {
     authMiddleware(Roles.Company),
     formValidationMiddleware(deleteProjectForm),
     deleteProject
+  );
+
+  router.delete(
+    '/company/deleteApartment',
+    authMiddleware(Roles.Company),
+    formValidationMiddleware(deletApartmentForm),
+    deleteApartment
   );
 
   router.delete(
