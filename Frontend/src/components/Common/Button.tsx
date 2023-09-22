@@ -16,7 +16,7 @@ const Button: FC<ButtonProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`cursor-pointer   ${className} ${
+      className={`cursor-pointer text-center   ${className} ${
         disabled && 'opacity-50 cursor-not-allowed'
       } `}
       disabled={disabled}

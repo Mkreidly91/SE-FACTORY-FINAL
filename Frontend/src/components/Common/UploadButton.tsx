@@ -7,7 +7,7 @@ const UploadButton = ({
   accept: string;
   onChange: (e: any) => void;
   text: string;
-  className: string;
+  className?: string;
 }) => {
   return (
     <label
