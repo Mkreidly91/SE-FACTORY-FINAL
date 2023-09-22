@@ -1,4 +1,6 @@
 import {
+  getCompanyProjectsService,
+  getProjectByIdService,
   createProjectService,
   addApartmentService,
   addPanoramaService,
@@ -8,7 +10,7 @@ import {
   deletePanoramaService,
   deleteMarkerService,
   deleteHotspotService,
-  getCompanyProjectsService,
+  deleteApartmentService,
   editProjectService,
   getPanoramaByIdService,
   editHotspotService,
@@ -16,6 +18,7 @@ import {
 } from './company.service';
 
 export {
+  getProjectByIdService,
   createProjectService,
   addApartmentService,
   addPanoramaService,
@@ -25,6 +28,7 @@ export {
   deletePanoramaService,
   deleteMarkerService,
   deleteHotspotService,
+  deleteApartmentService,
   getCompanyProjectsService,
   editProjectService,
   getPanoramaByIdService,

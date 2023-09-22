@@ -91,6 +91,21 @@ const addApartmentService = async (
   return newProject.url;
 };
 
+const deleteApartmentService = async (projectId: string) => {
+  const project = await Project.findById(projectId);
+  if (!project) {
+    throw new HttpException(400, 'Project not found');
+  }
+
+  if (project.url) {
+    await deleteFile(project.url);
+    project.url = '';
+  }
+
+  const newProject = await project.save();
+  return newProject.url;
+};
+
 const addPanoramaService = async (
   projectId: mongoose.Types.ObjectId,
   name: string,
@@ -389,6 +404,7 @@ export {
   deletePanoramaService,
   deleteMarkerService,
   deleteHotspotService,
+  deleteApartmentService,
   editProfileService,
   getCompanyProjectsService,
   getProjectByIdService,
