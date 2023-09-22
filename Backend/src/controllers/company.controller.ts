@@ -13,16 +13,15 @@ import {
   deleteMarkerService,
   deleteHotspotService,
   getCompanyProjectsService,
-} from '../services';
-import mongoose, { Types } from 'mongoose';
-import { HttpException } from '../exceptions/HttpException';
-import {
+  deleteApartmentService,
   editHotspotService,
   editProfileService,
   editProjectService,
   getPanoramaByIdService,
   getProjectByIdService,
-} from '../services/company.service';
+} from '../services';
+import mongoose, { Types } from 'mongoose';
+import { HttpException } from '../exceptions/HttpException';
 
 const createProject = async (
   req: AuthRequest,
@@ -167,6 +166,23 @@ const deleteProject = async (
     const deleted = await deleteProjectService(projectId);
     return res.status(200).json({
       message: 'Successfully deleted project',
+      data: deleted,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteApartment = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { projectId } = req.body;
+    const deleted = await deleteApartmentService(projectId);
+    return res.status(200).json({
+      message: 'Successfully deleted 3d model',
       data: deleted,
     });
   } catch (error) {
@@ -365,6 +381,7 @@ export {
   addMarker,
   addHotspot,
   deleteProject,
+  deleteApartment,
   deletePanorama,
   deleteMarker,
   deleteHotspot,
