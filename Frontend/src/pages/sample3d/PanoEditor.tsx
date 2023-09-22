@@ -43,12 +43,15 @@ const PanoEditor = ({ isEdit = false }: { isEdit: boolean }) => {
     const res = await getProjectById(projectId);
     setSelectedHotspot(undefined);
     setPanoramas(res.panoramas);
-
+    setIsEmpty(false);
     const check = res.panoramas.find((e: IPanorama) => e._id === panoramaId);
     if (check) {
       setPanoramaId(panoramaId);
     } else {
       if (res.panoramas.length > 0) setPanoramaId(res.panoramas[0]._id);
+      else {
+        setIsEmpty(true);
+      }
     }
   }
   useEffect(() => {
@@ -58,6 +61,7 @@ const PanoEditor = ({ isEdit = false }: { isEdit: boolean }) => {
   const [panoramaId, setPanoramaId] = useState() as any;
   const [panoramas, setPanoramas] = useState<any[]>([]);
   const [selectedHotspot, setSelectedHotspot] = useState<IHotspot>();
+  const [isEmpty, setIsEmpty] = useState(false);
 
   const [isOpen, setOpen] = useState(false);
   const viewRef = useRef() as any;
@@ -248,20 +252,25 @@ const PanoEditor = ({ isEdit = false }: { isEdit: boolean }) => {
       </div>
     </View360>
   ) : (
-    isEdit && (
-      <UploadButton
-        text="Add Panorama"
-        accept="image/png, image/jpeg"
-        onChange={async (e) => {
-          const firstFile = e?.target?.files?.[0];
-          if (firstFile) {
-            const res = await addPanorama(projectId, e.target.files);
-            if (res) {
-              getPanoramas(projectId, panoramaId);
-            }
-          }
-        }}
-      />
+    isEdit && isEmpty && (
+      <div className=" flex items-center justify-center  h-[500px] min-h-[50vh]  mx-auto   ">
+        <div className="flex flex-col gap-5 items-center justify-center w-full h-full border-4 rounded-md border-gray-500 border-dashed  ">
+          <span>No Panoramas available, click below to upload</span>
+          <UploadButton
+            text="Add Panorama"
+            accept="image/png, image/jpeg"
+            onChange={async (e) => {
+              const firstFile = e?.target?.files?.[0];
+              if (firstFile) {
+                const res = await addPanorama(projectId, e.target.files);
+                if (res) {
+                  getPanoramas(projectId, panoramaId);
+                }
+              }
+            }}
+          />
+        </div>
+      </div>
     )
   );
 };

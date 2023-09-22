@@ -161,7 +161,7 @@ const deleteProject = async (projectId: string) => {
       ...headers(),
     });
     if (res.status === 200) {
-      return res.data.data;
+      return res.status;
     }
   } catch (error) {
     const errors = error as Error | AxiosError;
