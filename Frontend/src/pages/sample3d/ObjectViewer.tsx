@@ -1,22 +1,16 @@
-import {
-  Bounds,
-  useBounds,
-  Html,
-  OrbitControls,
-  useGLTF,
-} from '@react-three/drei';
+import { Bounds, OrbitControls, useGLTF } from '@react-three/drei';
 import { Canvas, ThreeEvent } from '@react-three/fiber';
-import React, {
-  useState,
-  useEffect,
-  FC,
-  Suspense,
-  useRef,
-  useMemo,
-} from 'react';
+import React, { useState, useEffect, Suspense, useRef, useMemo } from 'react';
 import * as THREE from 'three';
 
-export const ObjectViewer = ({ url }: { url: string }) => {
+export const ObjectViewer = ({
+  url,
+  className,
+}: {
+  url: string;
+  className: string;
+}) => {
+  const [state, setState] = useState(0);
   const m: any = useGLTF(url);
 
   const model = useRef();
@@ -36,34 +30,18 @@ export const ObjectViewer = ({ url }: { url: string }) => {
 
     return camera;
   }, [m.scene]);
-  const bounds = useBounds();
-  function SelectToZoom({
-    children,
-  }: {
-    children: JSX.Element | JSX.Element[];
-  }) {
-    const api = useBounds();
-    return (
-      <group
-        onClick={(e) => (
-          e.stopPropagation(), e.delta <= 2 && api.refresh(e.object).fit()
-        )}
-        onPointerMissed={(e) => e.button === 0 && api.refresh().fit()}
-      >
-        {children}
-      </group>
-    );
-  }
+
   useEffect(() => {
-    if (model?.current) {
-      bounds?.refresh();
-    }
-  }, [model?.current]);
+    setTimeout(() => {
+      setState(1);
+    }, 200);
+  }, []);
+
   return (
     <>
       {m && (
         <Canvas
-          className=" border border-black h-full bg-transparent rounded-md"
+          className={`border border-black h-full bg-transparent rounded-md ${className}`}
           frameloop="demand"
           camera={camera}
           dpr={window.devicePixelRatio}
@@ -82,7 +60,9 @@ export const ObjectViewer = ({ url }: { url: string }) => {
           <Suspense>
             {m.scene && (
               <Bounds fit clip observe margin={1.2} damping={1}>
-                <primitive scale={1} ref={model} object={m.scene} />
+                {state === 1 && (
+                  <primitive scale={1} ref={model} object={m.scene} />
+                )}
               </Bounds>
             )}
           </Suspense>
