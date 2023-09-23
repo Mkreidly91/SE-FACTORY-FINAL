@@ -302,7 +302,7 @@ const getCompanyProjectsService = async (userId: string) => {
 };
 
 const getProjectByIdService = async (projectId: string) => {
-  const project = await Project.findById(projectId);
+  const project = await Project.findById(projectId).populate('owner');
   if (!project) {
     throw new HttpException(400, 'Project not found');
   }
