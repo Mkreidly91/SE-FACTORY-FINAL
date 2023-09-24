@@ -1,24 +1,14 @@
 import './App.css';
-import TestRHF from './pages/TestRHF';
 import Landing from './pages/landing/Landing';
 import Test from './pages/sample3d/test';
 import DashBoard from './components/Dashboard/Dashboard';
-import DashboardRoutes from './components/Dashboard/DashboardRoutes';
 import { Routes, Route } from 'react-router-dom';
 import CompanyHome from './pages/Company/CompanyHome';
-import LoginForm from './components/Forms/LoginForm';
-import SignupForm from './components/Forms/SignupForm';
-import ProjectSearchForm from './components/Forms/ProjectSearchForm';
 import GetStarted from './pages/Company/GetStarted';
 import CustomerPage from './pages/Customer/Customer';
-import { Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
-import Wobble from './pages/sample3d/WobbleTest';
-import LoginContainer from './pages/Login/SignUp/LoginContainer';
-import ProjectDetails from './pages/Customer/projectDetails';
-
+import LoginPage from './pages/Login/SignUp/LoginPage';
 import SignUpPage from './pages/Login/SignUp/SignUpPage';
-import BreathingDots from './pages/Login/SignUp/Dots';
+import ProjectDetails from './pages/Customer/ProjectDetails';
 
 function App() {
   return (
@@ -28,20 +18,10 @@ function App() {
         <Route path="/customer" element={<CustomerPage />} />
         <Route path="/customer/project/:id" element={<ProjectDetails />} />
         <Route path="/test" element={<Test />} />
-        <Route path="/login" element={<LoginForm />} />
-        {/* <Route path="/signup" element={<SignupForm />} /> */}
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
         <Route path="/companyHome" element={<CompanyHome />} />
         <Route path="/getStarted" element={<GetStarted />} />
-        {/* <Route
-          path="/wobble"
-          element={
-            <Canvas className="bg-gray-900">
-              <Wobble />
-            </Canvas>
-          }
-        /> */}
-        <Route path="/Lawgin" element={<LoginContainer />} />
-        <Route path="/signUp" element={<SignUpPage />} />
         <Route path="/dashboard/*" element={<DashBoard />} />
       </Routes>
     </div>
