@@ -14,6 +14,7 @@ import villa5 from '../../assets/images/get-started/Rectangle32-1.png';
 import villa6 from '../../assets/images/get-started/Rectangle34.png';
 import Footer from '../../components/Footer';
 import { Link } from 'react-router-dom';
+import { Suspense } from 'react';
 
 const GetStarted = () => {
   return (
@@ -27,13 +28,14 @@ const GetStarted = () => {
         >
           <span className="hero-text-center">Unlock new possibilities</span>
         </InView>
-
-        <NewObjectViewer
-          className="z-[15] "
-          zoom={20}
-          position={[0, 0, 0]}
-          url="3dModels/low_poly_isometric_rooms.glb"
-        />
+        <Suspense>
+          <NewObjectViewer
+            className="z-[15] "
+            zoom={20}
+            position={[0, 0, 0]}
+            url="3dModels/low_poly_isometric_rooms.glb"
+          />
+        </Suspense>
       </section>
       <section className="py-10  page-h">
         <div className="text-center font-semibold  text-2xl md:text-4xl pb-10">
