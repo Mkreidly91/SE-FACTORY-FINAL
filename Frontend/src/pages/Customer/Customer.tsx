@@ -10,6 +10,7 @@ import { Box, Button, CircularProgress, Container, Grid } from '@mui/material';
 import { ApiError } from '../../api/api.helpers';
 import ApiErrorHandler from '../../components/Common/ApiError';
 import { ProjectSearchFormSchemaType } from '../../validation/project.validation';
+import { Link } from 'react-router-dom';
 
 const CustomerPage = () => {
   const [searchResults, setSearchResults] = useState<any>();
@@ -106,7 +107,9 @@ const CustomerPage = () => {
                     variants={variants}
                   >
                     <Grid item xs={12} sm={6} md={4} lg={3} key={p._id}>
-                      <ProjectCard project={p} />
+                      <Link to={`/customer/project/${p._id}`}>
+                        <ProjectCard project={p} />
+                      </Link>
                     </Grid>
                   </motion.div>
                 ))}
