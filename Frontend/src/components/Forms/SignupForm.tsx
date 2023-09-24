@@ -53,7 +53,6 @@ const SignupForm = ({ className }: { className?: string }) => {
           <label className="font-semibold">Name</label>
           <TextField
             className="max-w-[600px]"
-            autoFocus
             required
             InputLabelProps={{ className: '' }}
             onFocus={() => clearErrors('name')}
@@ -129,7 +128,7 @@ const SignupForm = ({ className }: { className?: string }) => {
           </Button>
           <div className="text-sm ">
             Have an account? Sign in
-            <Link to="/signIn">
+            <Link to="/login">
               <a className="text-sky-700"> here</a>
             </Link>
           </div>

@@ -15,31 +15,33 @@ import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import Wobble from './pages/sample3d/WobbleTest';
 import LoginContainer from './pages/Login/SignUp/LoginContainer';
+import ProjectDetails from './pages/Customer/projectDetails';
+
+import SignUpPage from './pages/Login/SignUp/SignUpPage';
+import BreathingDots from './pages/Login/SignUp/Dots';
 
 function App() {
   return (
     <div className="app sora h-full w-full">
-      {/* <Landing /> */}
-
-      {/* <TestRHF /> */}
-
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/customer" element={<CustomerPage />} />
+        <Route path="/customer/project/:id" element={<ProjectDetails />} />
         <Route path="/test" element={<Test />} />
         <Route path="/login" element={<LoginForm />} />
-        <Route path="/signup" element={<SignupForm />} />
+        {/* <Route path="/signup" element={<SignupForm />} /> */}
         <Route path="/companyHome" element={<CompanyHome />} />
         <Route path="/getStarted" element={<GetStarted />} />
-        <Route
+        {/* <Route
           path="/wobble"
           element={
             <Canvas className="bg-gray-900">
               <Wobble />
             </Canvas>
           }
-        />
+        /> */}
         <Route path="/Lawgin" element={<LoginContainer />} />
+        <Route path="/signUp" element={<SignUpPage />} />
         <Route path="/dashboard/*" element={<DashBoard />} />
       </Routes>
     </div>
