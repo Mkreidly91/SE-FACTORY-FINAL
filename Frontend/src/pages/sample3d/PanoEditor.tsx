@@ -35,7 +35,13 @@ export interface IHotspot {
   info: string;
 }
 
-const PanoEditor = ({ isEdit = false }: { isEdit: boolean }) => {
+const PanoEditor = ({
+  isEdit = false,
+  className,
+}: {
+  isEdit: boolean;
+  className: string;
+}) => {
   const { id: projectId } = useParams() as any;
 
   async function getPanoramas(projectId?: string, panoramaId = null) {
@@ -72,7 +78,13 @@ const PanoEditor = ({ isEdit = false }: { isEdit: boolean }) => {
   };
 
   const plugin = useMemo(() => {
-    return new ControlBar({ fullscreenButton: true });
+    return new ControlBar({
+      fullscreenButton: {
+        position: ControlBar.POSITION.TOP_RIGHT,
+        order: 1,
+      },
+      clickToPlay: true,
+    });
   }, []);
 
   const spinner = useMemo(() => {
@@ -82,7 +94,7 @@ const PanoEditor = ({ isEdit = false }: { isEdit: boolean }) => {
   const projection = useMemo(() => {
     if (selectedPanorama) {
       return new EquirectProjection({
-        src: selectedPanorama.url,
+        src: selectedPanorama.url + '?cacheblock=true',
       });
     }
   }, [selectedPanorama]);
@@ -145,7 +157,7 @@ const PanoEditor = ({ isEdit = false }: { isEdit: boolean }) => {
     <View360
       plugins={[plugin, spinner]}
       ref={viewRef}
-      className="is-16by9 rounded-md relative"
+      className={`is-16by9 rounded-md relative ${className}`}
       projection={projection}
       hotspot={{
         zoom: true,
@@ -235,7 +247,7 @@ const PanoEditor = ({ isEdit = false }: { isEdit: boolean }) => {
 
       <div className="absolute bottom-0 flex items-center gap-5 w-full">
         <ImageSlider
-          className="w-full pb-0"
+          className="w-full pb-0 z-[10]"
           panoramas={panoramas}
           imageCardStyles="aspect-[16/9] h-auto border-2 border-black rounded-md"
           onClick={setPanoramaId}

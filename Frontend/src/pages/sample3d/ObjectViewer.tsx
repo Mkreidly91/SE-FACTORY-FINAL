@@ -41,7 +41,8 @@ export const ObjectViewer = ({
     <>
       {m && (
         <Canvas
-          className={`border border-black h-full bg-transparent rounded-md ${className}`}
+          className={`
+          border border-black h-full bg-transparent rounded-md ${className}`}
           frameloop="demand"
           camera={camera}
           dpr={window.devicePixelRatio}
@@ -55,7 +56,7 @@ export const ObjectViewer = ({
             castShadow
             visible={true}
           />
-          <OrbitControls makeDefault target={[0, 2, 0]} />
+          <OrbitControls enableZoom={false} makeDefault target={[0, 2, 0]} />
 
           <Suspense>
             {m.scene && (
