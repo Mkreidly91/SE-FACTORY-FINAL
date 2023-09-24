@@ -4,13 +4,14 @@ import {
   LoginFormSchemaType,
   SignupFormSchemaType,
 } from '../validation/user.validation';
-import { handleError } from './api.helpers';
-
+import { ApiError, handleError } from './api.helpers';
+// {status:number,error:Error | ApiError}
 const signup = async (formData: SignupFormSchemaType) => {
   try {
     const res = await axios.post(`${baseURL}auth/register`, formData);
+    console.log(res);
     if (res.status === 200) {
-      return res.data.data;
+      return { status: res.status };
     }
   } catch (error) {
     const errors = error as Error | AxiosError;

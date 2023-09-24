@@ -17,11 +17,11 @@ const SignupForm = ({ className }: { className?: string }) => {
   const navigate = useNavigate();
   const [err, setError] = useState<ApiError | null>(null);
   const onSubmit: SubmitHandler<SignupFormSchemaType> = async (data) => {
-    const { status, error } = await signup(data);
-    if (error) {
-      setError(error);
-    } else {
+    const res = (await signup(data)) as any;
+    if (res?.status === 200) {
       navigate('/login');
+    } else if (res?.error) {
+      setError(res.error);
     }
   };
 
@@ -128,9 +128,9 @@ const SignupForm = ({ className }: { className?: string }) => {
             Sign up
           </Button>
           <div className="text-sm ">
-            Have an account? Sign in{' '}
+            Have an account? Sign in
             <Link to="/signIn">
-              <a className="text-sky-700">here</a>
+              <a className="text-sky-700"> here</a>
             </Link>
           </div>
         </div>
@@ -140,4 +140,3 @@ const SignupForm = ({ className }: { className?: string }) => {
 };
 
 export default SignupForm;
-// disabled:bg-gradient-to-r disabled:from-gray-900 disabled:to-gray-500
