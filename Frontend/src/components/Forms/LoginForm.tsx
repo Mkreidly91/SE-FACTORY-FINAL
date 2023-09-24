@@ -1,8 +1,8 @@
-import { Button, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../api/auth.api';
 import {
   LoginFormSchemaType,
@@ -11,8 +11,9 @@ import {
 import { useState } from 'react';
 import { ApiError } from '../../api/api.helpers';
 import ApiErrorHandler from '../Common/ApiError';
+import { Button } from '@material-tailwind/react';
 
-const LoginForm = () => {
+const LoginForm = ({ className }: { className: string }) => {
   const navigate = useNavigate();
   const [err, setError] = useState<ApiError | null>(null);
   const onSubmit: SubmitHandler<LoginFormSchemaType> = async (data) => {
@@ -40,14 +41,13 @@ const LoginForm = () => {
   });
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex gap-4 w-full h-full justify-around  mt-20"
-    >
-      <div className="project-form-left w-[50%] flex flex-col gap-1 items-center ">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex justify-center">
+      <div
+        className={`project-form-left flex w-fit flex-col gap-1 items-center ${className}`}
+      >
         <ApiErrorHandler error={err} />
-        <div className="flex flex-col gap-3 w-full">
-          <label className="font-semibold">Email</label>
+        <div className="flex flex-col gap-1 w-full">
+          <label className="font-semibold text-gray-600 text-sm">Email</label>
           <TextField
             className="max-w-[600px]"
             required
@@ -58,8 +58,8 @@ const LoginForm = () => {
           />
         </div>
 
-        <div className="flex flex-col gap-3 w-full justify-center">
-          <label className="font-semibold">Password</label>
+        <div className="flex flex-col gap-1 w-full">
+          <label className="font-semibold text-gray-600 text-sm">Email</label>
           <TextField
             className="max-w-[600px]"
             InputLabelProps={{ className: '' }}
@@ -72,14 +72,24 @@ const LoginForm = () => {
           />
         </div>
 
-        <Button
-          color="inherit"
-          className="bg-red-200 text-red-200 font-extrabold self-start"
-          type="submit"
-          disabled={isSubmitting || !isValid}
-        >
-          Login
-        </Button>
+        <div className=" w-full project-form-buttons flex justify-between items-center gap-3">
+          <Button
+            ripple
+            type="submit"
+            disabled={isSubmitting || !isValid}
+            variant={`gradient`}
+            className="light-gradient p-4 font-sora font-normal uppercase tracking-wider px-10 cursor-pointer disabled  "
+            size="md"
+          >
+            Sign in
+          </Button>
+          <div className="text-sm ">
+            No account? Sign up
+            <Link to="/signUp">
+              <a className="text-sky-700"> here</a>
+            </Link>
+          </div>
+        </div>
       </div>
     </form>
   );

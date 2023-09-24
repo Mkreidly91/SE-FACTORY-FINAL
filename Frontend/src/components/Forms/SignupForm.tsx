@@ -44,13 +44,13 @@ const SignupForm = ({ className }: { className?: string }) => {
   });
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex justify-center">
       <div
         className={`project-form-left flex flex-col gap-1 items-center ${className}`}
       >
         <ApiErrorHandler error={err} />
-        <div className="flex flex-col gap-3 w-full justify-center">
-          <label className="font-semibold">Name</label>
+        <div className="flex flex-col gap-1 w-full justify-center">
+          <label className="font-semibold text-gray-600 text-sm">Name</label>
           <TextField
             className="max-w-[600px]"
             required
@@ -62,8 +62,8 @@ const SignupForm = ({ className }: { className?: string }) => {
           />
         </div>
 
-        <div className="flex flex-col gap-3 w-full">
-          <label className="font-semibold">Email</label>
+        <div className="flex flex-col gap-1 w-full">
+          <label className="font-semibold text-gray-600 text-sm">Email</label>
           <TextField
             className="max-w-[600px]"
             required
@@ -74,8 +74,10 @@ const SignupForm = ({ className }: { className?: string }) => {
           />
         </div>
 
-        <div className="flex flex-col gap-3 w-full justify-center">
-          <label className="font-semibold">Password</label>
+        <div className="flex flex-col gap-1 w-full justify-center">
+          <label className="font-semibold text-gray-600 text-sm">
+            Password
+          </label>
           <TextField
             className="max-w-[600px]"
             InputLabelProps={{ className: '' }}
@@ -88,8 +90,10 @@ const SignupForm = ({ className }: { className?: string }) => {
           />
         </div>
 
-        <div className="flex flex-col gap-3 w-full justify-center">
-          <label className="font-semibold">Confirm Password</label>
+        <div className="flex flex-col gap-1 w-full justify-center">
+          <label className="font-semibold text-gray-600 text-sm">
+            Confirm Password
+          </label>
           <TextField
             className="max-w-[600px]"
             required
@@ -122,7 +126,7 @@ const SignupForm = ({ className }: { className?: string }) => {
             disabled={isSubmitting || !isValid}
             variant={`gradient`}
             className="light-gradient p-4 font-sora font-normal uppercase tracking-wider px-10 cursor-pointer disabled  "
-            size="lg"
+            size="md"
           >
             Sign up
           </Button>
