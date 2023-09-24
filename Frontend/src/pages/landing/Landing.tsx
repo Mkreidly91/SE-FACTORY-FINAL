@@ -1,9 +1,9 @@
-import { FC } from 'react';
 import Navbar from '../../components/Navbar';
 import landingImg from '../../assets/images/landing-page/landingImage.jpeg';
 import './Landing.css';
 import Button from '../../components/Common/Button';
 import { Link } from 'react-router-dom';
+
 const Landing = () => {
   return (
     <div className={`landing h-full w-full flex flex-col`}>

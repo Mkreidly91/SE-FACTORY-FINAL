@@ -118,6 +118,7 @@ const SignupForm = ({ className }: { className?: string }) => {
 
         <div className=" w-full project-form-buttons flex justify-between items-center gap-3">
           <Button
+            ripple
             type="submit"
             disabled={isSubmitting || !isValid}
             variant={`gradient`}
