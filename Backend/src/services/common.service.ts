@@ -1,6 +1,8 @@
 import { text } from 'body-parser';
 import { Project } from '../models/project';
 import { ProjectSearchSchema } from '../validation/common.validation';
+import { HttpException } from '../exceptions/HttpException';
+
 const searchProjectService = async (
   q: ProjectSearchSchema,
   { page = 1, perPage = 1 }: { page: any; perPage: any }
@@ -58,4 +60,14 @@ const getAllProjectsService = async (page?: any, perPage?: any) => {
   return products;
 };
 
-export { searchProjectService, getAllProjectsService };
+const getProjectByIdService = async (projectId: string) => {
+  const project = await Project.findById(projectId)
+    .populate('owner')
+    .select('-password');
+  if (!project) {
+    throw new HttpException(400, 'Project not found');
+  }
+  return project;
+};
+
+export { searchProjectService, getAllProjectsService, getProjectByIdService };

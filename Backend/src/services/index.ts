@@ -1,6 +1,7 @@
+import { getProjectByIdService } from './common.service';
 import {
   getCompanyProjectsService,
-  getProjectByIdService,
+  getPanoramaByIdService,
   createProjectService,
   addApartmentService,
   addPanoramaService,
@@ -12,7 +13,6 @@ import {
   deleteHotspotService,
   deleteApartmentService,
   editProjectService,
-  getPanoramaByIdService,
   editHotspotService,
   editProfileService,
 } from './company.service';

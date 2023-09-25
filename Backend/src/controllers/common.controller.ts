@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import {
   getAllProjectsService,
+  getProjectByIdService,
   searchProjectService,
 } from '../services/common.service';
 import { escapeRegExp } from 'lodash';
@@ -41,4 +42,21 @@ const getAllProjects = async (
     next(error);
   }
 };
-export { searchProject, getAllProjects };
+
+const getProjectById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { projectId } = req.params;
+    const serviceRes = await getProjectByIdService(projectId);
+    return res.status(200).json({
+      message: 'Successfully fetched Projects',
+      data: serviceRes,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+export { searchProject, getAllProjects, getProjectById };

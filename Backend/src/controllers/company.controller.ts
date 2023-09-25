@@ -269,23 +269,6 @@ const getCompanyProjects = async (
   }
 };
 
-const getProjectById = async (
-  req: AuthRequest,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const { projectId } = req.params;
-    const serviceRes = await getProjectByIdService(projectId);
-    return res.status(200).json({
-      message: 'Successfully fetched Projects',
-      data: serviceRes,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
 const getPanoramaById = async (
   req: AuthRequest,
   res: Response,
@@ -386,7 +369,6 @@ export {
   deleteMarker,
   deleteHotspot,
   getCompanyProjects,
-  getProjectById,
   getPanoramaById,
   editProject,
   editHotspot,

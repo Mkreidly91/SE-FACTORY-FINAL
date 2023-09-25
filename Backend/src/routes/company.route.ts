@@ -33,7 +33,6 @@ import {
   editProfile,
   editProject,
   getPanoramaById,
-  getProjectById,
 } from '../controllers/company.controller';
 import { editUserSchema } from '../validation/user.validation';
 
@@ -111,12 +110,6 @@ export default (router: Router) => {
     '/company/getCompanyProjects',
     authMiddleware(Roles.Company),
     getCompanyProjects
-  );
-
-  router.get(
-    '/company/getProject/:projectId',
-    authMiddleware(Roles.Company),
-    getProjectById
   );
 
   router.get(

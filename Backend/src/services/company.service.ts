@@ -301,14 +301,6 @@ const getCompanyProjectsService = async (userId: string) => {
   return company;
 };
 
-const getProjectByIdService = async (projectId: string) => {
-  const project = await Project.findById(projectId).populate('owner');
-  if (!project) {
-    throw new HttpException(400, 'Project not found');
-  }
-  return project;
-};
-
 const getPanoramaByIdService = async (
   projectId: string,
   panoramaId: string
@@ -407,7 +399,6 @@ export {
   deleteApartmentService,
   editProfileService,
   getCompanyProjectsService,
-  getProjectByIdService,
   getPanoramaByIdService,
   editProjectService,
   editHotspotService,

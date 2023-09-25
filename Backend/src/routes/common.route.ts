@@ -8,6 +8,7 @@ import {
 import {
   searchProject,
   getAllProjects,
+  getProjectById,
 } from '../controllers/common.controller';
 
 export default (router: Router) => {
@@ -21,4 +22,5 @@ export default (router: Router) => {
     formValidationMiddleware(getAllProjectsSchema),
     getAllProjects
   );
+  router.get('/company/getProject/:projectId', getProjectById);
 };
