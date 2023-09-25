@@ -114,8 +114,11 @@ const ProjectForm = ({
       className="flex gap-4 w-full h-full justify-around  mt-20"
     >
       <div className="project-form-left w-[50%] flex flex-col gap-1 items-center ">
-        <div className="flex flex-col gap-3 w-full justify-center">
-          <label className="font-semibold">Project Name</label>
+        <div className="flex flex-col gap-1 w-full justify-center">
+          <label className="font-semibold text-gray-600 text-sm">
+            Project Name
+          </label>
+
           <TextField
             className="max-w-[600px]"
             InputLabelProps={{ className: '' }}
@@ -126,8 +129,10 @@ const ProjectForm = ({
           />
         </div>
 
-        <div className="flex flex-col gap-3 w-full">
-          <label className="font-semibold">Description</label>
+        <div className="flex flex-col gap-1 w-full justify-center">
+          <label className="font-semibold text-gray-600 text-sm">
+            Description
+          </label>
           <TextField
             className="max-w-[600px]"
             multiline
@@ -138,9 +143,10 @@ const ProjectForm = ({
             {...register('description')}
           />
         </div>
-
-        <div className="flex flex-col gap-3 w-full justify-center">
-          <label className="font-semibold">Location</label>
+        <div className="flex flex-col gap-1 w-full justify-center">
+          <label className="font-semibold text-gray-600 text-sm">
+            Location
+          </label>
           <TextField
             className="max-w-[600px]"
             InputLabelProps={{ className: '' }}
@@ -151,8 +157,8 @@ const ProjectForm = ({
           />
         </div>
 
-        <div className="flex flex-col gap-3 w-full justify-center">
-          <label className="font-semibold">Area</label>
+        <div className="flex flex-col gap-1 w-full justify-center">
+          <label className="font-semibold text-gray-600 text-sm">Area</label>
           <TextField
             className="max-w-[600px]"
             type="number"
@@ -164,8 +170,8 @@ const ProjectForm = ({
           />
         </div>
 
-        <div className="flex flex-col gap-3 w-full justify-center">
-          <label className="font-semibold">Price</label>
+        <div className="flex flex-col gap-1 w-full justify-center">
+          <label className="font-semibold text-gray-600 text-sm">Price</label>
           <TextField
             className="max-w-[600px]"
             type="number"
@@ -177,8 +183,8 @@ const ProjectForm = ({
           />
         </div>
 
-        <div className="flex flex-col gap-3 w-full justify-center">
-          <label className="font-semibold">Bedrooms</label>
+        <div className="flex flex-col gap-1 w-full justify-center">
+          <label className="font-semibold text-gray-600 text-sm">Name</label>
           <TextField
             className="max-w-[600px]"
             type="number"
@@ -190,8 +196,10 @@ const ProjectForm = ({
           />
         </div>
 
-        <div className="flex flex-col gap-3 w-full justify-center">
-          <label className="font-semibold">Bathrooms</label>
+        <div className="flex flex-col gap-1 w-full justify-center">
+          <label className="font-semibold text-gray-600 text-sm">
+            Bathrooms
+          </label>
           <TextField
             className="max-w-[600px]"
             type="number"

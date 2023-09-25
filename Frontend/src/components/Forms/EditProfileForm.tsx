@@ -71,8 +71,10 @@ const EditProfileForm = ({
       className="flex gap-4 w-full h-full justify-around  mt-20"
     >
       <div className="project-form-left w-[50%] flex flex-col gap-1 items-center ">
-        <div className="flex flex-col gap-3 w-full justify-center">
-          <label className="font-semibold">Company Name</label>
+        <div className="flex flex-col gap-1 w-full justify-center">
+          <label className="font-semibold text-gray-600 text-sm">
+            Company Name
+          </label>
           <TextField
             className="max-w-[600px]"
             InputLabelProps={{ className: '' }}
@@ -83,8 +85,8 @@ const EditProfileForm = ({
           />
         </div>
 
-        <div className="flex flex-col gap-3 w-full justify-center">
-          <label className="font-semibold">Email</label>
+        <div className="flex flex-col gap-1 w-full justify-center">
+          <label className="font-semibold text-gray-600 text-sm">Email</label>
           <TextField
             className="max-w-[600px]"
             InputLabelProps={{ className: '' }}
@@ -95,8 +97,8 @@ const EditProfileForm = ({
           />
         </div>
 
-        <div className="flex flex-col gap-3 w-full justify-center">
-          <label className="font-semibold">Tel</label>
+        <div className="flex flex-col gap-1 w-full justify-center">
+          <label className="font-semibold text-gray-600 text-sm">Tel</label>
           <TextField
             className="max-w-[600px]"
             type="tel"
