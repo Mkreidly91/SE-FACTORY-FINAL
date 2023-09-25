@@ -84,7 +84,7 @@ const CustomerPage = () => {
           </span>
         </div>
       </div>
-      {/* Search sec */}
+
       <Container
         className=" w-full  mb-16 mt-16
         "
@@ -95,7 +95,9 @@ const CustomerPage = () => {
       </Container>
       <Container>
         {loading ? (
-          <CircularProgress />
+          <div className="flex justify-center">
+            <CircularProgress className="self-center w-fit mx-auto " />
+          </div>
         ) : (
           <>
             <Grid container columnGap={5} rowGap={3}>
