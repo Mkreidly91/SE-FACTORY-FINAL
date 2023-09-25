@@ -18,6 +18,7 @@ import FeatureBox from '../Common/FeatureBox';
 import FileUploadForm from '../Common/FileUploadForm';
 import { useNavigate } from 'react-router-dom';
 import { filterChangedFormFields } from '../../helpers/helpers';
+import UploadButton from '../Common/UploadButton';
 
 const ProjectForm = ({
   initialValues,
@@ -156,59 +157,64 @@ const ProjectForm = ({
             {...register('location')}
           />
         </div>
+        <div className="flex w-full gap-5">
+          <div className="flex flex-col gap-1 w-full justify-center">
+            <label className="font-semibold text-gray-600 text-sm">Area</label>
+            <TextField
+              className="max-w-[600px]"
+              type="number"
+              InputLabelProps={{ className: '' }}
+              onFocus={() => clearErrors('size')}
+              error={Boolean(errors.size)}
+              helperText={errors?.size?.message || ' '}
+              {...register('size', { valueAsNumber: true })}
+            />
+          </div>
 
-        <div className="flex flex-col gap-1 w-full justify-center">
-          <label className="font-semibold text-gray-600 text-sm">Area</label>
-          <TextField
-            className="max-w-[600px]"
-            type="number"
-            InputLabelProps={{ className: '' }}
-            onFocus={() => clearErrors('size')}
-            error={Boolean(errors.size)}
-            helperText={errors?.size?.message || ' '}
-            {...register('size', { valueAsNumber: true })}
-          />
+          <div className="flex flex-col gap-1 w-full justify-center">
+            <label className="font-semibold text-gray-600 text-sm">Price</label>
+            <TextField
+              className="max-w-[600px]"
+              type="number"
+              InputLabelProps={{ className: '' }}
+              onFocus={() => clearErrors('price')}
+              error={Boolean(errors.price)}
+              helperText={errors?.price?.message || ' '}
+              {...register('price', { valueAsNumber: true })}
+            />
+          </div>
         </div>
 
-        <div className="flex flex-col gap-1 w-full justify-center">
-          <label className="font-semibold text-gray-600 text-sm">Price</label>
-          <TextField
-            className="max-w-[600px]"
-            type="number"
-            InputLabelProps={{ className: '' }}
-            onFocus={() => clearErrors('price')}
-            error={Boolean(errors.price)}
-            helperText={errors?.price?.message || ' '}
-            {...register('price', { valueAsNumber: true })}
-          />
-        </div>
+        <div className="flex w-full gap-5">
+          <div className="flex flex-col gap-1 w-full justify-center">
+            <label className="font-semibold text-gray-600 text-sm">
+              Bedrooms
+            </label>
+            <TextField
+              className="max-w-[600px]"
+              type="number"
+              InputLabelProps={{ className: '' }}
+              onFocus={() => clearErrors('size')}
+              error={Boolean(errors.bedrooms)}
+              helperText={errors?.bedrooms?.message || ' '}
+              {...register('bedrooms', { valueAsNumber: true })}
+            />
+          </div>
 
-        <div className="flex flex-col gap-1 w-full justify-center">
-          <label className="font-semibold text-gray-600 text-sm">Name</label>
-          <TextField
-            className="max-w-[600px]"
-            type="number"
-            InputLabelProps={{ className: '' }}
-            onFocus={() => clearErrors('size')}
-            error={Boolean(errors.bedrooms)}
-            helperText={errors?.bedrooms?.message || ' '}
-            {...register('bedrooms', { valueAsNumber: true })}
-          />
-        </div>
-
-        <div className="flex flex-col gap-1 w-full justify-center">
-          <label className="font-semibold text-gray-600 text-sm">
-            Bathrooms
-          </label>
-          <TextField
-            className="max-w-[600px]"
-            type="number"
-            InputLabelProps={{ className: '' }}
-            onFocus={() => clearErrors('bathrooms')}
-            error={Boolean(errors.bathrooms)}
-            helperText={errors?.bathrooms?.message || ' '}
-            {...register('bathrooms', { valueAsNumber: true })}
-          />
+          <div className="flex flex-col  gap-1 w-full justify-center">
+            <label className="font-semibold text-gray-600 text-sm">
+              Bathrooms
+            </label>
+            <TextField
+              className="max-w-[600px]"
+              type="number"
+              InputLabelProps={{ className: '' }}
+              onFocus={() => clearErrors('bathrooms')}
+              error={Boolean(errors.bathrooms)}
+              helperText={errors?.bathrooms?.message || ' '}
+              {...register('bathrooms', { valueAsNumber: true })}
+            />
+          </div>
         </div>
 
         <Controller
@@ -220,7 +226,7 @@ const ProjectForm = ({
         />
       </div>
 
-      <div className="project-form-right w-[300px] grow flex flex-col gap-3">
+      <div className="project-form-right w-[300px]  flex flex-col gap-3">
         <div className="image-preview flex items-center justify-center w-[300px] h-[300px] bg-gray-200 text-[200px] rounded-md ">
           {preview ? (
             <img
@@ -233,7 +239,7 @@ const ProjectForm = ({
           )}
         </div>
 
-        <label
+        {/* <label
           className={`file-input flex justify-center items-center bg-transparent border border-black  border-dashed cursor-pointer p-20 rounded-md ${
             errors?.file?.message ? 'border-red-700' : ' '
           }`}
@@ -267,8 +273,26 @@ const ProjectForm = ({
               register('file').onChange(e);
             }}
           />
-        </label>
+        </label> */}
+        <UploadButton
+          accept="image/png, image/jpeg"
+          text="Upload"
+          className="w-fit py-2 px-5 self-center"
+          onChange={async (e) => {
+            const file = new FileReader();
+            file.onload = () => {
+              setPreview(file.result);
+            };
 
+            const firstFile = e?.target?.files?.[0];
+            if (firstFile) {
+              file.readAsDataURL(firstFile || '');
+            } else {
+              setPreview('');
+            }
+            register('file').onChange(e);
+          }}
+        />
         <div className="error text-sm text-red-600">
           {errors?.file?.message?.toString() || ' '}
         </div>

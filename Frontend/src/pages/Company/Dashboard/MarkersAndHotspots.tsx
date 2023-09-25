@@ -71,7 +71,7 @@ const MarkersAndHotspots = ({ initialState }) => {
                   />
                 </div>
 
-                <ObjectViewer url={initialState.url} />
+                <ObjectViewer url={model} />
               </div>
             )}
           </div>
