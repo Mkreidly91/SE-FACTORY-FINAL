@@ -18,14 +18,7 @@ const FeatureBox = ({ features = [], setFeatures }: FeatureBoxProps) => {
     const newState = features.filter((e: any) => e !== t);
     setFeatures(newState);
   }
-  // function onDelete(t: string) {
-  //   const newState = features.filter((e: any) => e !== t);
-  //   setFeatures(newState);
-  // }
-  // function onAdd() {
-  //   setFeatures((prev: any) => [...prev, text]);
-  //   setText('');
-  // }
+
   function onAdd() {
     setFeatures([...features, text]);
     setText('');
@@ -36,8 +29,8 @@ const FeatureBox = ({ features = [], setFeatures }: FeatureBoxProps) => {
   }
   return (
     <>
-      <div className=" self-start flex flex-col gap-3">
-        <label className="font-semibold">Features</label>
+      <div className=" self-start flex flex-col gap-1">
+        <label className="font-semibold text-gray-600 text-sm">Features</label>
         <div className="flex gap-2 items-center">
           <TextField
             className="max-w-[600px]"
@@ -48,7 +41,7 @@ const FeatureBox = ({ features = [], setFeatures }: FeatureBoxProps) => {
             <AddCircleRounded />
           </Button>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mt-2">
           {features &&
             features.map((t: string) => {
               return <Tag key={t} text={t} onClick={() => onDelete(t)} />;
