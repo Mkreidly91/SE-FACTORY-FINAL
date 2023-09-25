@@ -8,7 +8,7 @@ const Navbar = ({
   variant,
 }: {
   className?: string;
-  variant: string;
+  variant?: string;
 }) => {
   return (
     <div
