@@ -1,8 +1,5 @@
 import React from 'react';
 import { Button, Spinner, ButtonProps } from '@material-tailwind/react';
-import { CircularProgress } from '@mui/material';
-
-// import { SubmitHandler, UseFormMethods } from 'react-hook-form';
 
 interface SubmitButtonProps {
   conditions: {
@@ -13,14 +10,12 @@ interface SubmitButtonProps {
   spinnerStyles?: string;
   buttonText: string;
   size?: string;
-  //   ButtonProps: ButtonProps;
 }
 
 const SubmitButton: React.FC<SubmitButtonProps> = ({
   conditions,
   spinnerStyles,
   buttonText,
-  //   buttonProps,
   size = 'md',
 }) => {
   const { isSubmitting, isValid } = conditions;

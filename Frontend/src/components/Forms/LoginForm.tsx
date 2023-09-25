@@ -11,7 +11,8 @@ import {
 import { useState } from 'react';
 import { ApiError } from '../../api/api.helpers';
 import ApiErrorHandler from '../Common/ApiError';
-import { Button } from '@material-tailwind/react';
+import { Button, Spinner } from '@material-tailwind/react';
+import SubmitButton from '../Common/SubmitButton';
 
 const LoginForm = ({ className }: { className: string }) => {
   const navigate = useNavigate();
@@ -73,16 +74,10 @@ const LoginForm = ({ className }: { className: string }) => {
         </div>
 
         <div className=" w-full project-form-buttons flex justify-between items-center gap-3">
-          <Button
-            ripple
-            type="submit"
-            disabled={isSubmitting || !isValid}
-            variant={`gradient`}
-            className="light-gradient p-4 font-sora font-normal uppercase tracking-wider px-10 cursor-pointer disabled  "
-            size="md"
-          >
-            Sign in
-          </Button>
+          <SubmitButton
+            conditions={{ isSubmitting, isValid }}
+            buttonText="Sign in"
+          />
           <div className="text-sm ">
             No account? Sign up
             <Link to="/signUp">

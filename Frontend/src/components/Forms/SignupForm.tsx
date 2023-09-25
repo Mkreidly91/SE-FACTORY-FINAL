@@ -12,6 +12,7 @@ import {
 import { useState } from 'react';
 import { ApiError } from '../../api/api.helpers';
 import ApiErrorHandler from '../Common/ApiError';
+import SubmitButton from '../Common/SubmitButton';
 
 const SignupForm = ({ className }: { className?: string }) => {
   const navigate = useNavigate();
@@ -120,16 +121,10 @@ const SignupForm = ({ className }: { className?: string }) => {
         </div> */}
 
         <div className=" w-full project-form-buttons flex justify-between items-center gap-3">
-          <Button
-            ripple
-            type="submit"
-            disabled={isSubmitting || !isValid}
-            variant={`gradient`}
-            className="light-gradient p-4 font-sora font-normal uppercase tracking-wider px-10 cursor-pointer disabled  "
-            size="md"
-          >
-            Sign up
-          </Button>
+          <SubmitButton
+            conditions={{ isSubmitting, isValid }}
+            buttonText="Sign up"
+          />
           <div className="text-sm ">
             Have an account? Sign in
             <Link to="/login">
