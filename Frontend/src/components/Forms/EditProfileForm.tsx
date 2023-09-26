@@ -18,6 +18,7 @@ import { useNavigate } from 'react-router-dom';
 import { filterChangedFormFields } from '../../helpers/helpers';
 import { editUserSchema, UserSchema } from '../../validation/user.validation';
 import { editCompanyProfile } from '../../api/user.api';
+import UploadButton from '../Common/UploadButton';
 
 const EditProfileForm = ({
   initialValues,
@@ -109,9 +110,18 @@ const EditProfileForm = ({
             {...register('tel')}
           />
         </div>
+
+        <Button
+          color="inherit"
+          className="self-start font-extrabold"
+          type="submit"
+          disabled={!isDirty || isSubmitting}
+        >
+          Save
+        </Button>
       </div>
 
-      <div className="project-form-right w-[300px] grow flex flex-col gap-3">
+      <div className="project-form-right flex flex-col gap-3">
         <div className="image-preview flex items-center justify-center w-[300px] h-[300px] bg-gray-200 text-[200px] rounded-md ">
           {preview ? (
             <img
@@ -124,71 +134,27 @@ const EditProfileForm = ({
           )}
         </div>
 
-        <label
-          className={`file-input flex justify-center items-center bg-transparent border border-black  border-dashed cursor-pointer p-20 rounded-md ${
-            errors?.file?.message ? 'border-red-700' : ' '
-          }`}
-        >
-          <div className="flex flex-col gap-2 items-center justify-center">
-            <Photo color="primary" style={{ fontSize: '100px' }} />
-            <span className="text-gray-500">
-              Drop your image here, or browse
-            </span>
-            <span className="text-gray-500">Only jpeg, png are allowed</span>
-          </div>
+        <UploadButton
+          accept="image/png, image/jpeg"
+          text="Upload"
+          className="w-fit py-2 px-5 self-center"
+          onChange={async (e) => {
+            const file = new FileReader();
+            file.onload = () => {
+              setPreview(file.result);
+            };
 
-          <input
-            hidden
-            className="w-full h-full "
-            accept="image/png, image/jpeg"
-            type="file"
-            {...register('file')}
-            onChange={async (e) => {
-              const file = new FileReader();
-              file.onload = () => {
-                setPreview(file.result);
-              };
-
-              const firstFile = e?.target?.files?.[0];
-              if (firstFile) {
-                file.readAsDataURL(firstFile || '');
-              } else {
-                setPreview('');
-              }
-              register('file').onChange(e);
-            }}
-          />
-        </label>
-
+            const firstFile = e?.target?.files?.[0];
+            if (firstFile) {
+              file.readAsDataURL(firstFile || '');
+            } else {
+              setPreview('');
+            }
+            register('file').onChange(e);
+          }}
+        />
         <div className="error text-sm text-red-600">
           {errors?.file?.message?.toString() || ' '}
-        </div>
-
-        <div className="project-form-buttons flex justify-center gap-3s">
-          <Button
-            color="inherit"
-            className="bg-red-200 text-red-200 font-extrabold"
-            type="submit"
-            disabled={!isDirty || isSubmitting}
-          >
-            Save
-          </Button>
-          {/* 
-          {id && (
-            <Button
-              color="inherit"
-              className="bg-red-200 text-red-200 font-extrabold"
-              style={{ color: 'red' }}
-              type="button"
-              onClick={async () => {
-                const status = await deleteProject(initialValues?._id);
-
-                if (status === 200) navigate('/dashboard/projects');
-              }}
-            >
-              Delete Project
-            </Button>
-          )} */}
         </div>
       </div>
     </form>
