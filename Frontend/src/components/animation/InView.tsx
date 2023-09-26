@@ -15,7 +15,7 @@ function InView({
   className?: string;
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const isInView = useInView(ref, { once: true, amount: 'some' });
 
   return (
     <div
