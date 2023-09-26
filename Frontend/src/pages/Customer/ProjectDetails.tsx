@@ -119,9 +119,12 @@ const ProjectDetails = () => {
               )}
             </div>
             <Suspense>
-              <motion.div className="grow min-w-[300px] w-[300px]">
+              <motion.div className="grow min-w-[300px] w-[300px] relative">
                 {url && <ObjectViewer className="border-0" url={url} />}
               </motion.div>
+              <span className="text-white italic text-xs top-full">
+                Drag to rotate
+              </span>
             </Suspense>
           </div>
 
