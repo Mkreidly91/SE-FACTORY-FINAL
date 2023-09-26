@@ -6,40 +6,35 @@ import View360, {
 } from '@egjs/react-view360';
 import '@egjs/react-view360/css/view360.min.css';
 import Arrows from '../../components/Hotpots/Arrows/Arrows';
-import Button from '../../components/Common/Button';
 import AdjustIcon from '@mui/icons-material/Adjust';
 import '@egjs/react-view360/css/view360.min.css';
 import '@egjs/view360/css/loading-spinner.min.css';
 import bedroom from './bedroom.jpeg';
 import spa from './spa.jpg';
+import salon from './panorama.jpg';
 
-const V360 = ({ image, className }) => {
-  const [position, setPosition] = useState({
-    yaw: 110,
-    pitch: -30,
-  });
+const V360 = ({ className }: { className: string }) => {
+  const panoramas = [
+    {
+      image: salon,
+      hotspots: [
+        { text: 'Spa', yaw: '357', pitch: '1.9', link: 2 },
+        { text: 'Bedroom', yaw: '22', pitch: '5.5', link: 1 },
+      ],
+    },
 
-  // const panoramas = [
-  //   {
-  //     image: salon,
-  //     hotspots: [{ text, yaw, pitch,link:0  }],
-  //   },
+    {
+      image: bedroom,
+      hotspots: [{ text: 'Salon', yaw: '100.46', pitch: '-3.35', link: 0 }],
+    },
 
-  //   {
-  //     image: bedroom,
-  //     hotspots: [{ text, yaw, pitch,link:0 }],
-  //   },
+    {
+      image: spa,
+      hotspots: [{ text: 'Salon', yaw: 180, pitch: -7, link: 0 }],
+    },
+  ];
 
-  //   {
-  //     image: spa,
-  //     hotspots: [{ text, yaw, pitch,link:0  }],
-  //   },
-  // ];
-  const [sofaInfo, setSofaInfo] = useState(false);
-  const [hotspots, setHotspot] = useState([]) as any;
-  const [state, setState] = useState([]) as any;
-  const [p, setP] = useState(bedroom);
-  const imgUrl = new URL('./bedroom.jpeg', import.meta.url).href;
+  const [p, setP] = useState(0);
 
   const plugin = useMemo(() => {
     return new ControlBar({ fullscreenButton: true });
@@ -51,95 +46,50 @@ const V360 = ({ image, className }) => {
   const projection = useMemo(
     () =>
       new EquirectProjection({
-        src: p,
+        src: panoramas[p].image,
       }),
     [p]
   );
 
   const viewRef = useRef();
-  // Refresh Hotspots for hotspot changes
+
   useEffect(() => {
     if (viewRef.current) {
       viewRef.current?.hotspot?.refresh();
       viewRef.current?.hotspot?.render(viewRef.current?.camera);
+      console.log(viewRef.current.camera.yaw, viewRef.current.camera.pitch);
     }
-  }, [hotspots]);
+  }, [p, viewRef?.current, viewRef?.current?.camera?.yaw]);
 
   return (
-    imgUrl && (
-      <View360
-        plugins={[plugin, spinner]}
-        ref={viewRef}
-        className={`is-16by9 ${className} `}
-        projection={projection}
-        hotspot={{
-          zoom: true,
-        }}
-      >
-        <div className="absolute w-fit h-fit flex items-center justify-center  top-1/2 left-1/2  translate-x-[-50%] translate-y-[-50%]">
-          <AdjustIcon />
-        </div>
+    <View360
+      plugins={[plugin, spinner]}
+      ref={viewRef}
+      className={`is-16by9 ${className} focus:outline-none`}
+      projection={projection}
+      hotspot={{
+        zoom: true,
+      }}
+    >
+      <div className="absolute w-fit h-fit flex items-center justify-center  top-1/2 left-1/2  translate-x-[-50%] translate-y-[-50%]">
+        <AdjustIcon />
+      </div>
 
-        <Button
-          text="set Marker"
-          className="absolute top-1 left-1 bg-white"
-          onClick={() => {
-            setHotspot((prev: any) => [
-              <Arrows
-                yaw={viewRef.current?.camera?.yaw}
-                pitch={viewRef.current?.camera?.pitch}
-              />,
-              ...prev,
-            ]);
-          }}
-        />
-
-        <div className="view360-hotspots">
-          <Arrows
-            yaw={'0'}
-            pitch={'0'}
-            onClick={() => {
-              setP(new URL('./panorama.jpg', import.meta.url).href);
-            }}
-          />
-
-          <Arrows
-            yaw={'20'}
-            pitch={'0'}
-            onClick={() => {
-              setP(new URL('./bedroom.jpeg', import.meta.url).href);
-            }}
-            scale={2}
-          />
-
-          <Arrows
-            yaw={'20'}
-            pitch={'0'}
-            onClick={() => {
-              setP(new URL('./bedroom.jpeg', import.meta.url).href);
-            }}
-            scale={2}
-          />
-
-          {hotspots}
-          {/* <div
-            className="view360-hotspot text-red-400 "
-            data-yaw={position.yaw}
-            data-pitch={position.pitch}
-          >
-            <span
-              onClick={() => setSofaInfo((prev) => !prev)}
-              className="p-5 bg-black rounded-full"
-            >
-              Ikea sofa
-            </span>
-            {sofaInfo && (
-              <span className="p-5 bg-white">price: $500 color: Beige</span>
-            )}
-          </div> */}
-        </div>
-      </View360>
-    )
+      <div className="view360-hotspots">
+        {panoramas[p].hotspots &&
+          panoramas[p].hotspots.map((e: any) => (
+            <Arrows
+              key={e.yaw}
+              yaw={e.yaw}
+              pitch={e.pitch}
+              info={e.text}
+              onClick={() => {
+                setP(e.link);
+              }}
+            />
+          ))}
+      </div>
+    </View360>
   );
 };
 
