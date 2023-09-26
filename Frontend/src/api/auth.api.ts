@@ -1,11 +1,11 @@
-const baseURL = 'http://localhost:80/';
 import axios, { AxiosError } from 'axios';
 import {
   LoginFormSchemaType,
   SignupFormSchemaType,
 } from '../validation/user.validation';
-import { ApiError, handleError } from './api.helpers';
-// {status:number,error:Error | ApiError}
+import { handleError } from './api.helpers';
+
+const baseURL = import.meta.env.VITE_URL;
 const signup = async (formData: SignupFormSchemaType) => {
   try {
     const res = await axios.post(`${baseURL}auth/register`, formData);

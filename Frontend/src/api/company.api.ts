@@ -1,8 +1,8 @@
-const baseURL = 'http://localhost:80/';
 import axios, { AxiosError } from 'axios';
 import { ProjectFormSchemaType } from '../validation/company.validation';
 import { handleError, headers } from './api.helpers';
 
+const baseURL = import.meta.env.VITE_URL;
 const getProjects = async () => {
   try {
     const res = await axios.get(

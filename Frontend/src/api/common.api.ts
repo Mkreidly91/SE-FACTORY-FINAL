@@ -1,8 +1,8 @@
-const baseURL = 'http://localhost:80/';
 import axios, { AxiosError } from 'axios';
 import { handleError } from './api.helpers';
 import { ProjectSearchFormSchemaType } from '../validation/project.validation';
 
+const baseURL = import.meta.env.VITE_URL;
 const searchProject = async (
   page = 1,
   perPage = 10,
