@@ -19,6 +19,8 @@ import FileUploadForm from '../Common/FileUploadForm';
 import { useNavigate } from 'react-router-dom';
 import { filterChangedFormFields } from '../../helpers/helpers';
 import UploadButton from '../Common/UploadButton';
+import SubmitButton from '../Common/SubmitButton';
+import { Button as MuiButton } from '@material-tailwind/react';
 
 const ProjectForm = ({
   initialValues,
@@ -112,7 +114,7 @@ const ProjectForm = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex gap-4 w-full h-full justify-around  mt-20"
+      className="flex gap-4 w-full h-full justify-around  mt-20 pb-20"
     >
       <div className="project-form-left w-[50%] flex flex-col gap-1 items-center ">
         <div className="flex flex-col gap-1 w-full justify-center">
@@ -224,82 +226,11 @@ const ProjectForm = ({
             <FeatureBox features={value} setFeatures={onChange} />
           )}
         />
-      </div>
 
-      <div className="project-form-right w-[300px]  flex flex-col gap-3">
-        <div className="image-preview flex items-center justify-center w-[300px] h-[300px] bg-gray-200 text-[200px] rounded-md ">
-          {preview ? (
-            <img
-              src={preview}
-              className="w-full h-full object-cover rounded-md"
-              alt=""
-            />
-          ) : (
-            <NoPhoto style={{ fontSize: '150px' }} />
-          )}
-        </div>
-
-        {/* <label
-          className={`file-input flex justify-center items-center bg-transparent border border-black  border-dashed cursor-pointer p-20 rounded-md ${
-            errors?.file?.message ? 'border-red-700' : ' '
-          }`}
-        >
-          <div className="flex flex-col gap-2 items-center justify-center">
-            <Photo color="primary" style={{ fontSize: '100px' }} />
-            <span className="text-gray-500">
-              Drop your image here, or browse
-            </span>
-            <span className="text-gray-500">Only jpeg, png are allowed</span>
-          </div>
-
-          <input
-            hidden
-            className="w-full h-full "
-            accept="image/png, image/jpeg"
-            type="file"
-            {...register('file')}
-            onChange={async (e) => {
-              const file = new FileReader();
-              file.onload = () => {
-                setPreview(file.result);
-              };
-
-              const firstFile = e?.target?.files?.[0];
-              if (firstFile) {
-                file.readAsDataURL(firstFile || '');
-              } else {
-                setPreview('');
-              }
-              register('file').onChange(e);
-            }}
-          />
-        </label> */}
-        <UploadButton
-          accept="image/png, image/jpeg"
-          text="Upload"
-          className="w-fit py-2 px-5 self-center"
-          onChange={async (e) => {
-            const file = new FileReader();
-            file.onload = () => {
-              setPreview(file.result);
-            };
-
-            const firstFile = e?.target?.files?.[0];
-            if (firstFile) {
-              file.readAsDataURL(firstFile || '');
-            } else {
-              setPreview('');
-            }
-            register('file').onChange(e);
-          }}
-        />
-        <div className="error text-sm text-red-600">
-          {errors?.file?.message?.toString() || ' '}
-        </div>
-
-        <div className="project-form-buttons flex justify-center gap-3s">
+        <div className="project-form-buttons flex justify-center gap-3 pt-10">
           <Button
             color="inherit"
+            variant="contained"
             className="bg-red-200 text-red-200 font-extrabold"
             type="submit"
             disabled={id ? !isDirty || isSubmitting : isSubmitting || !isValid}
@@ -321,6 +252,43 @@ const ProjectForm = ({
               Delete Project
             </Button>
           )}
+        </div>
+      </div>
+
+      <div className="project-form-right w-[300px]  flex flex-col gap-3">
+        <div className="image-preview flex items-center justify-center w-[300px] h-[300px] bg-gray-200 text-[200px] rounded-md ">
+          {preview ? (
+            <img
+              src={preview}
+              className="w-full h-full object-cover rounded-md"
+              alt=""
+            />
+          ) : (
+            <NoPhoto style={{ fontSize: '150px' }} />
+          )}
+        </div>
+
+        <UploadButton
+          accept="image/png, image/jpeg"
+          text="Upload"
+          className="w-fit py-2 px-5 self-center cursor-pointer "
+          onChange={async (e) => {
+            const file = new FileReader();
+            file.onload = () => {
+              setPreview(file.result);
+            };
+
+            const firstFile = e?.target?.files?.[0];
+            if (firstFile) {
+              file.readAsDataURL(firstFile || '');
+            } else {
+              setPreview('');
+            }
+            register('file').onChange(e);
+          }}
+        />
+        <div className="error text-sm text-red-600">
+          {errors?.file?.message?.toString() || ' '}
         </div>
       </div>
     </form>

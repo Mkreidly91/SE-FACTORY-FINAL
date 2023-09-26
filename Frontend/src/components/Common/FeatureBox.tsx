@@ -29,11 +29,11 @@ const FeatureBox = ({ features = [], setFeatures }: FeatureBoxProps) => {
   }
   return (
     <>
-      <div className=" self-start flex flex-col gap-1">
-        <label className="font-semibold text-gray-600 text-sm">Features</label>
+      <div className=" self-start flex flex-col gap-1 w-full">
+        <label className=" font-semibold text-gray-600 text-sm">Features</label>
         <div className="flex gap-2 items-center">
           <TextField
-            className="max-w-[600px]"
+            className="w-full grow"
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
