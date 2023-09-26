@@ -1,9 +1,6 @@
 import Navbar from '../../components/Navbar';
 import InView from '../../components/animation/InView';
-import ObjectViewer from '../sample3d/ObjectViewer';
-import V360 from '../sample3d/V360';
 import { NewObjectViewer } from '../sample3d/NewObjectViewer';
-import * as THREE from 'three';
 import { Suspense } from 'react';
 
 import villa1 from '../../assets/images/get-started/villa1.png';
@@ -53,17 +50,20 @@ const GetStarted = () => {
               is designed to put your projects in the spotlight.
             </span>
           </div>
-          <div className="flex justify-center items-center space-x-2 w-1/2 grow md:gap-2 md:space-x-0 md:mt-5">
-            <img
-              src={villa1}
-              className="grow w-1/2 max-w-[350px] max-h-full object-cover rounded-md -translate-y-4"
-              alt=""
-            />
-            <img
-              src={villa2}
+          <div className="flex justify-center items-center space-x-2 w-1/2 grow md:gap-2 md:space-x-0 md:mt-5 ">
+            <InView
+              className="grow w-1/2 max-w-[350px] max-h-full object-cover rounded-md"
+              transform="translateX(-50px)"
+            >
+              <img src={villa1} className=" -translate-y-4" alt="" />
+            </InView>
+
+            <InView
+              transform="translateY(-50px)"
               className=" w-1/2 max-w-[150px] object-cover mt-5 rounded-md"
-              alt=""
-            />
+            >
+              <img src={villa2} alt="" />
+            </InView>
           </div>
         </div>
       </section>
@@ -71,16 +71,18 @@ const GetStarted = () => {
       <section className="py-10  page-h bg-gradient-to-r from-neutral-800 to-neutral-950 ">
         <div className="flex flex-col md:flex-row items-center justify-center  w-11/12 md:w-full mx-auto text-center font-sora md:text-lg text-base font-light tracking-wide text-white">
           <div className="flex justify-center items-center space-x-2 w-1/2 grow md:gap-2 md:space-x-0 md:mt-5">
-            <img
-              src={villa3}
-              className="grow w-1/2 max-w-[350px] max-h-full object-cover rounded-md -translate-y-4"
-              alt=""
-            />
-            <img
-              src={villa4}
+            <InView
+              className="grow w-1/2 max-w-[350px] max-h-full object-cover rounded-md"
+              transform="translateX(-50px)"
+            >
+              <img src={villa3} className=" -translate-y-4" alt="" />
+            </InView>
+            <InView
+              transform="translateY(-50px)"
               className=" w-1/2 max-w-[150px] object-cover mt-5 rounded-md"
-              alt=""
-            />
+            >
+              <img src={villa4} alt="" />
+            </InView>
           </div>
           <div className="exposure flex flex-col items-center gap-5 md:w-1/2 w-full text-center md:text-left">
             <span className="font-semibold w-8/12 text-xl md:text-3xl ">
@@ -110,16 +112,18 @@ const GetStarted = () => {
             </span>
           </div>
           <div className="flex justify-center items-center space-x-2 w-1/2 grow md:gap-2 md:space-x-0 md:mt-5">
-            <img
-              src={villa5}
-              className="grow w-1/2 max-w-[350px] max-h-full object-cover rounded-md -translate-y-4"
-              alt=""
-            />
-            <img
-              src={villa6}
+            <InView
+              className="grow w-1/2 max-w-[350px] max-h-full object-cover rounded-md"
+              transform="translateX(-50px)"
+            >
+              <img src={villa5} className="-translate-y-4" alt="" />
+            </InView>
+            <InView
+              transform="translateY(-50px)"
               className=" w-1/2 max-w-[150px] object-cover mt-5 rounded-md"
-              alt=""
-            />
+            >
+              <img src={villa6} alt="" />
+            </InView>
           </div>
         </div>
       </section>
@@ -129,13 +133,13 @@ const GetStarted = () => {
             Want to learn more?
           </span>
 
-          <Link to="/Login">
+          <Link to="/signup">
             <Button
               variant="gradient"
               className="bg-gradient-to-r from-slate-700 to-slate-500 p-4 font-sora font-normal uppercase tracking-wider px-10"
               size="lg"
             >
-              Get Started
+              Sign Up
             </Button>
           </Link>
         </div>
