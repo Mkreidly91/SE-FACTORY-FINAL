@@ -139,14 +139,14 @@ function DashBoard({ children }: { children?: any }) {
       </Drawer>
 
       <div className="w-full overflow-y-auto  b-grey-light">
-        <div className="dashboard-header h-[18%] max-h-[200px] relative">
+        {/* <div className="dashboard-header h-[18%] max-h-[200px] relative">
           <img
             src={companyLogo}
             alt=""
             className="absolute left-[10%] top-[60%] w-[150px] h-[150px]"
           />
           <img src={Banner} className="w-full h-full object-cover" />
-        </div>
+        </div> */}
         <DashboardRoutes />
       </div>
     </div>

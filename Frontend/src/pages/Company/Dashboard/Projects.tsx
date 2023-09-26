@@ -28,9 +28,11 @@ const Projects = () => {
     <div className="projects-page-container flex flex-col gap-10  w-full h-full monster mt-20 px-10  py-16 ">
       <ApiErrorHandler error={err} />
       <div className="projecs-page-header flex justify-between">
-        <span className=" text-3xl font-light">Projects</span>
+        <span className=" text-2xl font-sora  uppercase font-bold">
+          Projects
+        </span>
         <Link to={'addProject'}>
-          <div className="flex items-center gap-2 py-[10px] px-[30px] border border-[#2499E3] rounded-lg">
+          <div className="flex items-center gap-2 py-[10px] px-[20px] border border-[#2499E3] rounded-lg">
             <AddIcon sx={{ color: '#2499E3' }} />
             <button className="color-blue-light ">Add New</button>
           </div>

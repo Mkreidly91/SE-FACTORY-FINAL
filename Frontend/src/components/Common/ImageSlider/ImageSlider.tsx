@@ -13,7 +13,7 @@ const ImageCard = ({
     <div className={`inline-block `}>
       <img
         src={url}
-        className={` max-w-[200px] h-auto aspect-video overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out ${imageCardStyles}`}
+        className={`cursor-pointer hover:scale-105 max-w-[200px] h-auto aspect-video overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out ${imageCardStyles}`}
         onClick={() => onClick()}
       />
     </div>
@@ -37,7 +37,9 @@ const ImageSlider = ({
     <div
       className={`flex overflow-x-scroll pt-2 pb-1 hide-scroll-bar ${className}`}
     >
-      <div className="flex gap-3 flex-nowrap lg:ml-40 md:ml-20 ml-10 ">
+      <div className="flex gap-3 flex-nowrap w-full justify-center">
+        {/*  lg:ml-40 md:ml-20 ml-10  */}
+        {/* justify-center w-full */}
         {panoramas &&
           panoramas.map((e) => (
             <div className="relative max-w-[200px]">

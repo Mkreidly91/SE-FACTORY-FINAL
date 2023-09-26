@@ -48,7 +48,7 @@ const MarkersAndHotspots = ({ initialState }) => {
                 <div className="flex flex-col gap-5 items-center justify-center w-full h-full border-4 rounded-md border-gray-500 border-dashed  ">
                   <span>No 3D model present click on upload</span>
                   <UploadButton
-                    className="w-fit cursor-pointer text-center"
+                    className="w-fit cursor-pointer text-center  "
                     text={'Upload'}
                     accept="*"
                     onChange={handleFileChange}
@@ -59,7 +59,7 @@ const MarkersAndHotspots = ({ initialState }) => {
               <div className=" w-[80%] h-[500px] min-h-[50vh]  mx-auto ">
                 <div className="flex flex-col gap-5 absolute left-[11%] top-[10px]">
                   <UploadButton
-                    className="w-fit  cursor-pointer z-10 "
+                    className="w-fit  cursor-pointer z-10  "
                     text={'Replace'}
                     accept="*"
                     onChange={handleFileChange}
