@@ -60,7 +60,9 @@ const LoginForm = ({ className }: { className: string }) => {
         </div>
 
         <div className="flex flex-col gap-1 w-full">
-          <label className="font-semibold text-gray-600 text-sm">Email</label>
+          <label className="font-semibold text-gray-600 text-sm">
+            Password
+          </label>
           <TextField
             className="max-w-[600px]"
             InputLabelProps={{ className: '' }}
