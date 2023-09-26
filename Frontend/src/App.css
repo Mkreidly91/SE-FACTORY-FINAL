@@ -32,19 +32,13 @@ button {
   font-family: 'Poppins', sans-serif;
 }
 
-.color-orange {
-  color: #ff5800;
-}
-
 .color-blue-light {
   color: #2499e3;
 }
 .color-grey {
   color: #929aab;
 }
-.b-orange {
-  background-color: #ff5800;
-}
+
 .b-grey-light {
   background-color: #f9f9f9;
 }
@@ -58,9 +52,6 @@ button {
 .button-gradient {
   position: relative;
   background: linear-gradient(140deg, rgba(52, 83, 154, 1) 0%, #272c37 100%);
-  /* background: linear-gradient(140deg, rgba(52, 83, 154, 0.72) 0%, #272c37 100%); */
-  /* border:double transparent; */
-  /* background: linear-gradient(140deg, whitesmoke, #272c37) border-box; */
 }
 
 .dash-gradient {

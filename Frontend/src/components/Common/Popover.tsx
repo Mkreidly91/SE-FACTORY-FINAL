@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Popover from '@mui/material/Popover';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { IconButton } from '@mui/material';
 
 export default function BasicPopover({

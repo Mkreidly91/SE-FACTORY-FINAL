@@ -1,7 +1,5 @@
 import { FieldValues } from 'react-hook-form';
 
-// TODO: Handle boolean array;
-
 export const filterChangedFormFields = <T extends FieldValues>(
   allFields: T,
   dirtyFields: Partial<Record<keyof T, boolean | boolean[]>>

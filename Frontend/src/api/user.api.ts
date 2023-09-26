@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { ProjectFormSchemaType } from '../validation/company.validation';
 import { headers } from './api.helpers';
 
 const baseURL = import.meta.env.VITE_URL;
