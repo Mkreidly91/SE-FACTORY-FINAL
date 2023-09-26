@@ -1,12 +1,10 @@
 import { Button, TextField } from '@mui/material';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import {
   projectFormSchema,
   ProjectFormSchemaType,
 } from '../../validation/company.validation';
-import Photo from '@mui/icons-material/PhotoSizeSelectActualOutlined';
 import NoPhoto from '@mui/icons-material/ImageNotSupportedOutlined';
 import { useEffect, useState } from 'react';
 import {
@@ -15,12 +13,9 @@ import {
   editProject,
 } from '../../api/company.api';
 import FeatureBox from '../Common/FeatureBox';
-import FileUploadForm from '../Common/FileUploadForm';
 import { useNavigate } from 'react-router-dom';
 import { filterChangedFormFields } from '../../helpers/helpers';
 import UploadButton from '../Common/UploadButton';
-import SubmitButton from '../Common/SubmitButton';
-import { Button as MuiButton } from '@material-tailwind/react';
 
 const ProjectForm = ({
   initialValues,
@@ -39,7 +34,6 @@ const ProjectForm = ({
   };
   id: string;
 }) => {
-  // console.log(initialValues);
   const [preview, setPreview] = useState() as any;
 
   const navigate = useNavigate();

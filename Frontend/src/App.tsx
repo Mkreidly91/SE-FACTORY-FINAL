@@ -1,6 +1,6 @@
 import './App.css';
 import Landing from './pages/landing/Landing';
-import Test from './pages/sample3d/test';
+
 import DashBoard from './components/Dashboard/Dashboard';
 import { Routes, Route } from 'react-router-dom';
 import CompanyHome from './pages/Company/CompanyHome';
@@ -17,7 +17,6 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/customer" element={<CustomerPage />} />
         <Route path="/customer/project/:id" element={<ProjectDetails />} />
-        <Route path="/test" element={<Test />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/companyHome" element={<CompanyHome />} />

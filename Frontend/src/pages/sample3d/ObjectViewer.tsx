@@ -1,6 +1,6 @@
 import { Bounds, OrbitControls, useGLTF } from '@react-three/drei';
-import { Canvas, ThreeEvent } from '@react-three/fiber';
-import React, { useState, useEffect, Suspense, useRef, useMemo } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { useState, useEffect, Suspense, useRef, useMemo } from 'react';
 import * as THREE from 'three';
 
 export const ObjectViewer = ({

@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Tabs, Tab } from '@mui/material';
 import ProjectForm from '../../../components/Forms/ProjectForm';
-import ObjectViewer from '../../sample3d/ObjectViewer';
-import ModelsAndPanoramaForm from '../../../components/Forms/ModelsAndPanoramaForm';
 import { useParams } from 'react-router-dom';
 import { getProjectById } from '../../../api/company.api';
-import { ProjectFormSchemaType } from '../../../validation/company.validation';
 import MarkersAndHotspots from './MarkersAndHotspots';
 
 const AddOrEditProject = ({ tab = 0 }: { tab?: number }) => {
@@ -39,12 +36,7 @@ const AddOrEditProject = ({ tab = 0 }: { tab?: number }) => {
             value={0}
             label={<span className="monster">Project Details</span>}
           />
-          {/* <Tab
-            sx={{ marginRight: '20px' }}
-            value={1}
-            label={<span className="monster">Listing Details</span>}
-            disabled={id ? false : true}
-          /> */}
+
           <Tab
             value={2}
             label={<span className="monster">3D tour</span>}
@@ -55,10 +47,6 @@ const AddOrEditProject = ({ tab = 0 }: { tab?: number }) => {
 
       <div className="w-full" role="tabpanel" hidden={activeTab !== 0}>
         {activeTab === 0 && <ProjectForm initialValues={state} id={id} />}
-      </div>
-
-      <div role="tabpanel" hidden={activeTab !== 1}>
-        {activeTab === 1 && <ModelsAndPanoramaForm />}
       </div>
 
       <div role="tabpanel" hidden={activeTab !== 2}>

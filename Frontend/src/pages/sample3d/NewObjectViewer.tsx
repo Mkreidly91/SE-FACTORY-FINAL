@@ -1,11 +1,6 @@
-import React, { useState, useEffect, Suspense, useMemo } from 'react';
+import { useState, useEffect, Suspense, useMemo } from 'react';
 import * as THREE from 'three';
-import {
-  Html,
-  OrbitControls,
-  OrthographicCamera,
-  useGLTF,
-} from '@react-three/drei';
+import { OrbitControls, useGLTF } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 
 export const NewObjectViewer = ({
@@ -31,13 +26,10 @@ export const NewObjectViewer = ({
       });
     };
 
-    // Listen for window resize events
     window.addEventListener('resize', handleResize);
 
-    // Initial call to setContainerSize
     handleResize();
 
-    // Cleanup the event listener on unmount
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -59,7 +51,7 @@ export const NewObjectViewer = ({
     camera.zoom = zoom;
     return camera;
   }, [position, zoom]);
-  // Calculate a scale factor based on the container size
+
   const scaleFactor = Math.min(
     containerSize.width / 500,
     containerSize.height / 500
