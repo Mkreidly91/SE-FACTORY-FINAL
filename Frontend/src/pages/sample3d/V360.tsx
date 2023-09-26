@@ -10,7 +10,8 @@ import Button from '../../components/Common/Button';
 import AdjustIcon from '@mui/icons-material/Adjust';
 import '@egjs/react-view360/css/view360.min.css';
 import '@egjs/view360/css/loading-spinner.min.css';
-import def from './bedroom.jpeg';
+import bedroom from './bedroom.jpeg';
+import spa from './spa.jpg';
 
 const V360 = ({ image, className }) => {
   const [position, setPosition] = useState({
@@ -18,10 +19,26 @@ const V360 = ({ image, className }) => {
     pitch: -30,
   });
 
+  // const panoramas = [
+  //   {
+  //     image: salon,
+  //     hotspots: [{ text, yaw, pitch,link:0  }],
+  //   },
+
+  //   {
+  //     image: bedroom,
+  //     hotspots: [{ text, yaw, pitch,link:0 }],
+  //   },
+
+  //   {
+  //     image: spa,
+  //     hotspots: [{ text, yaw, pitch,link:0  }],
+  //   },
+  // ];
   const [sofaInfo, setSofaInfo] = useState(false);
   const [hotspots, setHotspot] = useState([]) as any;
   const [state, setState] = useState([]) as any;
-  const [p, setP] = useState(def);
+  const [p, setP] = useState(bedroom);
   const imgUrl = new URL('./bedroom.jpeg', import.meta.url).href;
 
   const plugin = useMemo(() => {
@@ -95,8 +112,17 @@ const V360 = ({ image, className }) => {
             scale={2}
           />
 
+          <Arrows
+            yaw={'20'}
+            pitch={'0'}
+            onClick={() => {
+              setP(new URL('./bedroom.jpeg', import.meta.url).href);
+            }}
+            scale={2}
+          />
+
           {hotspots}
-          <div
+          {/* <div
             className="view360-hotspot text-red-400 "
             data-yaw={position.yaw}
             data-pitch={position.pitch}
@@ -110,7 +136,7 @@ const V360 = ({ image, className }) => {
             {sofaInfo && (
               <span className="p-5 bg-white">price: $500 color: Beige</span>
             )}
-          </div>
+          </div> */}
         </div>
       </View360>
     )

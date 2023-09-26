@@ -40,7 +40,7 @@ const PanoEditor = ({
   className,
 }: {
   isEdit: boolean;
-  className: string;
+  className?: string;
 }) => {
   const { id: projectId } = useParams() as any;
 
@@ -79,13 +79,14 @@ const PanoEditor = ({
 
   const plugin = useMemo(() => {
     return new ControlBar({
-      fullscreenButton: {
-        position: ControlBar.POSITION.TOP_RIGHT,
-        order: 1,
-      },
-      clickToPlay: true,
+      fullscreenButton: !isEdit
+        ? {
+            position: ControlBar.POSITION.TOP_RIGHT,
+            order: 1,
+          }
+        : false,
     });
-  }, []);
+  }, [isEdit]);
 
   const spinner = useMemo(() => {
     return new LoadingSpinner();
