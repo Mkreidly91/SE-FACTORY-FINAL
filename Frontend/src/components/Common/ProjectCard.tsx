@@ -35,7 +35,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   } = project;
 
   return (
-    <Card className="monster" sx={{ width: 300, borderRadius: '16px' }}>
+    <Card
+      className="monster"
+      sx={{ width: 300, borderRadius: '16px', padding: '10px' }}
+    >
       <CardMedia
         component="img"
         alt="Project thumbnail"
