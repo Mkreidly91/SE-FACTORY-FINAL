@@ -1,8 +1,8 @@
 import { Suspense, useEffect, useState } from 'react';
 import ImageSlider from '../../../components/Common/ImageSlider/ImageSlider';
-import ObjectViewer from '../../sample3d/ObjectViewer';
-import V360 from '../../sample3d/V360.tsx';
-import PanoEditor from '../../sample3d/PanoEditor.tsx';
+import ObjectViewer from '../../3d/ObjectViewer.tsx';
+import V360 from '../../3d/DemoPanoViewer.tsx';
+import PanoEditor from '../../3d/PanoEditor.tsx';
 import UploadButton from '../../../components/Common/UploadButton.tsx';
 import { addApartment, deleteApartment } from '../../../api/company.api.ts';
 import Button from '../../../components/Common/Button.tsx';
