@@ -23,16 +23,8 @@ type ProjectCardProps = {
   };
 };
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const {
-    name,
-    description,
-    location,
-    thumbnail,
-    bedrooms,
-    bathrooms,
-    price,
-    size,
-  } = project;
+  const { name, location, thumbnail, bedrooms, bathrooms, price, size } =
+    project;
 
   return (
     <Card
@@ -53,7 +45,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           variant="h5"
           component="div"
         >
-          {name}
+          <span className="font-semibold text-2xl">{name}</span>
         </Typography>
         <Typography
           sx={{ fontFamily: 'inherit' }}
@@ -61,22 +53,22 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           variant="h5"
           component="div"
         >
-          ${price?.toLocaleString()}
+          <span className="text-gray-700 font-medium text-2xl">
+            {' '}
+            ${price?.toLocaleString()}
+          </span>
         </Typography>
-        {/* <Typography variant="body2" color="text.secondary">
-          
-        </Typography> */}
         <div className="flex gap-3">
           <div className="flex gap-2 items-center">
-            <Bed />
+            <Bed color="inherit" />
             {bedrooms}
           </div>
           <div className="flex gap-2 items-center">
-            <Bath />
+            <Bath color="inherit" />
             {bathrooms}
           </div>
           <div className="flex gap-2 items-center">
-            <Ruler />
+            <Ruler color="inherit" />
             {size}m&sup2;
           </div>
         </div>
@@ -86,10 +78,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <span>{location}</span>
         </div>
       </CardContent>
-      {/* <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions> */}
     </Card>
   );
 }
