@@ -1,14 +1,11 @@
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { LocationOnOutlined } from '@mui/icons-material';
 import Bed from '@mui/icons-material/BedOutlined';
 import Bath from '@mui/icons-material/BathtubOutlined';
 import Ruler from '@mui/icons-material/SquareFootOutlined';
-import DashListItem from '../Dashboard/DashListItem';
 
 type ProjectCardProps = {
   project: {
