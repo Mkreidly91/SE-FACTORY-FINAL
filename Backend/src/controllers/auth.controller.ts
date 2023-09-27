@@ -74,6 +74,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
     next(error);
   }
 };
+
 const getUser = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const user = req.user;

@@ -22,7 +22,6 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/companyHome" element={<CompanyHome />} />
         <Route path="/getStarted" element={<GetStarted />} />
-
         <Route
           path="/dashboard/*"
           element={

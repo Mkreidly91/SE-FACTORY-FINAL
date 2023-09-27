@@ -12,10 +12,7 @@ const SignUpPage = () => {
         />
       </Link>
 
-      <div
-        style={{ boxShadow: '-1px -1px 5px 5px rgba(225,255,255,0.05)' }}
-        className="w-[80%] flex  bg-white rounded-2xl"
-      >
+      <div className="w-[80%] flex  bg-white rounded-2xl">
         <div className=" w-fit p-5 z-10 grow rounded-2xl">
           <SignupForm className="bg-white p-3  w-3/4" />
         </div>

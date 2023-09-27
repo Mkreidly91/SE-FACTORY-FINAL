@@ -10,7 +10,6 @@ const DashboardRoutes = () => {
       <Route index path="/projects" element={<Projects />} />
       <Route path="projects/addProject/" element={<AddOrEditProject />} />
       <Route path="projects/addProject/:id" element={<AddOrEditProject />} />
-
       <Route path="editProfile" element={<EditProfile />} />
     </Routes>
   );
