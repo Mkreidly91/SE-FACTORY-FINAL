@@ -11,7 +11,7 @@ const Navbar = ({
   variant,
 }: {
   className?: string;
-  variant: string;
+  variant?: string;
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
