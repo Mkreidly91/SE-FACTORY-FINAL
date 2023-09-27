@@ -99,7 +99,7 @@ const CustomerPage = () => {
             <CircularProgress className="self-center w-fit mx-auto " />
           </div>
         ) : (
-          <>
+          <div className="bg-grey-light">
             <Grid container columnGap={5} rowGap={3}>
               {searchResults?.results &&
                 searchResults.results.map((p: any) => (
@@ -134,7 +134,7 @@ const CustomerPage = () => {
                 Next
               </Button>
             </div>
-          </>
+          </div>
         )}
       </Container>
 
