@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
+    "module": "NodeNext",
     "outDir": "dist",
     "sourceMap": true,
     "noImplicitAny": true
