@@ -5,6 +5,8 @@ import {
   projectFormSchema,
   ProjectFormSchemaType,
 } from '../../validation/company.validation';
+import Photo from '@mui/icons-material/PhotoSizeSelectActualOutlined';
+
 import NoPhoto from '@mui/icons-material/ImageNotSupportedOutlined';
 import { useEffect, useState } from 'react';
 import {
@@ -258,7 +260,7 @@ const ProjectForm = ({
               alt=""
             />
           ) : (
-            <NoPhoto style={{ fontSize: '150px' }} />
+            <Photo style={{ fontSize: '150px' }} />
           )}
         </div>
 

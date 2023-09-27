@@ -130,7 +130,7 @@ const EditProfileForm = ({
               alt=""
             />
           ) : (
-            <NoPhoto style={{ fontSize: '150px' }} />
+            <Photo style={{ fontSize: '150px' }} />
           )}
         </div>
 
