@@ -18,7 +18,6 @@ import {
   editProfileService,
   editProjectService,
   getPanoramaByIdService,
-  getProjectByIdService,
 } from '../services';
 import mongoose, { Types } from 'mongoose';
 import { HttpException } from '../exceptions/HttpException';

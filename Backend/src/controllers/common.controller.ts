@@ -4,7 +4,6 @@ import {
   getProjectByIdService,
   searchProjectService,
 } from '../services/common.service';
-import { escapeRegExp } from 'lodash';
 const searchProject = async (
   req: Request,
   res: Response,
