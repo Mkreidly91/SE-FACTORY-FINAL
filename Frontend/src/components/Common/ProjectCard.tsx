@@ -28,14 +28,22 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <Card
-      className="monster"
-      sx={{ width: 300, borderRadius: '16px', padding: '10px' }}
+      className="monster "
+      sx={{
+        width: 355,
+        borderRadius: '16px',
+        padding: '10px',
+        boxShadow: '7px 7px 12px -3px rgba(0,0,0,0.15)',
+      }}
     >
       <CardMedia
         component="img"
         alt="Project thumbnail"
-        height="140px"
-        sx={{ height: 300, objectFit: 'cover' }}
+        sx={{
+          height: 200,
+          objectFit: 'cover',
+          borderRadius: '10px',
+        }}
         src={thumbnail}
       />
       <CardContent>
@@ -45,7 +53,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           variant="h5"
           component="div"
         >
-          <span className="font-semibold text-2xl">{name}</span>
+          <span className="font-semibold text-2xl text-neutral-800">
+            {name}
+          </span>
         </Typography>
         <Typography
           sx={{ fontFamily: 'inherit' }}
@@ -53,23 +63,22 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           variant="h5"
           component="div"
         >
-          <span className="text-gray-700 font-medium text-2xl">
-            {' '}
+          <span className="text-neutral-700  text-3xl tracking-wide">
             ${price?.toLocaleString()}
           </span>
         </Typography>
-        <div className="flex gap-3">
-          <div className="flex gap-2 items-center">
+        <div className="flex gap-4">
+          <div className="flex gap-1 items-end text-gray-700">
             <Bed color="inherit" />
-            {bedrooms}
+            <span className=" font-medium">{bedrooms}</span>
           </div>
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-1 items-end  text-gray-700">
             <Bath color="inherit" />
-            {bathrooms}
+            <span className=" font-medium"> {bathrooms}</span>
           </div>
-          <div className="flex gap-2 items-center">
+          <div className="flex  items-end  text-gray-700">
             <Ruler color="inherit" />
-            {size}m&sup2;
+            <span className=" font-medium">{size}m&sup2;</span>
           </div>
         </div>
 
