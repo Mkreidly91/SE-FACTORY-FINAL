@@ -1,22 +1,11 @@
-import {
-  Button,
-  Divider,
-  Grid,
-  Slider,
-  TextField,
-  Typography,
-} from '@mui/material';
-import { Controller, SubmitHandler, set, useForm } from 'react-hook-form';
+import { Button, Divider, Grid, Slider, TextField } from '@mui/material';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   ProjectSearchFormSchemaType,
   projectSearch,
 } from '../../validation/project.validation';
-import { useState } from 'react';
-import { ApiError } from '../../api/api.helpers';
-import ApiErrorHandler from '../Common/ApiError';
 import BasicPopover from '../Common/Popover';
-import { searchProject } from '../../api/common.api';
 import { Search } from '@mui/icons-material';
 
 const ProjectSearchForm = ({ onFormSubmit }: { onFormSubmit: Function }) => {

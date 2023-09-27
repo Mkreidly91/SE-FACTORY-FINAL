@@ -7,7 +7,6 @@ import {
 } from '../../validation/company.validation';
 import Photo from '@mui/icons-material/PhotoSizeSelectActualOutlined';
 
-import NoPhoto from '@mui/icons-material/ImageNotSupportedOutlined';
 import { useEffect, useState } from 'react';
 import {
   createProject,
@@ -76,7 +75,7 @@ const ProjectForm = ({
       return;
     } else {
       const changedFieldValues = filterChangedFormFields(data, dirtyFields);
-      const res = await editProject(id, changedFieldValues);
+      await editProject(id, changedFieldValues);
     }
   };
 
