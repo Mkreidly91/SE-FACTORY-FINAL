@@ -44,13 +44,13 @@
 
 ### Company Screens (Web)
 
-| Login screen                              | Register screen                         | Landing screen                          | Loading screen                          |
-| ----------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
-| Home screen                               | Menu Screen                             | Order Screen                            | Checkout Screen                         |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+| Landing screen                                | Sign-up screen                             | Landing screen                            | Loading screen                          |
+| --------------------------------------------- | ------------------------------------------ | ----------------------------------------- | --------------------------------------- |
+| ![Landing](./readme/demo/gifs/landingGif.gif) | ![fsdaf](./readme/demo/gifs/signupGif.gif) | ![fsdaf](./readme/demo/gifs/loginGif.gif) | ![fsdaf](https://placehold.co/900x1600) |
+| Home screen                                   | Menu Screen                                | Order Screen                              | Checkout Screen                         |
+| ![Landing](https://placehold.co/900x1600)     | ![fsdaf](https://placehold.co/900x1600)    | ![fsdaf](https://placehold.co/900x1600)   | ![fsdaf](https://placehold.co/900x1600) |
 
-### Admin Screens (Web)
+### Customer Screens (Web)
 
 | Login screen                            | Register screen                       | Landing screen                        |
 | --------------------------------------- | ------------------------------------- | ------------------------------------- |
@@ -63,7 +63,7 @@
 <!-- Tech stack -->
 <img src="./readme/title5.svg"/>
 
-### Coffee Express is built using the following technologies:
+### Vizi is built using the following technologies:
 
 - This project uses the [Flutter app development framework](https://flutter.dev/). Flutter is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
 - For persistent storage (database), the app uses the [Hive](https://hivedb.dev/) package which allows the app to create a custom storage schema and save it to a local database.
@@ -76,7 +76,7 @@
 <!-- How to run -->
 <img src="./readme/title6.svg"/>
 
-> To set up Coffee Express locally, follow these steps:
+> To set up Vizi locally, follow these steps:
 
 ### Prerequisites
 
@@ -105,4 +105,4 @@ _Below is an example of how you can instruct your audience on installing and set
    const API_KEY = 'ENTER YOUR API';
    ```
 
-Now, you should be able to run Coffee Express locally and explore its features.
+Now, you should be able to run Vizi locally and explore its features.
