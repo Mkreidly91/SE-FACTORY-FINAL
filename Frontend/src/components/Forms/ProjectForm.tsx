@@ -254,7 +254,9 @@ const ProjectForm = ({
               alt=""
             />
           ) : (
-            <Photo style={{ fontSize: '150px' }} />
+            <div className="text-gray-400">
+              <Photo color="inherit" style={{ fontSize: '100px' }} />
+            </div>
           )}
         </div>
 
