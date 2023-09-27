@@ -113,6 +113,7 @@ function DashBoard({ children }: { children?: any }) {
             <DashListItem
               icon={<DashIcon sx={{ color: 'white' }} />}
               text="Dashboard"
+              className=' text-white'
             />
             <DashListItem
               to="/dashboard/projects"
