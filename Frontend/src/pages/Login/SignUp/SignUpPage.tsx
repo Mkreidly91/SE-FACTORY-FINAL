@@ -4,7 +4,7 @@ import BreathingDots from './Dots';
 import { Link } from 'react-router-dom';
 const SignUpPage = () => {
   return (
-    <div className="w-full h-full flex items-center justify-center gap-5 neutral-gradient">
+    <div className="w-full h-full flex items-center justify-center gap-5 neutral-gradient ">
       <Link to="/companyHome">
         <Left
           className="absolute left-0 top-1/2 -translate-y-1/2 cursor-pointer"
@@ -12,7 +12,10 @@ const SignUpPage = () => {
         />
       </Link>
 
-      <div className="w-[80%] flex bg-black  bg-white rounded-2xl">
+      <div
+        style={{ boxShadow: '-1px -1px 5px 5px rgba(225,255,255,0.05)' }}
+        className="w-[80%] flex  bg-white rounded-2xl"
+      >
         <div className=" w-fit p-5 z-10 grow rounded-2xl">
           <SignupForm className="bg-white p-3  w-3/4" />
         </div>

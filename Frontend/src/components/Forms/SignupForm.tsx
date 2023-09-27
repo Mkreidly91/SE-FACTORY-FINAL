@@ -1,7 +1,6 @@
 import { TextField } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '@material-tailwind/react';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { signup } from '../../api/auth.api';
