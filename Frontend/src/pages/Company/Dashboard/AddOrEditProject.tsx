@@ -46,9 +46,7 @@ const AddOrEditProject = ({ tab = 0 }: { tab?: number }) => {
       </div>
 
       <div className="w-full" role="tabpanel" hidden={activeTab !== 0}>
-        {activeTab === 0 && state && (
-          <ProjectForm initialValues={state} id={id} />
-        )}
+        {activeTab === 0 && <ProjectForm initialValues={state} id={id} />}
       </div>
 
       <div role="tabpanel" hidden={activeTab !== 2}>
