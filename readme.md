@@ -30,9 +30,9 @@
 
 ### Mockups
 
-| Home screen                             | Menu Screen                           | Order Screen                          |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| Get Started                                     | Dashboard Projects                          | Customer Screen                             |
+| ----------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| ![Landing](./readme/demo/mockup_getStarted.png) | ![fsdaf](./readme/demo/mockup_projects.png) | ![fsdaf](./readme/demo/mockup_customer.png) |
 
 <br><br>
 
