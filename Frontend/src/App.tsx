@@ -9,6 +9,7 @@ import CustomerPage from './pages/Customer/Customer';
 import LoginPage from './pages/Login/SignUp/LoginPage';
 import SignUpPage from './pages/Login/SignUp/SignUpPage';
 import ProjectDetails from './pages/Customer/ProjectDetails';
+import ProtectedRoute from './components/Common/ProtectedRoutes';
 
 function App() {
   return (
@@ -21,7 +22,15 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/companyHome" element={<CompanyHome />} />
         <Route path="/getStarted" element={<GetStarted />} />
-        <Route path="/dashboard/*" element={<DashBoard />} />
+
+        <Route
+          path="/dashboard/*"
+          element={
+            <ProtectedRoute>
+              <DashBoard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   );
