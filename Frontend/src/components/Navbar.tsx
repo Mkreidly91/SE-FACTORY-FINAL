@@ -106,7 +106,7 @@ const Navbar = ({
         <Link to="/CompanyHome">
           <Button text="SERVICES" />
         </Link>
-        <a href="#bottom">
+        <a href="mailto: contact@vizi.com">
           <Button text="CONTACT" />
         </a>
       </div>
