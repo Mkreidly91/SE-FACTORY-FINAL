@@ -11,10 +11,6 @@ const DashboardRoutes = () => {
       <Route path="projects/addProject/" element={<AddOrEditProject />} />
       <Route path="projects/addProject/:id" element={<AddOrEditProject />} />
 
-      <Route
-        path="projects/addProject/:id/customize"
-        element={<AddOrEditProject tab={2} />}
-      />
       <Route path="editProfile" element={<EditProfile />} />
     </Routes>
   );
