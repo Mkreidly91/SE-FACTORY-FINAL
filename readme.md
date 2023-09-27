@@ -37,6 +37,7 @@
 <br><br>
 
 <!-- Implementation -->
+
 <img src="./readme/title4.svg"/>
 
 > Using the wireframes and mockups as a guide, we implemented the Coffee Express app with the following features:
