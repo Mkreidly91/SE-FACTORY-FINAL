@@ -31,6 +31,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       className="monster "
       sx={{
         width: 355,
+
         borderRadius: '16px',
         padding: '10px',
         boxShadow: '7px 7px 12px -3px rgba(0,0,0,0.15)',
@@ -40,7 +41,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         component="img"
         alt="Project thumbnail"
         sx={{
-          height: 200,
+          height: 225,
           objectFit: 'cover',
           borderRadius: '10px',
         }}
