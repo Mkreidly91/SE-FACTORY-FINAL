@@ -78,7 +78,7 @@ const CustomerPage = () => {
           />
         </div>
 
-        <div className="flex justify-center items-center text-white h-full ">
+        <div className="flex justify-center items-center text-white h-full mb-20 ">
           <span className="hero-text-center">
             Your perfect home from miles away
           </span>
@@ -89,7 +89,7 @@ const CustomerPage = () => {
         className=" w-full  mb-16 mt-16
         "
       >
-        <Grid flex alignItems={'stretch'}>
+        <Grid alignItems={'stretch'}>
           <ProjectSearchForm onFormSubmit={handleSubmit} />
         </Grid>
       </Container>
