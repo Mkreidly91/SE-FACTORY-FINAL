@@ -1,6 +1,4 @@
-import SignupForm from '../../../components/Forms/SignupForm';
 import Left from '@mui/icons-material/KeyboardDoubleArrowLeft';
-import BreathingDots from '../../3d/Dots';
 import { Link } from 'react-router-dom';
 import Wobble from '../../3d/Wobble';
 import LoginForm from '../../../components/Forms/LoginForm';

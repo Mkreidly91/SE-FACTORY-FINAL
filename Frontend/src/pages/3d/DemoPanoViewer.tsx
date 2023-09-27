@@ -8,9 +8,9 @@ import '@egjs/react-view360/css/view360.min.css';
 import Arrows from '../../components/Hotpots/Arrows/Arrows';
 import '@egjs/react-view360/css/view360.min.css';
 import '@egjs/view360/css/loading-spinner.min.css';
-import bedroom from './bedroom.jpeg';
-import spa from './spa.jpg';
-import salon from './panorama.jpg';
+import bedroom from '../../assets/images/Demo/bedroom.jpeg';
+import spa from '../../assets/images/Demo/spa.jpg';
+import salon from '../../assets/images/Demo/panorama.jpg';
 
 const V360 = ({ className }: { className: string }) => {
   const panoramas = [

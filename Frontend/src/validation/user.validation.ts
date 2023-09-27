@@ -1,4 +1,4 @@
-import { z, string, number, object, any, optional } from 'zod';
+import { z, string, number, object, any } from 'zod';
 const phoneNumberRegex = /^[\d\s()+-]+$/;
 
 const editUserSchema = object({
