@@ -9,13 +9,10 @@ import {
 import envConfig from '../configs/env.config';
 import { v4 as uuidv4 } from 'uuid';
 
-// function getUrlFromBucket(s3Bucket: any, fileName: string) {
-//   const {
-//     config: { params, region },
-//   } = s3Bucket;
-//   const regionString = region.includes('us-east-1') ? '' : '-' + region;
-//   return `https://${params.Bucket}.s3${regionString}.amazonaws.com/${fileName}`;
-// }
+const s3 = new S3Client({
+  region: envConfig.BUCKET_REGION,
+});
+
 function getFileExtension(fileName: string) {
   return `${fileName.split('.').pop()}`;
 }
@@ -28,10 +25,6 @@ function getFileNameFromUrl(url: string) {
   const pathParts = url.split('/');
   return pathParts[pathParts.length - 1];
 }
-
-const s3 = new S3Client({
-  region: envConfig.BUCKET_REGION,
-});
 
 const checkBucket = async (bucket: string) => {
   const res = await s3.send(
