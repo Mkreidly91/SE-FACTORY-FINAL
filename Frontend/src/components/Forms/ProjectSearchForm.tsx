@@ -263,7 +263,7 @@ const ProjectSearchForm = ({ onFormSubmit }: { onFormSubmit: Function }) => {
           >
             <Button
               className="text-white button-gradient py-5 "
-              sx={{ color: 'white' }}
+              sx={{ color: 'white', paddingLeft: '20px', paddingRight: '20px' }}
               type="submit"
               disabled={isSubmitting || !isValid}
             >
