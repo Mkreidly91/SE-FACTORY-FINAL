@@ -137,7 +137,8 @@ const EditProfileForm = ({
         <UploadButton
           accept="image/png, image/jpeg"
           text="Upload"
-          className="w-fit py-2 px-5 self-center"
+          className="w-fit py-2 px-5 self-center cursor-pointer "
+          register={register}
           onChange={async (e) => {
             const file = new FileReader();
             file.onload = () => {
