@@ -7,6 +7,7 @@ interface DashListItemProps {
   icon: ReactNode;
   text: string | number;
   className?: string;
+  containerStyles?: string;
   onClick?: () => void;
 }
 const DashListItem = ({
@@ -14,18 +15,18 @@ const DashListItem = ({
   icon,
   text,
   className,
+  containerStyles,
+
   onClick,
 }: DashListItemProps) => {
   return (
-    <>
+    <div className={containerStyles}>
       {to ? (
         <Link to={to}>
           <ListItemButton>
             <ListItemIcon>{icon}</ListItemIcon>
             <ListItemText>
-              <span
-                className={`monster font-medium text-[14px] text-white ${className}`}
-              >
+              <span className={`monster font-medium text-[14px]  ${className}`}>
                 {text}
               </span>
             </ListItemText>
@@ -39,15 +40,13 @@ const DashListItem = ({
         >
           <ListItemIcon>{icon}</ListItemIcon>
           <ListItemText>
-            <span
-              className={`monster font-medium text-[14px] text-white ${className}`}
-            >
+            <span className={`monster font-medium text-[14px] ${className}`}>
               {text}
             </span>
           </ListItemText>
         </ListItemButton>
       )}
-    </>
+    </div>
   );
 };
 export default DashListItem;

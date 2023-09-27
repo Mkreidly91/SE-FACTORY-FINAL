@@ -87,14 +87,8 @@ const ProjectForm = ({
     handleSubmit,
     reset,
     clearErrors,
-    formState: {
-      errors,
-      isSubmitting,
-      touchedFields,
-      isValid,
-      dirtyFields,
-      isDirty,
-    },
+
+    formState: { errors, isSubmitting, isValid, dirtyFields, isDirty },
   } = useForm<ProjectFormSchemaType>({
     resolver: zodResolver(projectFormSchema),
     mode: 'onTouched',
@@ -268,6 +262,7 @@ const ProjectForm = ({
           accept="image/png, image/jpeg"
           text="Upload"
           className="w-fit py-2 px-5 self-center cursor-pointer "
+          register={register}
           onChange={async (e) => {
             const file = new FileReader();
             file.onload = () => {

@@ -35,9 +35,9 @@ const ImageSlider = ({
 }) => {
   return (
     <div
-      className={`flex overflow-x-scroll pt-2 pb-1 hide-scroll-bar ${className}`}
+      className={`flex  overflow-x-scroll pt-2 pb-1 hide-scroll-bar ${className}`}
     >
-      <div className="flex gap-3 flex-nowrap w-full justify-center">
+      <div className="flex gap-3  flex-nowrap  px-5   ">
         {/*  lg:ml-40 md:ml-20 ml-10  */}
         {/* justify-center w-full */}
         {panoramas &&

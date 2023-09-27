@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState, useRef } from 'react';
+import React, { useEffect, useMemo, useState, useRef, RefObject } from 'react';
 import View360, {
   ControlBar,
   EquirectProjection,
@@ -6,7 +6,6 @@ import View360, {
 } from '@egjs/react-view360';
 import '@egjs/react-view360/css/view360.min.css';
 import Arrows from '../../components/Hotpots/Arrows/Arrows';
-import AdjustIcon from '@mui/icons-material/Adjust';
 import '@egjs/react-view360/css/view360.min.css';
 import '@egjs/view360/css/loading-spinner.min.css';
 import bedroom from './bedroom.jpeg';
@@ -51,7 +50,7 @@ const V360 = ({ className }: { className: string }) => {
     [p]
   );
 
-  const viewRef = useRef();
+  const viewRef = useRef<View360 | null>();
 
   useEffect(() => {
     if (viewRef.current) {
@@ -71,10 +70,6 @@ const V360 = ({ className }: { className: string }) => {
         zoom: true,
       }}
     >
-      <div className="absolute w-fit h-fit flex items-center justify-center  top-1/2 left-1/2  translate-x-[-50%] translate-y-[-50%]">
-        <AdjustIcon />
-      </div>
-
       <div className="view360-hotspots">
         {panoramas[p].hotspots &&
           panoramas[p].hotspots.map((e: any) => (

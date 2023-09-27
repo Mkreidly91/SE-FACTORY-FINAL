@@ -51,7 +51,9 @@ const SignupForm = ({ className }: { className?: string }) => {
       >
         <ApiErrorHandler error={err} />
         <div className="flex flex-col gap-1 w-full justify-center">
-          <label className="font-semibold text-gray-600 text-sm">Name</label>
+          <label className="font-semibold text-gray-600 text-sm">
+            Company Name
+          </label>
           <TextField
             className="max-w-[600px]"
             required
