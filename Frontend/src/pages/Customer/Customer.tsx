@@ -66,9 +66,9 @@ const CustomerPage = () => {
     },
   };
   return (
-    <div>
+    <div className="b-grey-light">
       {err && <ApiErrorHandler error={err} />}
-      <div className="customer-hero w-full h-screen relative flex flex-col">
+      <div className="customer-hero w-full h-screen relative flex flex-col z-20">
         <Navbar className=" w-full z-20" />
         <div className=" absolute z-[-1] top-0 left-0 w-full h-full">
           <img
@@ -99,7 +99,7 @@ const CustomerPage = () => {
             <CircularProgress className="self-center w-fit mx-auto " />
           </div>
         ) : (
-          <div className="bg-grey-light">
+          <div className="">
             <Grid container columnGap={5} rowGap={3}>
               {searchResults?.results &&
                 searchResults.results.map((p: any) => (
