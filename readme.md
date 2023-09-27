@@ -9,9 +9,11 @@
 
 ### User Stories
 
-- As a user, I want to browse the menu, so I can find my favorite coffee drinks.
-- As a user, I want to customize my order, so I can add or remove ingredients according to my preferences.
-- As a user, I want to pay for my order through the app, so I can avoid waiting in line at the store.
+- As a construction company, I want to create a profile for my company, so I can gain exposure for my projects.
+- As a construction company, I want to edit my profile, so I can keep my profile up to date.
+- As a construction company, I want to include a virtual tour of my project, to attract potential customers.
+- As a customer, I want to browse for multiple projects, so I can see different options.
+- As a customer, I want to roam around in the space, so I can see different angles.
 
 <br><br>
 
