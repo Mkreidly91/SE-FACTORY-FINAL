@@ -17,7 +17,7 @@ const EditProfile = () => {
 
   return (
     <div className="mt-20 w-full p-5">
-      {user && <EditProfileForm initialValues={user} setUser={setUser} />}
+      {user && <EditProfileForm initialValues={user} />}
     </div>
   );
 };
