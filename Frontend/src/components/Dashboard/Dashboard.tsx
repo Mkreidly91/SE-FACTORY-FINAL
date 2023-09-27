@@ -118,16 +118,19 @@ function DashBoard({ children }: { children?: any }) {
               to="/dashboard/projects"
               icon={<ProjectIcon sx={{ color: 'white' }} />}
               text="Projects"
+              className=" text-white hover:underline underline-offset-8 "
             />
 
             <DashListItem
               to="/dashboard/editProfile"
               icon={<ProfileIcon sx={{ color: 'white' }} />}
               text="Profile"
+              className=" text-white hover:underline underline-offset-8 "
             />
 
             <DashListItem
               icon={<LogoutIcon sx={{ color: 'white' }} />}
+              className=" text-white hover:underline underline-offset-8 "
               text="Log out"
               onClick={() => {
                 localStorage.clear();
