@@ -23,9 +23,14 @@ const headers = (contentType?: {}) => {
   };
 };
 const getUser = () => {
-  const { user } = JSON.parse(localStorage.getItem('userInfo') || '');
-  return user;
+  const local = localStorage.getItem('userInfo');
+  if (typeof local === 'string' || local) {
+    const info = JSON.parse(local);
+    return info;
+  }
+  return {};
 };
+
 const handleError = (e: Error | AxiosError) => {
   if (isAxiosError<ValidationError, Record<string, unknown>>(e)) {
     if (e.response) {
