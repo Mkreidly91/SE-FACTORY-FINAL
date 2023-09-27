@@ -1,13 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
-import { AnyZodObject, ZodError } from 'zod';
+import { AnyZodObject } from 'zod';
 import { HttpException } from '../exceptions/HttpException';
 
 const formValidationMiddleware =
   (schema: AnyZodObject) =>
   (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log(req.body);
-      console.log(req.files);
       const schemaResponse = schema.parse({
         files: req.files,
         body: req.body,

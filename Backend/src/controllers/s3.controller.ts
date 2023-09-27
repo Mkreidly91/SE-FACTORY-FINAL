@@ -32,11 +32,6 @@ const deleteFromS3 = async (req: Request, res: Response) => {
     return res.status(500).json({ success: false, message: 'key not found' });
   }
   const deleteRes = await deleteFile(file);
-  //   if (success) {
-  //     return res.status(200).json({ success, message });
-  //   } else {
-  //     return res.status(500).json({ success, message });
-  //   }
 };
 
 export { uploadToS3, deleteFromS3 };
