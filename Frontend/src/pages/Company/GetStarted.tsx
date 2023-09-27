@@ -1,6 +1,6 @@
 import Navbar from '../../components/Navbar';
 import InView from '../../components/animation/InView';
-import { NewObjectViewer } from '../sample3d/NewObjectViewer';
+import { NewObjectViewer } from '../3d/DemoObjectViewer';
 import { Suspense } from 'react';
 
 import villa1 from '../../assets/images/get-started/villa1.png';

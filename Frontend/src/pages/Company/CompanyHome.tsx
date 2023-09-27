@@ -7,7 +7,7 @@ import logo3 from '../../assets/images/company-home/Vector-5.png';
 import logo4 from '../../assets/images/company-home/Vector.png';
 import laptop from '../../assets/images/company-home/Laptop.png';
 import InView from '../../components/animation/InView';
-import V360 from '../sample3d/V360';
+import V360 from '../3d/DemoPanoViewer';
 import Footer from '../../components/Footer';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-tailwind/react';
