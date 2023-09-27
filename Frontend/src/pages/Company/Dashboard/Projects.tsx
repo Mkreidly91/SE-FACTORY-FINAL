@@ -25,7 +25,7 @@ const Projects = () => {
   }, []);
 
   return (
-    <div className="projects-page-container flex flex-col gap-10  w-full h-full monster mt-20 px-10  py-16 ">
+    <div className="projects-page-container flex flex-col gap-10  w-full h-full monster  px-10  py-16 ">
       <ApiErrorHandler error={err} />
       <div className="projecs-page-header flex justify-between">
         <span className=" text-2xl font-sora  uppercase font-bold">
