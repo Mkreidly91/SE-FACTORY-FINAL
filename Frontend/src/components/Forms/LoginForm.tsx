@@ -32,7 +32,7 @@ const LoginForm = ({ className }: { className: string }) => {
     formState: { errors, isSubmitting, isValid },
   } = useForm<LoginFormSchemaType>({
     resolver: zodResolver(loginFormSchema),
-    mode: 'onSubmit',
+    mode: 'onTouched',
     criteriaMode: 'firstError',
     defaultValues: {
       email: '',

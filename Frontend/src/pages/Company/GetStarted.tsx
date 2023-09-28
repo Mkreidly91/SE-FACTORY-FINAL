@@ -130,7 +130,7 @@ const GetStarted = () => {
       <section>
         <div className="get-started-footer flex flex-col gap-10 items-center py-10">
           <span className="font-semibold text-xl md:text-4xl  w-[60%] md:w-[50%] text-center">
-            Want to learn more?
+            Ready to get started?
           </span>
 
           <Link to="/signup">
