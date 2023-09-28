@@ -7,7 +7,7 @@ const EditProfile = () => {
   useEffect(() => {
     const fetchUser = async () => {
       const res = await getUserInfo();
-      console.log(res);
+
       if (res) {
         setUser(res);
       }

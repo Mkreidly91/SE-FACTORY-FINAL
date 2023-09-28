@@ -68,7 +68,6 @@ const ProjectForm = ({
   }, [initialValues, id]);
 
   const onSubmit: SubmitHandler<ProjectFormSchemaType> = async (data) => {
-    // console.log(data);
     if (!id) {
       const res = await createProject(data);
       navigate(`${res._id}`);

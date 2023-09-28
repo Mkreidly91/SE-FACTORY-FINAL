@@ -56,7 +56,6 @@ const V360 = ({ className }: { className: string }) => {
     if (viewRef.current) {
       viewRef.current?.hotspot?.refresh();
       viewRef.current?.hotspot?.render(viewRef.current?.camera);
-      console.log(viewRef.current.camera.yaw, viewRef.current.camera.pitch);
     }
   }, [p, viewRef?.current, viewRef?.current?.camera?.yaw]);
 

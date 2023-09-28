@@ -9,7 +9,6 @@ const baseURL = import.meta.env.VITE_URL;
 const signup = async (formData: SignupFormSchemaType) => {
   try {
     const res = await axios.post(`${baseURL}auth/register`, formData);
-    console.log(res);
     if (res.status === 200) {
       return { status: res.status };
     }

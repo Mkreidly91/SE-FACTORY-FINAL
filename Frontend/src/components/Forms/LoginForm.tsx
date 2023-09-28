@@ -11,7 +11,6 @@ import {
 import { useState } from 'react';
 import { ApiError } from '../../api/api.helpers';
 import ApiErrorHandler from '../Common/ApiError';
-import { Button, Spinner } from '@material-tailwind/react';
 import SubmitButton from '../Common/SubmitButton';
 
 const LoginForm = ({ className }: { className: string }) => {
@@ -83,7 +82,7 @@ const LoginForm = ({ className }: { className: string }) => {
           <div className="text-sm ">
             No account? Sign up
             <Link to="/signUp">
-              <a className="text-sky-700"> here</a>
+              <span className="text-sky-700"> here</span>
             </Link>
           </div>
         </div>

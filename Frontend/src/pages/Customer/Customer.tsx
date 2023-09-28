@@ -104,6 +104,7 @@ const CustomerPage = () => {
               {searchResults?.results &&
                 searchResults.results.map((p: any) => (
                   <motion.div
+                    key={p._id}
                     initial="hidden"
                     animate="visible"
                     variants={variants}
