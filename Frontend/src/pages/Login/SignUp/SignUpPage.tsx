@@ -1,6 +1,6 @@
 import SignupForm from '../../../components/Forms/SignupForm';
 import Left from '@mui/icons-material/KeyboardDoubleArrowLeft';
-import BreathingDots from '../../3d/Dots';
+import BreathingDots from '../../../components/3d/Dots';
 import { Link } from 'react-router-dom';
 const SignUpPage = () => {
   return (

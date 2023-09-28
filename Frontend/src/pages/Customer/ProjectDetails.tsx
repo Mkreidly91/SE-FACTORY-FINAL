@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { getProjectById } from '../../api/company.api';
 import { Suspense, useEffect, useState } from 'react';
-import ObjectViewer from '../3d/ObjectViewer';
-import PanoEditor from '../3d/PanoEditor';
+import ObjectViewer from '../../components/3d/ObjectViewer';
+import PanoEditor from '../../components/3d/PanoEditor';
 import { motion } from 'framer-motion';
 import { motion as motion3d } from 'framer-motion-3d';
 

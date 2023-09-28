@@ -5,12 +5,12 @@ import View360, {
   LoadingSpinner,
 } from '@egjs/react-view360';
 import '@egjs/react-view360/css/view360.min.css';
-import Arrows from '../../components/Hotpots/Arrows/Arrows';
-import Button from '../../components/Common/Button';
+import Arrows from '../Hotpots/Arrows/Arrows';
+import Button from '../Common/Button';
 import AdjustIcon from '@mui/icons-material/Adjust';
 import '@egjs/react-view360/css/view360.min.css';
 import '@egjs/view360/css/loading-spinner.min.css';
-import HotspotForm from '../../components/Forms/HotspotForm';
+import HotspotForm from '../Forms/HotspotForm';
 import {
   addHotspot,
   addPanorama,
@@ -20,8 +20,8 @@ import {
   getProjectById,
 } from '../../api/company.api';
 import { useParams } from 'react-router-dom';
-import ImageSlider from '../../components/Common/ImageSlider/ImageSlider';
-import UploadButton from '../../components/Common/UploadButton';
+import ImageSlider from '../Common/ImageSlider/ImageSlider';
+import UploadButton from '../Common/UploadButton';
 
 export interface IPanorama {
   _id: string;
