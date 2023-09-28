@@ -45,7 +45,7 @@ const upload = async (fileData: Express.Multer.File) => {
 
 const deleteFile = async (url: string) => {
   const key = getFileNameFromUrl(url);
-  console.log(key);
+
   const params = {
     Bucket: envConfig.BUCKET_NAME,
     Key: key,

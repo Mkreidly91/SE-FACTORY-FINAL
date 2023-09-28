@@ -84,7 +84,7 @@ const getUser = async (req: AuthRequest, res: Response, next: NextFunction) => {
     if (!profile) {
       throw new HttpException(400, 'Profile not found');
     }
-    console.log(profile);
+
     return res.status(200).json({ profile });
   } catch (error) {
     next(error);

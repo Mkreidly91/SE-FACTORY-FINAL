@@ -289,7 +289,6 @@ const deleteHotspotService = async (
 
   panorama.hotspots = panorama.hotspots.filter((e) => !e._id.equals(hotspotId));
   await project.save();
-  console.log(panorama.hotspots);
   return panorama.hotspots;
 };
 
@@ -383,7 +382,6 @@ const editHotspotService = async (
     e._id.equals(panoramaId)
   ).hotspots;
 
-  // console.log(newHotspots);
   return newHotspots;
 };
 export {

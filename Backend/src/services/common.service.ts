@@ -10,7 +10,7 @@ const searchProjectService = async (
   let results;
   let count;
   let isNextable;
-  console.log(q);
+
   if (Object.keys(q).length === 0) {
     results = await Project.find()
       .skip((page - 1) * perPage)
@@ -45,7 +45,7 @@ const searchProjectService = async (
     count = await Project.find(query).count();
     isNextable = (page - 1) * perPage + results.length < count;
   }
-  console.log(results, isNextable);
+
   return { message: 'Success', data: { results, isNextable } };
 };
 
