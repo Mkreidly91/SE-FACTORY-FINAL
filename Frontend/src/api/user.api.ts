@@ -21,9 +21,8 @@ const editCompanyProfile = async (fields: any) => {
       fields,
       headers({ 'Content-Type': 'multipart/form-data' })
     );
-    if (res.status === 200) {
-      return res.data.user;
-    }
+
+    return res.status;
   } catch (error) {
     console.log(error);
   }
