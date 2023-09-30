@@ -19,6 +19,8 @@ import { filterChangedFormFields } from '../../helpers/helpers';
 import { editUserSchema, UserSchema } from '../../validation/user.validation';
 import { editCompanyProfile } from '../../api/user.api';
 import UploadButton from '../Common/UploadButton';
+import Toast from '../Common/Toast';
+import { TroubleshootOutlined } from '@mui/icons-material';
 
 const EditProfileForm = ({
   initialValues,
@@ -44,6 +46,10 @@ const EditProfileForm = ({
   const onSubmit: SubmitHandler<UserSchema> = async (data) => {
     const changedFieldValues = filterChangedFormFields(data, dirtyFields);
     const res = await editCompanyProfile(data);
+    if (res === 200) {
+      setToastDisplay(true);
+      reset({}, { keepValues: true });
+    }
   };
 
   const {
@@ -62,15 +68,20 @@ const EditProfileForm = ({
     },
   } = useForm<UserSchema>({
     resolver: zodResolver(editUserSchema),
-    mode: 'onSubmit',
+    mode: 'onTouched',
     criteriaMode: 'firstError',
   });
 
+  const [toastDisplay, setToastDisplay] = useState(false);
+  console.log(errors);
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="flex gap-4 w-full h-full justify-around  mt-20"
     >
+      {toastDisplay && (
+        <Toast setOpen={setToastDisplay} text="Successfully edited profile" />
+      )}
       <div className="project-form-left w-[50%] flex flex-col gap-1 items-center ">
         <div className="flex flex-col gap-1 w-full justify-center">
           <label className="font-semibold text-gray-600 text-sm">
@@ -115,7 +126,7 @@ const EditProfileForm = ({
           color="inherit"
           className="self-start font-extrabold"
           type="submit"
-          disabled={!isDirty || isSubmitting}
+          disabled={!isDirty || isSubmitting || !isValid}
         >
           Save
         </Button>
