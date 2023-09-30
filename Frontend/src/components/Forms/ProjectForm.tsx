@@ -17,6 +17,8 @@ import FeatureBox from '../Common/FeatureBox';
 import { useNavigate } from 'react-router-dom';
 import { filterChangedFormFields } from '../../helpers/helpers';
 import UploadButton from '../Common/UploadButton';
+import ConfirmDelete from '../Common/Confirmation';
+import Toast from '../Common/Toast';
 
 const ProjectForm = ({
   initialValues,
@@ -36,7 +38,7 @@ const ProjectForm = ({
   id: string;
 }) => {
   const [preview, setPreview] = useState() as any;
-
+  const [toastDisplay, setToastDisplay] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -74,7 +76,11 @@ const ProjectForm = ({
       return;
     } else {
       const changedFieldValues = filterChangedFormFields(data, dirtyFields);
-      await editProject(id, changedFieldValues);
+      const status = await editProject(id, changedFieldValues);
+      if (status === 200) {
+        setToastDisplay(true);
+        reset({}, { keepValues: true });
+      }
     }
   };
 
@@ -102,8 +108,11 @@ const ProjectForm = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex gap-4 w-full h-full justify-around  mt-20 pb-20"
+      className="flex gap-4 w-full h-full justify-around  mt-20 pb-20 "
     >
+      {toastDisplay && (
+        <Toast setOpen={setToastDisplay} text="Successfully edited project" />
+      )}
       <div className="project-form-left w-[50%] flex flex-col gap-1 items-center ">
         <div className="flex flex-col gap-1 w-full justify-center">
           <label className="font-semibold text-gray-600 text-sm">
@@ -215,7 +224,7 @@ const ProjectForm = ({
           )}
         />
 
-        <div className="project-form-buttons flex justify-center gap-3 pt-10">
+        <div className="project-form-buttons flex justify-center gap-3 pt-10 ">
           <Button
             color="inherit"
             variant="contained"
@@ -227,18 +236,24 @@ const ProjectForm = ({
           </Button>
 
           {id && (
-            <Button
-              color="inherit"
-              className="bg-red-200 text-red-200 font-extrabold"
-              style={{ color: 'red' }}
-              type="button"
-              onClick={async () => {
+            // <Button
+            //   color="inherit"
+            //   className="bg-red-200 text-red-200 font-extrabold"
+            //   style={{ color: 'red' }}
+            //   type="button"
+            //   onClick={async () => {
+            //     const status = await deleteProject(initialValues?._id);
+            //     if (status === 200) navigate('/dashboard/projects');
+            //   }}
+            // >
+            //   Delete Project
+            // </Button>
+            <ConfirmDelete
+              onConfirm={async () => {
                 const status = await deleteProject(initialValues?._id);
                 if (status === 200) navigate('/dashboard/projects');
               }}
-            >
-              Delete Project
-            </Button>
+            />
           )}
         </div>
       </div>
