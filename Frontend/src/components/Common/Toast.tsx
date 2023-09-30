@@ -30,7 +30,7 @@ export default function Toast({
   useEffect(() => {
     setTimeout(() => {
       setOpen(false);
-    }, 2000);
+    }, 3000);
   }, []);
   return (
     <Alert
