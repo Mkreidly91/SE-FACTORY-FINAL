@@ -21,7 +21,7 @@ const AddOrEditProject = ({ tab = 0 }: { tab?: number }) => {
   }, [id, activeTab]);
 
   return (
-    <div className="w-full p-5">
+    <div className="w-full p-5 ">
       <div className="tabs-wrapper flex justify-center">
         <Tabs
           className="w-fit"
