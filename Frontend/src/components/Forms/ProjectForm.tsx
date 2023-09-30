@@ -104,7 +104,6 @@ const ProjectForm = ({
       price: 0,
     },
   });
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -166,16 +165,19 @@ const ProjectForm = ({
               onFocus={() => clearErrors('size')}
               error={Boolean(errors.size)}
               helperText={errors?.size?.message || ' '}
-              {...register('size', { valueAsNumber: true })}
+              {...register('size', {
+                valueAsNumber: true,
+              })}
             />
           </div>
 
           <div className="flex flex-col gap-1 w-full justify-center">
             <label className="font-semibold text-gray-600 text-sm">Price</label>
+
             <TextField
               className="max-w-[600px]"
               type="number"
-              InputLabelProps={{ className: '' }}
+              inputMode="numeric"
               onFocus={() => clearErrors('price')}
               error={Boolean(errors.price)}
               helperText={errors?.price?.message || ' '}
@@ -236,18 +238,6 @@ const ProjectForm = ({
           </Button>
 
           {id && (
-            // <Button
-            //   color="inherit"
-            //   className="bg-red-200 text-red-200 font-extrabold"
-            //   style={{ color: 'red' }}
-            //   type="button"
-            //   onClick={async () => {
-            //     const status = await deleteProject(initialValues?._id);
-            //     if (status === 200) navigate('/dashboard/projects');
-            //   }}
-            // >
-            //   Delete Project
-            // </Button>
             <ConfirmDelete
               onConfirm={async () => {
                 const status = await deleteProject(initialValues?._id);
