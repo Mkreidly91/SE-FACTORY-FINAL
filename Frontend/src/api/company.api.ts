@@ -123,7 +123,7 @@ const editProject = async (projectId: string, fields: any) => {
       headers({ 'Content-Type': 'multipart/form-data' })
     );
     if (res.status === 200) {
-      return res.data.data;
+      return res.status;
     }
   } catch (error) {
     const errors = error as Error | AxiosError;
