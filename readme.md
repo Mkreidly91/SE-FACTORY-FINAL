@@ -52,18 +52,18 @@
 | ----------------------------------------- | ----------------------------------------------- |
 | ![fsdaf](./readme/demo/gifs/loginGif.gif) | ![fsdaf](./readme/demo/gifs/companyHomeGif.gif) |
 
-<!-- | Home screen | Menu Screen | Order Screen | Checkout Screen
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | -->
+| Company Dashboard                       | Create tour                         |
+| --------------------------------------- | ----------------------------------- |
+| ![fsdaf](./readme/demo/editProject.gif) | ![fsdaf](./readme/demo/hotspot.gif) |
+
+</br>
+</br>
 
 ### Customer Screens (Web)
 
-|             Login screen              |             Register screen             |
-| :-----------------------------------: | :-------------------------------------: |
-|   ![Login](./readme/demo/login.png)   | ![Register](./readme/demo/register.png) |
-|            Landing screen             |               Home screen               |
-| ![Landing](./readme/demo/landing.png) |     ![Home](./readme/demo/home.png)     |
-|              Menu Screen              |              Order Screen               |
-|    ![Menu](./readme/demo/menu.png)    |    ![Order](./readme/demo/order.png)    |
+|             Customer screen             |               Project details                |
+| :-------------------------------------: | :------------------------------------------: |
+| ![customer](./readme/demo/customer.gif) | ![project](./readme/demo/projectDetails.gif) |
 
 <br><br>
 
@@ -95,6 +95,10 @@
 - [Zod](https://github.com/colinhacks/zod): Implements client-side data validation in TypeScript (TS) to ensure data consistency and improve the frontend's reliability.
 
 - [Tailwind CSS](https://tailwindcss.com/): Streamlines styling and provides a utility-first approach to building user interfaces, making it easier to create beautiful designs.
+
+- [Framer Motion](https://www.framer.com/motion/) : Adds smooth animations and transitions to the user interface, enhancing the overall user experience.
+
+- [Material-UI](https://mui.com/) : Provides a set of pre-built UI components and styles for designing a modern and responsive frontend.
 
 - [Vite](https://vitejs.dev/): A fast, opinionated build tool that significantly speeds up frontend development. It offers blazingly fast development server and building capabilities.
 
@@ -198,8 +202,8 @@ npm install
 
 - Create a .env file in the frontend directory to store configuration variables:
   `env
-  VITE_URL: YOUR_BASE_URL/  i.e:(http://127.0.0.1:80/)
-  `
+VITE_URL: YOUR_BASE_URL/  i.e:(http://127.0.0.1:80/)
+`
 
 </br>
 
