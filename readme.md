@@ -145,9 +145,9 @@ npm install
 
    - MongoDB Atlas Configuration:
 
-   - Sign up or log in to MongoDB Atlas.
-     Create a new cluster and configure your database settings.
-     Obtain your MongoDB Atlas connection string.
+     - Sign up or log in to MongoDB Atlas.
+       Create a new cluster and configure your database settings.
+       Obtain your MongoDB Atlas connection string.
 
 4. AWS S3 Bucket Setup:
 
@@ -198,8 +198,8 @@ npm install
 
 - Create a .env file in the frontend directory to store configuration variables:
   `env
-    VITE_URL: YOUR_BASE_URL/  i.e:(http://127.0.0.1:80/)
-    `
+  VITE_URL: YOUR_BASE_URL/  i.e:(http://127.0.0.1:80/)
+  `
 
 </br>
 
@@ -208,3 +208,5 @@ npm install
 ```sh
 npm run dev
 ```
+
+By following these steps, you'll have both the backend and frontend components of your project set up locally, and they will be ready to work together with the necessary configurations. The backend will connect to MongoDB, MongoDB Atlas configuration, and AWS S3 bucket setup, while the frontend will be ready for development and interaction with the backend API.
