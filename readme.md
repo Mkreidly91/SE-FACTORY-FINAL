@@ -52,16 +52,18 @@
 | ----------------------------------------- | ----------------------------------------------- |
 | ![fsdaf](./readme/demo/gifs/loginGif.gif) | ![fsdaf](./readme/demo/gifs/companyHomeGif.gif) |
 
-| Home screen | Menu sScreen | Order Screen | Checkout Screen |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+<!-- | Home screen | Menu Screen | Order Screen | Checkout Screen
+| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | -->
 
 ### Customer Screens (Web)
 
-| Login screen                            | Register screen                       | Landing screen                        |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
-| Home screen                             | Menu Screen                           | Order Screen                          |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+|             Login screen              |             Register screen             |
+| :-----------------------------------: | :-------------------------------------: |
+|   ![Login](./readme/demo/login.png)   | ![Register](./readme/demo/register.png) |
+|            Landing screen             |               Home screen               |
+| ![Landing](./readme/demo/landing.png) |     ![Home](./readme/demo/home.png)     |
+|              Menu Screen              |              Order Screen               |
+|    ![Menu](./readme/demo/menu.png)    |    ![Order](./readme/demo/order.png)    |
 
 <br><br>
 
@@ -70,11 +72,31 @@
 
 ### Vizi is built using the following technologies:
 
-- This project uses the [Flutter app development framework](https://flutter.dev/). Flutter is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
-- For persistent storage (database), the app uses the [Hive](https://hivedb.dev/) package which allows the app to create a custom storage schema and save it to a local database.
-- To send local push notifications, the app uses the [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) package which supports Android, iOS, and macOS.
-  - 🚨 Currently, notifications aren't working on macOS. This is a known issue that we are working to resolve!
-- The app uses the font ["Work Sans"](https://fonts.google.com/specimen/Work+Sans) as its main font, and the design of the app adheres to the material design guidelines.
+#### Backend
+
+- [Node.js](https://nodejs.org/) (v18.1.0) with Express framework: Powers the server-side logic and API endpoints, facilitating data retrieval and storage. Developed in TypeScript (TS) for enhanced type safety.
+
+- [MongoDB](https://www.mongodb.com/) (v4.4): Serves as the primary database, storing project-related data efficiently.
+
+- [Zod](https://github.com/colinhacks/zod): Implements data validation in TypeScript (TS) for incoming requests, ensuring data integrity and type safety.
+
+#### Media Storage
+
+- AWS S3 bucket (via [aws-sdk](https://aws.amazon.com/sdk-for-javascript/)): Utilized for media asset storage, including images and videos, ensuring scalability and high availability.
+
+#### Frontend
+
+- [React](https://reactjs.org/) (v17): Empowers the user interface, providing a responsive and dynamic user experience. Developed in TypeScript (TS) for a robust type system.
+
+- [react-three-fiber](https://github.com/pmndrs/react-three-fiber) (v5): Enhances the project's 3D capabilities by simplifying Three.js integration within a React environment. Utilizes TypeScript (TS) for type safety.
+
+- [egjs-view360](https://github.com/naver/egjs-view360): Seamlessly integrates 360° panoramic images, delivering an immersive visual experience for users.
+
+- [Zod](https://github.com/colinhacks/zod): Implements client-side data validation in TypeScript (TS) to ensure data consistency and improve the frontend's reliability.
+
+- [Tailwind CSS](https://tailwindcss.com/): Streamlines styling and provides a utility-first approach to building user interfaces, making it easier to create beautiful designs.
+
+- [Vite](https://vitejs.dev/): A fast, opinionated build tool that significantly speeds up frontend development. It offers blazingly fast development server and building capabilities.
 
 <br><br>
 
@@ -91,23 +113,98 @@ This is an example of how to list things you need to use the software and how to
   ```sh
   npm install npm@latest -g
   ```
+   </br>
 
-### Installation
+## Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+1. Clone the repo
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+```sh
+ git clone https://github.com/Mkreidly91/Vizi.git
+```
+
+</br>
+
+### Backend Installation
+
+1. Navigate to backend:
+
+```sh
+cd Vizi/backend
+```
+
+2. Install dependencies:
+
+```sh
+npm install
+```
+
+3. MongoDB Setup:
+
+   - If you haven't already, install MongoDB on your local machine. You can download it from the MongoDB website.
+
+   - MongoDB Atlas Configuration:
+
+   - Sign up or log in to MongoDB Atlas.
+     Create a new cluster and configure your database settings.
+     Obtain your MongoDB Atlas connection string.
+
+4. AWS S3 Bucket Setup:
+
+   - Sign in to your AWS account or create one if you don't have it.
+
+   - Create an S3 bucket for media storage (images, videos, etc.). Configure access permissions as needed.
+
+   - Obtain your AWS access keys (Access Key ID and Secret Access Key).
+
+5. Environment Variables:
+
+   - Create a .env file in the backend directory to store sensitive information and configuration variables:
+
+   ```env
+   PORT=PORT_NUMBER
+   MONGO_PASS=YOUR_MONGODB_PASSWORD
+   MONGO_URL=YOUR_MONGODB_ATLAS_CONNECTION_STRING
+   JWT_SECRET=YOUR_JWT_SECRET
+   AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY_ID
+   AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS_KEY
+   AWS_S3_BUCKET_NAME=YOUR_S3_BUCKET_NAME
+   AWS_S3_BUCKET_REGION=YOUR_S3_BUCKET_REGION
+   ```
+
+6. Start the development server:
+
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+   npm run dev
    ```
 
-Now, you should be able to run Vizi locally and explore its features.
+   </br>
+
+### Frontend Installation
+
+1. Navigate to frontend:
+
+```sh
+cd Vizi/frontend
+```
+
+2. Install dependencies:
+
+```sh
+npm install
+```
+
+3. Environment Variables:
+
+- Create a .env file in the frontend directory to store configuration variables:
+  `env
+    VITE_URL: YOUR_BASE_URL/  i.e:(http://127.0.0.1:80/)
+    `
+
+</br>
+
+4.  Start the development server:
+
+```sh
+npm run dev
+```
