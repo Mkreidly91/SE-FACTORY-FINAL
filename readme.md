@@ -67,12 +67,20 @@
 
 <br><br>
 
-<!-- Tech stack -->
+### Videos
+
+- [Customer Journey](https://youtu.be/fQZ61ADXafg)
+- [ Company Journey](https://youtu.be/Ula8O4O6PMQ)
+  </br>
+  </br>
+  </br>
+    <!-- Tech stack -->
+
 <img src="./readme/title5.svg"/>
 
-### Vizi is built using the following technologies:
+## Vizi is built using the following technologies:
 
-#### Backend
+## Backend
 
 - [Node.js](https://nodejs.org/) (v18.1.0) with Express framework: Powers the server-side logic and API endpoints, facilitating data retrieval and storage. Developed in TypeScript (TS) for enhanced type safety.
 
@@ -80,11 +88,11 @@
 
 - [Zod](https://github.com/colinhacks/zod): Implements data validation in TypeScript (TS) for incoming requests, ensuring data integrity and type safety.
 
-#### Media Storage
+## Media Storage
 
 - AWS S3 bucket (via [aws-sdk](https://aws.amazon.com/sdk-for-javascript/)): Utilized for media asset storage, including images and videos, ensuring scalability and high availability.
 
-#### Frontend
+## Frontend
 
 - [React](https://reactjs.org/) (v17): Empowers the user interface, providing a responsive and dynamic user experience. Developed in TypeScript (TS) for a robust type system.
 
@@ -213,4 +221,4 @@ VITE_URL: YOUR_BASE_URL/  i.e:(http://127.0.0.1:80/)
 npm run dev
 ```
 
-By following these steps, you'll have both the backend and frontend components of your project set up locally, and they will be ready to work together with the necessary configurations. The backend will connect to MongoDB, MongoDB Atlas configuration, and AWS S3 bucket setup, while the frontend will be ready for development and interaction with the backend API.
+By following these steps, you'll have both the backend and frontend components of your project set up locally, and they will be ready to work together with the necessary configurations.
