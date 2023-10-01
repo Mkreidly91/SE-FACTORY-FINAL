@@ -44,11 +44,16 @@
 
 ### Company Screens (Web)
 
-| Landing screen                                | Sign-up screen                             | Login screen                              | Company Home                                    |
-| --------------------------------------------- | ------------------------------------------ | ----------------------------------------- | ----------------------------------------------- |
-| ![Landing](./readme/demo/gifs/landingGif.gif) | ![fsdaf](./readme/demo/gifs/signupGif.gif) | ![fsdaf](./readme/demo/gifs/loginGif.gif) | ![fsdaf](./readme/demo/gifs/companyHomeGif.gif) |
-| Home screen                                   | Menu Screen                                | Order Screen                              | Checkout Screen                                 |
-| ![Landing](https://placehold.co/900x1600)     | ![fsdaf](https://placehold.co/900x1600)    | ![fsdaf](https://placehold.co/900x1600)   | ![fsdaf](https://placehold.co/900x1600)         |
+| Landing screen                                | Sign-up screen                             |
+| --------------------------------------------- | ------------------------------------------ |
+| ![Landing](./readme/demo/gifs/landingGif.gif) | ![fsdaf](./readme/demo/gifs/signupGif.gif) |
+
+| Login screen                              | Company Home                                    |
+| ----------------------------------------- | ----------------------------------------------- |
+| ![fsdaf](./readme/demo/gifs/loginGif.gif) | ![fsdaf](./readme/demo/gifs/companyHomeGif.gif) |
+
+| Home screen | Menu sScreen | Order Screen | Checkout Screen |
+| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
 
 ### Customer Screens (Web)
 
