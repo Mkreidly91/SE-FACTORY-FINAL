@@ -74,12 +74,18 @@
 
 ### Videos
 
-- [Customer Journey](https://youtu.be/fQZ61ADXafg)
-- [ Company Journey](https://youtu.be/Ula8O4O6PMQ)
-  </br>
-  </br>
-  </br>
-    <!-- Tech stack -->
+<!-- - [Customer Journey](https://youtu.be/fQZ61ADXafg)
+- [ Company Journey](https://youtu.be/Ula8O4O6PMQ) -->
+
+| Customer                                                                                                             | Company                                                                                                             |
+| -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| [![Customer Video](https://img.youtube.com/vi/fQZ61ADXafg/hqdefault.jpg)](https://www.youtube.com/embed/fQZ61ADXafg) | [![Company Video](https://img.youtube.com/vi/Ula8O4O6PMQ/hqdefault.jpg)](https://www.youtube.com/embed/Ula8O4O6PMQ) |
+
+</br>
+</br>
+</br>
+
+<!-- Tech stack -->
 
 <img src="./readme/title5.svg"/>
 
