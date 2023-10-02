@@ -7,11 +7,16 @@
 
 > A platform that allows construction companies to showcase their projects through 3D objects, and virtual tours of the space using panoramic images. The platform enhances the visibility of the company’s work and creates an immersive experience for users.
 
-### User Stories
+## User Stories
+
+### Company:
 
 - As a construction company, I want to create a profile for my company, so I can gain exposure for my projects.
 - As a construction company, I want to edit my profile, so I can keep my profile up to date.
 - As a construction company, I want to include a virtual tour of my project, to attract potential customers.
+
+### Customer:
+
 - As a customer, I want to browse for multiple projects, so I can see different options.
 - As a customer, I want to roam around in the space, so I can see different angles.
 
@@ -22,13 +27,13 @@
 
 > We designed Vizi using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
-### Wireframes
+## Wireframes
 
 | Get Started                              | Dashboard                                    | Create Project                            |
 | ---------------------------------------- | -------------------------------------------- | ----------------------------------------- |
 | ![Landing](./readme/demo/getStarted.png) | ![fsdaf](./readme/demo/companyDashboard.png) | ![fsdaf](./readme/demo/createProject.png) |
 
-### Mockups
+## Mockups
 
 | Get Started                                     | Dashboard Projects                          | Customer Screen                             |
 | ----------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
