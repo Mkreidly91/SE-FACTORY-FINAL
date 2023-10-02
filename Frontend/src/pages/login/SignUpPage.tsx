@@ -1,7 +1,8 @@
-import SignupForm from '../../../components/Forms/SignupForm';
 import Left from '@mui/icons-material/KeyboardDoubleArrowLeft';
-import BreathingDots from '../../../components/3d/Dots';
 import { Link } from 'react-router-dom';
+import BreathingDots from '../../components/3d/Dots';
+import SignupForm from '../../components/forms/SignupForm';
+
 const SignUpPage = () => {
   return (
     <div className="w-full h-full flex items-center justify-center gap-5 neutral-gradient ">

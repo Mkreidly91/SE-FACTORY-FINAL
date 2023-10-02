@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import ProjectCard from '../../../components/Common/ProjectCard';
+import ProjectCard from '../../../components/common/ProjectCard';
 import { getProjects } from '../../../api/company.api';
 import { Link } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import { ApiError } from '../../../api/api.helpers';
-import ApiErrorHandler from '../../../components/Common/ApiError';
+import ApiErrorHandler from '../../../components/common/ApiError';
 import ghost from '../../../assets/icons/empty-state/ghost.svg';
 
 const Projects = () => {

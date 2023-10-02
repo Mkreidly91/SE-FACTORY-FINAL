@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import ProjectSearchForm from '../../components/Forms/ProjectSearchForm';
-import ProjectCard from '../../components/Common/ProjectCard';
+import ProjectCard from '../../components/common/ProjectCard';
 import { motion } from 'framer-motion';
 import customerHero from '../../assets/images/customer/customer-hero.png';
 import Navbar from '../../components/Navbar';
@@ -8,7 +8,7 @@ import Footer from '../../components/Footer';
 import { searchProject } from '../../api/common.api';
 import { Button, CircularProgress, Container, Grid } from '@mui/material';
 import { ApiError } from '../../api/api.helpers';
-import ApiErrorHandler from '../../components/Common/ApiError';
+import ApiErrorHandler from '../../components/common/ApiError';
 import { ProjectSearchFormSchemaType } from '../../validation/project.validation';
 import { Link } from 'react-router-dom';
 

@@ -11,15 +11,15 @@ import {
   deleteProject,
   editProject,
 } from '../../api/company.api';
-import FeatureBox from '../Common/FeatureBox';
-import FileUploadForm from '../Common/FileUploadForm';
+import FeatureBox from '../common/FeatureBox';
+import FileUploadForm from '../common/FileUploadForm';
 
 import { useNavigate } from 'react-router-dom';
 import { filterChangedFormFields } from '../../helpers/helpers';
 import { editUserSchema, UserSchema } from '../../validation/user.validation';
 import { editCompanyProfile } from '../../api/user.api';
-import UploadButton from '../Common/UploadButton';
-import Toast from '../Common/Toast';
+import UploadButton from '../common/UploadButton';
+import Toast from '../common/Toast';
 import { TroubleshootOutlined } from '@mui/icons-material';
 
 const EditProfileForm = ({

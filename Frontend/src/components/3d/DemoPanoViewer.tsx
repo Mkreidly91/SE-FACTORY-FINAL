@@ -5,7 +5,7 @@ import View360, {
   LoadingSpinner,
 } from '@egjs/react-view360';
 import '@egjs/react-view360/css/view360.min.css';
-import Arrows from '../Hotpots/Arrows/Arrows';
+import Arrows from '../hotpots/arrows/Arrows';
 import '@egjs/react-view360/css/view360.min.css';
 import '@egjs/view360/css/loading-spinner.min.css';
 import bedroom from '../../assets/images/Demo/bedroom.jpeg';

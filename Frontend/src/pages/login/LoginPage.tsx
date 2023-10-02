@@ -1,7 +1,7 @@
 import Left from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import { Link } from 'react-router-dom';
-import Wobble from '../../../components/3d/Wobble';
-import LoginForm from '../../../components/Forms/LoginForm';
+import Wobble from '../../components/3d/Wobble';
+import LoginForm from '../../components/forms/LoginForm';
 
 const LoginPage = () => {
   return (

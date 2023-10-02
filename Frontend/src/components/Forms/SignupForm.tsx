@@ -10,8 +10,8 @@ import {
 } from '../../validation/user.validation';
 import { useState } from 'react';
 import { ApiError } from '../../api/api.helpers';
-import ApiErrorHandler from '../Common/ApiError';
-import SubmitButton from '../Common/SubmitButton';
+import ApiErrorHandler from '../common/ApiError';
+import SubmitButton from '../common/SubmitButton';
 
 const SignupForm = ({ className }: { className?: string }) => {
   const navigate = useNavigate();

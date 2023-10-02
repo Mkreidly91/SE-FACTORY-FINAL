@@ -5,7 +5,7 @@ import {
   ProjectSearchFormSchemaType,
   projectSearch,
 } from '../../validation/project.validation';
-import BasicPopover from '../Common/Popover';
+import BasicPopover from '../common/Popover';
 import { Search } from '@mui/icons-material';
 
 const ProjectSearchForm = ({ onFormSubmit }: { onFormSubmit: Function }) => {

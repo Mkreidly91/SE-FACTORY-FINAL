@@ -5,8 +5,8 @@ import View360, {
   LoadingSpinner,
 } from '@egjs/react-view360';
 import '@egjs/react-view360/css/view360.min.css';
-import Arrows from '../Hotpots/Arrows/Arrows';
-import Button from '../Common/Button';
+import Arrows from '../hotpots/arrows/Arrows';
+import Button from '../common/Button';
 import AdjustIcon from '@mui/icons-material/Adjust';
 import '@egjs/react-view360/css/view360.min.css';
 import '@egjs/view360/css/loading-spinner.min.css';
@@ -20,8 +20,8 @@ import {
   getProjectById,
 } from '../../api/company.api';
 import { useParams } from 'react-router-dom';
-import ImageSlider from '../Common/ImageSlider/ImageSlider';
-import UploadButton from '../Common/UploadButton';
+import ImageSlider from '../common/imageSlider/ImageSlider';
+import UploadButton from '../common/UploadButton';
 
 export interface IPanorama {
   _id: string;

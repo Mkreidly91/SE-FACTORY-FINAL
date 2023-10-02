@@ -1,12 +1,12 @@
 import { Suspense, useEffect, useState } from 'react';
-import ImageSlider from '../../../components/Common/ImageSlider/ImageSlider';
+import ImageSlider from '../../../components/common/imageSlider/ImageSlider.tsx';
 import ObjectViewer from '../../../components/3d/ObjectViewer.tsx';
 import V360 from '../../../components/3d/DemoPanoViewer.tsx';
 import PanoEditor from '../../../components/3d/PanoEditor.tsx';
-import UploadButton from '../../../components/Common/UploadButton.tsx';
+import UploadButton from '../../../components/common/UploadButton.tsx';
 import { addApartment, deleteApartment } from '../../../api/company.api.ts';
-import Button from '../../../components/Common/Button.tsx';
-import ApiErrorHandler from '../../../components/Common/ApiError.tsx';
+import Button from '../../../components/common/Button.tsx';
+import ApiErrorHandler from '../../../components/common/ApiError.tsx';
 import { ApiError } from '../../../api/api.helpers.ts';
 
 const MarkersAndHotspots = ({ initialState }) => {

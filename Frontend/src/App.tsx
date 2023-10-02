@@ -1,15 +1,15 @@
 import './App.css';
 import Landing from './pages/landing/Landing';
 
-import DashBoard from './components/Dashboard/Dashboard';
+import DashBoard from './components/dashboard/Dashboard';
 import { Routes, Route } from 'react-router-dom';
-import CompanyHome from './pages/Company/CompanyHome';
-import GetStarted from './pages/Company/GetStarted';
-import CustomerPage from './pages/Customer/Customer';
-import LoginPage from './pages/Login/SignUp/LoginPage';
-import SignUpPage from './pages/Login/SignUp/SignUpPage';
-import ProjectDetails from './pages/Customer/ProjectDetails';
-import ProtectedRoute from './components/Common/ProtectedRoutes';
+import CompanyHome from './pages/company/CompanyHome';
+import GetStarted from './pages/company/GetStarted';
+import CustomerPage from './pages/customer/Customer';
+import LoginPage from './pages/login/LoginPage';
+import SignUpPage from './pages/login/SignUpPage';
+import ProjectDetails from './pages/customer/ProjectDetails';
+import ProtectedRoute from './components/common/ProtectedRoutes';
 
 function App() {
   return (

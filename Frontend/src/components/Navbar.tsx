@@ -4,7 +4,7 @@ import logo from '../assets/icons/logo/logo-full.svg';
 import logoBlack from '../assets/icons/logo/logo-full-black.svg';
 
 import { Button as MuiButton } from '@material-tailwind/react';
-import Button from './Common/Button';
+import Button from './common/Button';
 
 const Navbar = ({
   className,

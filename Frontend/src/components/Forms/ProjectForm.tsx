@@ -13,12 +13,12 @@ import {
   deleteProject,
   editProject,
 } from '../../api/company.api';
-import FeatureBox from '../Common/FeatureBox';
+import FeatureBox from '../common/FeatureBox';
 import { useNavigate } from 'react-router-dom';
 import { filterChangedFormFields } from '../../helpers/helpers';
-import UploadButton from '../Common/UploadButton';
-import ConfirmDelete from '../Common/Confirmation';
-import Toast from '../Common/Toast';
+import UploadButton from '../common/UploadButton';
+import ConfirmDelete from '../common/Confirmation';
+import Toast from '../common/Toast';
 
 const ProjectForm = ({
   initialValues,
