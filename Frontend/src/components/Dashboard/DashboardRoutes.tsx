@@ -1,8 +1,8 @@
 // DashboardRoutes.js
 import { Route, Routes } from 'react-router-dom';
-import Projects from '../../pages/company/Dashboard/Projects';
-import AddOrEditProject from '../../pages/company/Dashboard/AddOrEditProject';
-import EditProfile from '../../pages/company/Dashboard/EditProfile';
+import Projects from '../../pages/company/dashboard/Projects';
+import AddOrEditProject from '../../pages/company/dashboard/AddOrEditProject';
+import EditProfile from '../../pages/company/dashboard/EditProfile';
 
 const DashboardRoutes = () => {
   return (
