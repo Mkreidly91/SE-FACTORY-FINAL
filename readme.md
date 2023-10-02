@@ -57,9 +57,13 @@
 | ----------------------------------------- | ----------------------------------------------- |
 | ![fsdaf](./readme/demo/gifs/loginGif.gif) | ![fsdaf](./readme/demo/gifs/companyHomeGif.gif) |
 
-| Company Dashboard                       | Create tour                         |
-| --------------------------------------- | ----------------------------------- |
-| ![fsdaf](./readme/demo/editProject.gif) | ![fsdaf](./readme/demo/hotspot.gif) |
+| Get Started                            | Company Dashboard                       |
+| -------------------------------------- | --------------------------------------- |
+| ![fsdaf](./readme/demo/getStarted.gif) | ![fsdaf](./readme/demo/editProject.gif) |
+
+| 3D tour screen                      | Customize tour                            |
+| ----------------------------------- | ----------------------------------------- |
+| ![fsdaf](./readme/demo/hotspot.gif) | ![fsdaf](./readme/demo/configureTour.gif) |
 
 </br>
 </br>
