@@ -1,19 +1,41 @@
 <img src="./readme/title1.svg"/>
 
 <br><br>
+<img src="./readme/title7.svg"/>
 
+- [Project Description](#project-description)
+- [User Types](#user-types)
+- [Features of the App](#features-of-the-app)
+- [Tech Stack](#tech-stack)
+  - [Frontend](#Frontend)
+  - [Backend](#Backend)
+- [Prototyping](#prototyping)
+- [Demo](#Demo)
+- [OpenAi](#OpenAi)
+- [Performance](#Performance)
+- [How to Run](#how-to-run)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+
+</br>
+</br>
 <!-- project philosophy -->
 <img src="./readme/title2.svg"/>
 
 > A platform that allows construction companies to showcase their projects through 3D objects, and virtual tours of the space using panoramic images. The platform enhances the visibility of the company’s work and creates an immersive experience for users.
 
-## User Stories
+## User Types
+
+- Company
+- Customer (general)
+
+## Features
 
 ### Company:
 
 - As a construction company, I want to create a profile for my company, so I can gain exposure for my projects.
 - As a construction company, I want to edit my profile, so I can keep my profile up to date.
-- As a construction company, I want to include a virtual tour of my project, to attract potential customers.
+- As a construction company, I want to create a virtual tour of my project, to attract potential customers.
 
 ### Customer:
 
@@ -38,6 +60,44 @@
 | Get Started                                     | Dashboard Projects                          | Customer Screen                             |
 | ----------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
 | ![Landing](./readme/demo/mockup_getStarted.png) | ![fsdaf](./readme/demo/mockup_projects.png) | ![fsdaf](./readme/demo/mockup_customer.png) |
+
+<br><br>
+
+<!-- Tech stack -->
+
+<img src="./readme/title5.svg"/>
+
+## Vizi is built using the following technologies:
+
+## Backend
+
+- [Node.js](https://nodejs.org/) (v18.1.0) with Express framework: Powers the server-side logic and API endpoints, facilitating data retrieval and storage. Developed in TypeScript (TS) for enhanced type safety.
+
+- [MongoDB](https://www.mongodb.com/) (v4.4): Serves as the primary database, storing project-related data efficiently.
+
+- [Zod](https://github.com/colinhacks/zod): Implements data validation in TypeScript (TS) for incoming requests, ensuring data integrity and type safety.
+
+## Media Storage
+
+- AWS S3 bucket (via [aws-sdk](https://aws.amazon.com/sdk-for-javascript/)): Utilized for media asset storage, including images and videos, ensuring scalability and high availability.
+
+## Frontend
+
+- [React](https://reactjs.org/) (v17): Empowers the user interface, providing a responsive and dynamic user experience. Developed in TypeScript (TS) for a robust type system.
+
+- [react-three-fiber](https://github.com/pmndrs/react-three-fiber) (v5): Enhances the project's 3D capabilities by simplifying Three.js integration within a React environment. Utilizes TypeScript (TS) for type safety.
+
+- [egjs-view360](https://github.com/naver/egjs-view360): Seamlessly integrates 360° panoramic images, delivering an immersive visual experience for users.
+
+- [Zod](https://github.com/colinhacks/zod): Implements client-side data validation in TypeScript (TS) to ensure data consistency and improve the frontend's reliability.
+
+- [Tailwind CSS](https://tailwindcss.com/): Streamlines styling and provides a utility-first approach to building user interfaces, making it easier to create beautiful designs.
+
+- [Framer Motion](https://www.framer.com/motion/) : Adds smooth animations and transitions to the user interface, enhancing the overall user experience.
+
+- [Material-UI](https://mui.com/) : Provides a set of pre-built UI components and styles for designing a modern and responsive frontend.
+
+- [Vite](https://vitejs.dev/): A fast, opinionated build tool that significantly speeds up frontend development. It offers blazingly fast development server and building capabilities.
 
 <br><br>
 
@@ -88,44 +148,6 @@
 </br>
 </br>
 </br>
-
-<!-- Tech stack -->
-
-<img src="./readme/title5.svg"/>
-
-## Vizi is built using the following technologies:
-
-## Backend
-
-- [Node.js](https://nodejs.org/) (v18.1.0) with Express framework: Powers the server-side logic and API endpoints, facilitating data retrieval and storage. Developed in TypeScript (TS) for enhanced type safety.
-
-- [MongoDB](https://www.mongodb.com/) (v4.4): Serves as the primary database, storing project-related data efficiently.
-
-- [Zod](https://github.com/colinhacks/zod): Implements data validation in TypeScript (TS) for incoming requests, ensuring data integrity and type safety.
-
-## Media Storage
-
-- AWS S3 bucket (via [aws-sdk](https://aws.amazon.com/sdk-for-javascript/)): Utilized for media asset storage, including images and videos, ensuring scalability and high availability.
-
-## Frontend
-
-- [React](https://reactjs.org/) (v17): Empowers the user interface, providing a responsive and dynamic user experience. Developed in TypeScript (TS) for a robust type system.
-
-- [react-three-fiber](https://github.com/pmndrs/react-three-fiber) (v5): Enhances the project's 3D capabilities by simplifying Three.js integration within a React environment. Utilizes TypeScript (TS) for type safety.
-
-- [egjs-view360](https://github.com/naver/egjs-view360): Seamlessly integrates 360° panoramic images, delivering an immersive visual experience for users.
-
-- [Zod](https://github.com/colinhacks/zod): Implements client-side data validation in TypeScript (TS) to ensure data consistency and improve the frontend's reliability.
-
-- [Tailwind CSS](https://tailwindcss.com/): Streamlines styling and provides a utility-first approach to building user interfaces, making it easier to create beautiful designs.
-
-- [Framer Motion](https://www.framer.com/motion/) : Adds smooth animations and transitions to the user interface, enhancing the overall user experience.
-
-- [Material-UI](https://mui.com/) : Provides a set of pre-built UI components and styles for designing a modern and responsive frontend.
-
-- [Vite](https://vitejs.dev/): A fast, opinionated build tool that significantly speeds up frontend development. It offers blazingly fast development server and building capabilities.
-
-<br><br>
 
 <!-- How to run -->
 <img src="./readme/title6.svg"/>
