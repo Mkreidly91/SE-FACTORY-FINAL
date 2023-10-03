@@ -11,7 +11,6 @@
   - [Backend](#Backend)
 - [Prototyping](#prototyping)
 - [Demo](#Demo)
-- [OpenAi](#OpenAi)
 - [Performance](#Performance)
 - [How to Run](#how-to-run)
   - [Prerequisites](#prerequisites)
@@ -34,7 +33,7 @@
 ### Company:
 
 - As a construction company, I want to create a profile for my company, so I can gain exposure for my projects.
-- As a construction company, I want to edit my profile, so I can keep my profile up to date.
+- As a construction company, I want to edit my profile, so I can keep my information up to date.
 - As a construction company, I want to create a virtual tour of my project, to attract potential customers.
 
 ### Customer:
@@ -146,6 +145,47 @@
 | [![Customer Video](https://img.youtube.com/vi/fQZ61ADXafg/hqdefault.jpg)](https://www.youtube.com/embed/fQZ61ADXafg) | [![Company Video](https://img.youtube.com/vi/Ula8O4O6PMQ/hqdefault.jpg)](https://www.youtube.com/embed/Ula8O4O6PMQ) |
 
 </br>
+</br>
+</br>
+<a name="Performance" ></a>
+<img src="./readme/title9.svg"/> 
+> The following tests were conducted in Postman to assess the functionality of my application's primary APIs
+</br>
+</br>
+URL: 18.202.246.72/company/getCompanyProjects
+
+```sh
+PASS: Response time is within acceptable range //350 ms
+PASS: Response status code is 200
+PASS: Verify the 'data' array is present and contains at least one element
+PASS: Response schema is valid
+
+```
+
+<br>
+URL: 18.202.246.72/company/addPanorama
+
+```sh
+PASS: Response time is within acceptable range //500 ms
+PASS: Response status code is 200
+PASS: Response schema is valid
+PASS: Response has the required fields
+PASS: Verify that the 'url' field is a non-empty string
+PASS: Response content type is JSON
+```
+
+<br>
+URL: 18.202.246.72/company/addHotspot
+
+```sh
+PASS: Response time is within acceptable range //  171ms
+PASS: Response status code is 200
+PASS: Response schema is valid
+PASS: Verify that the 'data' array is present in the response and contains at least one element
+PASS: Response has the required field - message
+PASS: Response content type is JSON
+```
+
 </br>
 </br>
 
