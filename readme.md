@@ -3,7 +3,7 @@
 <br><br>
 <img src="./readme/title7.svg"/>
 
-- [Project Description](#project)
+- [Project Philosophy](#project)
 - [User Types](#user-types)
 - [Features of the App](#features)
 - [Tech Stack](#tech)
