@@ -5,7 +5,7 @@
 
 - [Project Philosophy](#project)
 - [User Types](#user-types)
-- [Features of the App](#features)
+- [User Stories](#user)
 - [Tech Stack](#tech)
   - [Frontend](#front)
   - [Backend](#back)
@@ -29,9 +29,9 @@
 - Company
 - Customer (general)
 
-<a id="features"></a>
+<a id="user"></a>
 
-## Features
+## User Stories
 
 ### Company:
 
