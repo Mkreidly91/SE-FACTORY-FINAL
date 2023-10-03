@@ -3,23 +3,24 @@
 <br><br>
 <img src="./readme/title7.svg"/>
 
-- [Project Description](#project-description)
+- [Project Description](#project)
 - [User Types](#user-types)
-- [Features of the App](#features-of-the-app)
-- [Tech Stack](#tech-stack)
-  - [Frontend](#Frontend)
-  - [Backend](#Backend)
-- [Prototyping](#prototyping)
-- [Demo](#Demo)
-- [Performance](#Performance)
-- [How to Run](#how-to-run)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
+- [Features of the App](#features)
+- [Tech Stack](#tech)
+  - [Frontend](#front)
+  - [Backend](#back)
+- [Prototyping](#proto)
+- [Demo](#demo)
+- [Performance](#perf)
+- [How to Run](#run)
+  - [Prerequisites](#pre)
+  - [Installation](#inst)
 
 </br>
 </br>
 <!-- project philosophy -->
 <img src="./readme/title2.svg"/>
+<a id="project"></a>
 
 > A platform that allows construction companies to showcase their projects through 3D objects, and virtual tours of the space using panoramic images. The platform enhances the visibility of the company’s work and creates an immersive experience for users.
 
@@ -27,6 +28,8 @@
 
 - Company
 - Customer (general)
+
+<a id="features"></a>
 
 ## Features
 
@@ -43,30 +46,15 @@
 
 <br><br>
 
-<!-- Prototyping -->
-<img src="./readme/title3.svg"/>
-
-> We designed Vizi using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
-
-## Wireframes
-
-| Get Started                              | Dashboard                                    | Create Project                            |
-| ---------------------------------------- | -------------------------------------------- | ----------------------------------------- |
-| ![Landing](./readme/demo/getStarted.png) | ![fsdaf](./readme/demo/companyDashboard.png) | ![fsdaf](./readme/demo/createProject.png) |
-
-## Mockups
-
-| Get Started                                     | Dashboard Projects                          | Customer Screen                             |
-| ----------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| ![Landing](./readme/demo/mockup_getStarted.png) | ![fsdaf](./readme/demo/mockup_projects.png) | ![fsdaf](./readme/demo/mockup_customer.png) |
-
-<br><br>
+<a id="tech"></a>
 
 <!-- Tech stack -->
 
 <img src="./readme/title5.svg"/>
 
 ## Vizi is built using the following technologies:
+
+<a id="back"></a>
 
 ## Backend
 
@@ -79,6 +67,8 @@
 ## Media Storage
 
 - AWS S3 bucket (via [aws-sdk](https://aws.amazon.com/sdk-for-javascript/)): Utilized for media asset storage, including images and videos, ensuring scalability and high availability.
+
+<a id="front"></a>
 
 ## Frontend
 
@@ -99,6 +89,29 @@
 - [Vite](https://vitejs.dev/): A fast, opinionated build tool that significantly speeds up frontend development. It offers blazingly fast development server and building capabilities.
 
 <br><br>
+
+<a id="proto"></a>
+
+<!-- Prototyping -->
+<img src="./readme/title3.svg"/>
+
+> We designed Vizi using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
+
+## Wireframes
+
+| Get Started                              | Dashboard                                    | Create Project                            |
+| ---------------------------------------- | -------------------------------------------- | ----------------------------------------- |
+| ![Landing](./readme/demo/getStarted.png) | ![fsdaf](./readme/demo/companyDashboard.png) | ![fsdaf](./readme/demo/createProject.png) |
+
+## Mockups
+
+| Get Started                                     | Dashboard Projects                          | Customer Screen                             |
+| ----------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| ![Landing](./readme/demo/mockup_getStarted.png) | ![fsdaf](./readme/demo/mockup_projects.png) | ![fsdaf](./readme/demo/mockup_customer.png) |
+
+<br><br>
+
+<a id="demo"></a>
 
 <!-- Implementation -->
 
@@ -147,7 +160,7 @@
 </br>
 </br>
 </br>
-<a name="Performance" ></a>
+<a id="perf" ></a>
 <img src="./readme/title9.svg"/> 
 > The following tests were conducted in Postman to assess the functionality of my application's primary APIs
 </br>
@@ -189,10 +202,14 @@ PASS: Response content type is JSON
 </br>
 </br>
 
+<a id="run"></a>
+
 <!-- How to run -->
 <img src="./readme/title6.svg"/>
 
 > To set up Vizi locally, follow these steps:
+
+<a id="pre"></a>
 
 ### Prerequisites
 
@@ -203,6 +220,8 @@ This is an example of how to list things you need to use the software and how to
   npm install npm@latest -g
   ```
    </br>
+
+<a id="inst"></a>
 
 ## Installation
 
