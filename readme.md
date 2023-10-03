@@ -162,7 +162,7 @@
 </br>
 <a id="perf" ></a>
 <img src="./readme/title9.svg"/> 
-> The following tests were conducted in Postman to assess the functionality of my application's primary APIs
+> The following tests were conducted in Postman to assess the functionality of my application's primary APIs(Tested on AWS EC2)
 </br>
 </br>
 URL: 18.202.246.72/company/getCompanyProjects
@@ -305,9 +305,10 @@ npm install
 3. Environment Variables:
 
 - Create a .env file in the frontend directory to store configuration variables:
-  `env
-VITE_URL: YOUR_BASE_URL/  i.e:(http://127.0.0.1:80/)
-`
+
+```env
+VITE_URL = YOUR_BASE_URL  //i.e:(http://127.0.0.1:80/)
+```
 
 </br>
 
